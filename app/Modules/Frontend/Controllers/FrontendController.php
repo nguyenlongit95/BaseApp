@@ -40,7 +40,11 @@ class FrontendController extends Controller
         $sliderlist = new App\Modules\Sliders\Controllers\SlidersFrontController();
         $sliders = $sliderlist->renderSlider();
         View::share(['sliders'=> $sliders]);
-        return view('frontend.pages.home');
+
+        $muamathe_html = app('App\Modules\Frontend\Controllers\SoftcardController')->renderContent();
+        $napcham_html = view('frontend.widgets.napcham-content')->render();
+        
+        return view('frontend.pages.home',compact('muamathe_html','napcham_html'));
     }
 
     public function napcham()

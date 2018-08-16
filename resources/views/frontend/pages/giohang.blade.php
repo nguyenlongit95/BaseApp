@@ -2,7 +2,7 @@
 <ul class="side-order">
   <li class="clearfix cell-header">
   	<strong>Giỏ hàng</strong>
-  	<span class="btn btn-danger delete-cart btn-sm float-right">Xoá giỏ hàng</span>
+  	<!-- <span class="btn btn-danger delete-cart btn-sm float-right">Xoá giỏ hàng</span> -->
   </li>
   @if(Cart::count())
   @foreach(Cart::content() as $row)

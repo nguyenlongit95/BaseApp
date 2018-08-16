@@ -22,32 +22,31 @@ class SoftcardController extends FrontendController
 
     public function index()
     {
-    	/* get sub cate "Softcard" id=15 */
-    	$categories = static::getSubCategories(0);
-    	$products = array();
-    	$thumb = array();
-    	$options = array();
-    	if(count($categories)){
-	    	foreach ($categories as $cate) {
-	    		$products[$cate->id] = static::getCategoryProduct($cate->id);
-	    		if(count($products[$cate->id])){
-		    		foreach ($products[$cate->id] as $pro) {
-				    	// echo 'img: '.$pro->value
-				    	$thumb[$pro->id] = static::getProductThumb($pro->id);
-				    	// echo '<pre>';
-				    	$items = static::getProductOptions($pro->id);
-				    	$options[$pro->id] = array();
-				    	foreach ($items as $item) {
-				    		$options[$pro->id][$item->id] = $item->toArray();
+        $categories = static::getSubCategories(0);
+        $products = array();
+        $thumb = array();
+        $options = array();
+        if(count($categories)){
+            foreach ($categories as $cate) {
+                $products[$cate->id] = static::getCategoryProduct($cate->id);
+                if(count($products[$cate->id])){
+                    foreach ($products[$cate->id] as $pro) {
+                        // echo 'img: '.$pro->value
+                        $thumb[$pro->id] = static::getProductThumb($pro->id);
+                        // echo '<pre>';
+                        $items = static::getProductOptions($pro->id);
+                        $options[$pro->id] = array();
+                        foreach ($items as $item) {
+                            $options[$pro->id][$item->id] = $item->toArray();
                             if(count($item->price))
-				    		  $options[$pro->id][$item->id]['price'] = $item->price->first()->toArray();
+                              $options[$pro->id][$item->id]['price'] = $item->price->first()->toArray();
                             if(count($item->discount))
-				    		  $options[$pro->id][$item->id]['discount'] = $item->discount->first()->toArray();
-				    	}
-				    }
-				}
-	    	}
-	    }
+                              $options[$pro->id][$item->id]['discount'] = $item->discount->first()->toArray();
+                        }
+                    }
+                }
+            }
+        }
         $added_items = array();
         if(Cart::count()){
             foreach (Cart::content() as $row){
@@ -56,6 +55,44 @@ class SoftcardController extends FrontendController
         }
         $shopping_cart = static::renderShoppingCart();
         return view('frontend.pages.muamathe', compact('categories','products','thumb','options','shopping_cart','added_items'));
+    }
+
+
+    public function renderContent()
+    {
+        $categories = static::getSubCategories(0);
+        $products = array();
+        $thumb = array();
+        $options = array();
+        if(count($categories)){
+            foreach ($categories as $cate) {
+                $products[$cate->id] = static::getCategoryProduct($cate->id);
+                if(count($products[$cate->id])){
+                    foreach ($products[$cate->id] as $pro) {
+                        // echo 'img: '.$pro->value
+                        $thumb[$pro->id] = static::getProductThumb($pro->id);
+                        // echo '<pre>';
+                        $items = static::getProductOptions($pro->id);
+                        $options[$pro->id] = array();
+                        foreach ($items as $item) {
+                            $options[$pro->id][$item->id] = $item->toArray();
+                            if(count($item->price))
+                              $options[$pro->id][$item->id]['price'] = $item->price->first()->toArray();
+                            if(count($item->discount))
+                              $options[$pro->id][$item->id]['discount'] = $item->discount->first()->toArray();
+                        }
+                    }
+                }
+            }
+        }
+        $added_items = array();
+        if(Cart::count()){
+            foreach (Cart::content() as $row){
+                $added_items[$row->id] = $row->rowId;
+            }
+        }
+        $shopping_cart = static::renderShoppingCart();
+        return view('frontend.widgets.muamathe-content', compact('categories','products','thumb','options','shopping_cart','added_items'))->render();
     }
 
     public static function getUserGroup(){
