@@ -24,10 +24,11 @@ class News extends Model
         'author_email',
         'language',
         'custom_layout',
+        'view_count',
         'status',
         'publish_date',
         // 'created_at',
         // 'updated_at',
     ];
-
+    
 }

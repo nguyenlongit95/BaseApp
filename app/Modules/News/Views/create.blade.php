@@ -47,6 +47,10 @@
                       <input name="author_email" type="text" class="form-control" id="author_email" value="{{ $author_email }}" readonly="">
                     </div>
                     <div class="form-group">
+                      <label for="view_count">View Count:</label>
+                      <input name="view_count" type="text" class="form-control" id="view_count" value="{{ old('view_count') }}" >
+                    </div>
+                    <div class="form-group">
                       <label for="language">Language:</label>
                       {!! Form::select('language', $languages, old('language'), array('class' => 'form-control')) !!}
                     </div>

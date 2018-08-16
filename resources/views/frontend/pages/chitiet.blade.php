@@ -34,7 +34,7 @@
 		<div class="blockContent">
 			@if(count($tags))
 				@foreach($tags as $tag)
-					<a class="tag-item" href="tags/{{ $tag->code }}">{{ $tag->label }}</a>
+					<a class="tag-item" href="{{ url('tags').'/'.$tag->code }}">{{ $tag->label }}</a>
 				@endforeach
 			@endif
 		</div>

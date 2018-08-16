@@ -90,6 +90,7 @@ class NewsController extends BackendController
             // 'language' => 'required',
             // 'custom_layout' => '',
             // 'status' => 'required',
+            // 'view_count' => '',
             // 'publish_date' => '',
             // 'created_at' => '',
             // 'updated_at' => '',
@@ -106,7 +107,7 @@ class NewsController extends BackendController
 
         /** save news tags **/
         $new_tags = array();
-        $module_type = config('tags.data.news.id');
+        $module_type = config('tags.type.news.id');
         $new_tags = $request->tags;
         if($request->new_tags && $request->new_tags!=''){
             $new_tags_ids= app('App\Modules\Tags\Controllers\TagslistController')::createNewTags($request->new_tags);
@@ -131,7 +132,7 @@ class NewsController extends BackendController
 			$languages = $this->listLanguage();
             $tags = app('App\Modules\Tags\Models\Tagslist')->get(array('id','code','label'));
             $selected_tags = app('App\Modules\Tags\Models\Tagitems')->where('item_id',$id)
-                                ->where('type',config('tags.data.news.id'))
+                                ->where('type',config('tags.type.news.id'))
                                 ->groupBy('tag_id')
                                 ->pluck('tag_id')
                                 ->toArray();
@@ -158,6 +159,7 @@ class NewsController extends BackendController
         $news->short_description = $request->short_description;
         $news->content = $request->content;
         $news->language = $request->language;
+        $news->view_count = $request->view_count;
         // $news->custom_layout = $request->custom_layout;
         $news->status = $request->status;
         $news->publish_date = $request->publish_date;
@@ -166,9 +168,9 @@ class NewsController extends BackendController
         /** save news tags **/
         $new_tags = array();
         $delete_tags = array();
-        $module_type = config('tags.data.news.id');
+        $module_type = config('tags.type.news.id');
         $selected_tags = app('App\Modules\Tags\Models\Tagitems')->where('item_id',$id)
-                            ->where('type',config('tags.data.news.id'))
+                            ->where('type',config('tags.type.news.id'))
                             ->groupBy('tag_id')
                             ->pluck('tag_id')
                             ->toArray();
@@ -180,7 +182,8 @@ class NewsController extends BackendController
                 $delete_tags = $request->tags;
             }
         }else{
-            $new_tags = $request->tags;
+            if($request->tags)
+                $new_tags = $request->tags;
         }
         if($request->new_tags && $request->new_tags!=''){
             $new_tags_ids= app('App\Modules\Tags\Controllers\TagslistController')::createNewTags($request->new_tags);
