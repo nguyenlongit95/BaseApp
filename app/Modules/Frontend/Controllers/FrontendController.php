@@ -29,7 +29,8 @@ class FrontendController extends Controller
         $menu = $menulist->getMenuListBytype('header');
         View::share('menu', $menu);
 
-
+        $list_news = App\Modules\News\Controllers\NewsFrontController::getListNews(App::getLocale(),5);
+        View::share('list_news', $list_news);
 
 
     }

@@ -12,12 +12,14 @@ return [
 			'name' => 'Product',
 			'code' => 'product'
 		],
+	],
+	'type' => [
 		'news' => [
 			'id' => '1'
 		],
 		'product' => [
 			'id' => '2'
 		]
-	],
+	]
 
 ];
