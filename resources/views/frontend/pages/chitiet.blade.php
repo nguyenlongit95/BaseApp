@@ -3,6 +3,8 @@
 @section('customstyle')
 @endsection
 
+@section('breadcrumbs', Breadcrumbs::render('chi-tiet',$news))
+
 @section('content')
     <div class="blockPage">
       <div class="blockTitle">

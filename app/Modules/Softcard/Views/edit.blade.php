@@ -80,7 +80,7 @@
                               <tr class="images-row">
                                 <td>
                                   <input type="hidden" name="gallery_exists[{{ $numberImg }}]" value="{{ $img['id'] }}" />
-                                  <img src="{{ asset('storage/app/'.$img['value']) }}" alt="{{ $img['label'] }}" class="img-thumbnail" width="200" height="100" />
+                                  <img src="{{ asset('storage').'/'.$img['value'] }}" alt="{{ $img['label'] }}" class="img-thumbnail" width="200" height="100" />
                                 </td>
                                 <td>
                                   <input name="img_label[{{ $numberImg }}]" type="text" class="form-control " placeholder="Image Label" value="{{ $img['label'] }}" />

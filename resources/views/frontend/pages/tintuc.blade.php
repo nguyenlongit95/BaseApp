@@ -3,6 +3,9 @@
 @section('customstyle')
 @endsection
 
+@section('breadcrumbs', Breadcrumbs::render('tin-tuc'))
+
+
 @section('content')
 <div class="blockContent">
 	@if(count($news))

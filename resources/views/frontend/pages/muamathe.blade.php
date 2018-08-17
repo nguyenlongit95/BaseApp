@@ -44,9 +44,9 @@
                         @foreach($product as $pro)
                         <div class="btn btn-xmd btn-default softcard-btn @if($flag) btn-primary @endif" data-toggle="tab" href="#panel-sc-option-{{ $pro->id }}" data-sc-id="{{ $pro->id }}">
                           @if(isset($thumb[$pro->id]['url']))
-                          <img src="{{ asset('storage/app').'/'.$thumb[$pro->id]['url'] }}" alt="{{ $thumb[$pro->id]['alt'] }}" width="65" height="33" />
+                            <img src="{{ asset('storage').'/'.$thumb[$pro->id]['url'] }}" alt="{{ $thumb[$pro->id]['alt'] }}" width="65" height="33" />
                           @else
-                          <img src="{{ asset('storage/app/softcard/images/default.jpg') }}" alt="{{ $pro->name }}" width="65" height="33" />
+                            <img src="{{ asset('storage').'/default.jpg' }}" alt="{{ $pro->name }}" width="65" height="33" />
                           @endif
                         </div>
                         <?php $flag = false; ?>

@@ -4,7 +4,7 @@ $namespace = 'App\Modules\Frontend\Controllers';
 
 Route::group(['middleware' => ['web'], 'module'=>'Frontend', 'namespace' => $namespace], function () {
 
-    Route::get('/', 'FrontendController@index');
+    Route::get('/', ['as' =>'home', 'uses' =>'FrontendController@index']);
 
 
     // Acount

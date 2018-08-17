@@ -11,7 +11,8 @@
 <body>
 <div class="page category">
     @include('frontend.widgets.header')
-    @include('frontend.widgets.breadcrumb')
+    @yield('breadcrumbs')
+
     <section class="main">
         <div class="section">
             <div class="container">

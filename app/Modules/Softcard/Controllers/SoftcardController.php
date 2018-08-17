@@ -106,7 +106,7 @@ class SoftcardController extends BackendController
                 $is_thumb = 0;
                 if($number_img==$request->is_thumb)
                     $is_thumb = 1;
-                $filename = $image->store('softcard/images');
+                $filename = $image->store('softcard/images','public');
                 (isset($request->img_label[$number_img]) && $request->img_label[$number_img]) ? $img_label = $request->img_label[$number_img] : $img_label = '';
                 (isset($request->img_order[$number_img]) && $request->img_order[$number_img]) ? $img_order = $request->img_order[$number_img] : $img_order = 0;
                 (isset($request->img_status[$number_img]) && $request->img_status[$number_img]>0) ? $img_status = 1 : $img_status = 0;
@@ -258,7 +258,7 @@ class SoftcardController extends BackendController
                 }else{
                     /* add new gallery */
                     if(is_object($request->images[$number_img])){
-                        $filename = $request->images[$number_img]->store('softcard/images');
+                        $filename = $request->images[$number_img]->store('softcard/images','public');
                         $gallery = new SoftcardGallery(array(
                             'product_id' => $id,
                             'product_type' => 'softcard',
