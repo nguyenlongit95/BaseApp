@@ -12,6 +12,7 @@
 <body>
     <div class="page homepage">
         @include('frontend.widgets.header')
+        @yield('breadcrumbs')
         @yield('content')
         @include('frontend.widgets.contacts')
         @include('frontend.widgets.footer')
