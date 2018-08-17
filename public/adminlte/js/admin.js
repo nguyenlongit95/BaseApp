@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.error-messages').delay(60000).fadeOut(function(){$(this).remove()});
+    $('.error-messages').delay(10000).fadeOut(function(){$(this).remove()});
     $('#checkall').on("click",function() {
         var c = $(".mycheckbox");
         if (c.is(":checked")) {
@@ -20,11 +20,11 @@ $(document).ready(function() {
             $(this).parent().find("input:checkbox").attr("checked", !0);
             $(this).removeClass("Off").addClass("On");
         }
-        
+
     }), $(".Switch").each(function() {
         $(this).parent().find("input:checkbox").length && ($(this).parent().find("input:checkbox").hasClass("show") || $(this).parent().find("input:checkbox").hide(), $(this).parent().find("input:checkbox").is(":checked") ? $(this).removeClass("Off").addClass("On") : $(this).removeClass("On").addClass("Off"))
     });
-    
+
 })
 
 function onDelete(){
@@ -41,9 +41,9 @@ $(document).ready(function() {
     function showLAFM(type, selector) {
         $("#image_selecter_origin_type").val(type);
         $("#image_selecter_origin").val(selector);
-        
+
         $("#fm").modal('show');
-        
+
         loadFMFiles();
     }
     function getLI(upload) {
@@ -124,7 +124,7 @@ $(document).ready(function() {
     $(".btn_upload_files").on("click", function() {
         showLAFM("files", $(this).attr("selecter"));
     });
-    
+
     fm_dropzone = new Dropzone("#fm_dropzone", {
         maxFilesize: 2,
         acceptedFiles: "image/*,application/pdf",
@@ -158,7 +158,7 @@ $(document).ready(function() {
     $(".uploaded_file2 i.fa.fa-times").on("click", function(e) {
         var upload_id = $(this).parent().attr("upload_id");
         var $hiddenFIDs = $(this).parent().parent().prev();
-        
+
         var hiddenFIDs = JSON.parse($hiddenFIDs.val());
         var hiddenFIDs2 = [];
         for (var key in hiddenFIDs) {
@@ -173,7 +173,7 @@ $(document).ready(function() {
         $(this).parent().remove();
         e.preventDefault();
     });
-    
+
     $("body").on("click", ".fm_file_sel", function() {
         type = $("#image_selecter_origin_type").val();
         upload = JSON.parse($(this).attr("upload"));
@@ -194,7 +194,7 @@ $(document).ready(function() {
             $hinput.next("a").next(".uploaded_file").attr("href", bsurl+'/files/'+upload.hash+'/'+upload.name);
         } else if(type == "files") {
             $hinput = $("input[name="+$("#image_selecter_origin").val()+"]");
-            
+
             var hiddenFIDs = JSON.parse($hinput.val());
             // check if upload_id exists in array
             var upload_id_exists = false;

@@ -51,6 +51,58 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
+    <script type="text/javascript">
+        function selectFileWithCKFinder( elementId, previewSrc ) {
+            CKFinder.popup( {
+                chooseFiles: true,
+                width: 800,
+                height: 600,
+                onInit: function( finder ) {
+                    finder.on( 'files:choose', function( evt ) {
+                        var file = evt.data.files.first();
+                        var output = document.getElementById( elementId );
+                        output.value = file.getUrl();
+
+                        var pr = document.getElementById( previewSrc );
+                        pr.src  = file.getUrl();
+                    } );
+
+                    finder.on( 'file:choose:resizedImage', function( evt ) {
+                        var output = document.getElementById( elementId );
+                        output.value = evt.data.resizedUrl;
+                    } );
+                }
+            } );
+
+
+        }
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function(){
+            $(".Switch").on('click',function() {
+                $.ajax({
+                    url: "{{ url('/').'/'.$backendUrl.'/ajax' }}",
+                    type : "post",
+                    dataType:"text",
+                    data : {
+                        action : 'updateToggle',
+                        table : $(this).attr('data-table'),
+                        col : $(this).attr('data-col'),
+                        id: $(this).attr('data-id')
+                    },
+                }).done(function() {
+
+                });
+            });
+
+
+
+        });
+    </script>
 
   @yield('js-head')
 </head>
@@ -134,54 +186,7 @@
   </footer>
 </div>
 <!-- ./wrapper -->
-<script type="text/javascript">
 
-
-
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-$(document).ready(function(){
-  $(".Switch").on('click',function() {
-        $.ajax({
-          url: "{{ url('/').'/'.$backendUrl.'/ajax' }}",
-          type : "post",
-          dataType:"text",
-          data : {
-              action : 'updateToggle',
-               table : $(this).attr('data-table'),
-               col : $(this).attr('data-col'),
-               id: $(this).attr('data-id')
-          },
-        }).done(function() {
-
-        });
-    });
-
-    function selectFileWithCKFinder( elementId ) {
-      CKFinder.popup( {
-        chooseFiles: true,
-        width: 800,
-        height: 600,
-        onInit: function( finder ) {
-          finder.on( 'files:choose', function( evt ) {
-            var file = evt.data.files.first();
-            var output = document.getElementById( elementId );
-            output.value = file.getUrl();
-          } );
-
-          finder.on( 'file:choose:resizedImage', function( evt ) {
-            var output = document.getElementById( elementId );
-            output.value = evt.data.resizedUrl;
-          } );
-        }
-      } );
-    }
-
-});
-</script>
 @include('backend.layouts.uploadsjs')
 @yield('js')
 </body>

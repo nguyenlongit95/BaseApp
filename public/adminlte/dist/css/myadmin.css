@@ -398,9 +398,11 @@ body.IE7 .Switch.Round {
 }
 .Switch.Round.Off .Toggle {
   left: 1px;
-  
+
 }
 .Switch.Round.On .Toggle {
   left: 63%;
   background: #4CAF50;
 }
+
+img.imgPreview{ max-with:100px; max-height: 100px; }

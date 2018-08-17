@@ -12,11 +12,11 @@ Route::auth();
 */
 
 
-
+Route::get('/test-api', 'HomeController@test');
 
 Route::get('/redirect/{social}', 'SocialAuthController@redirect');
 Route::get('/callback/{social}', 'SocialAuthController@callback');
 
 Route::group(['middleware' => ['auth']], function() {
-   
+
 });
