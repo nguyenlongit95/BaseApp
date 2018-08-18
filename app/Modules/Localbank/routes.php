@@ -6,7 +6,8 @@ $as = config('backend.backendRoute');
 //--FRONTEND
 Route::group(['middleware' => ['web'], 'module'=>'Localbank', 'namespace' => $namespace], function () {
 
-    Route::get('/nganhang.html',['as'=>'frontend.account.user-bank', 'uses'=> 'LocalbankFrontController@index'] );
+    Route::get('/user/localbank',['as'=>'user.localbank', 'uses'=> 'LocalbankFrontController@localbank']);
+    Route::post('/user/localbank',['as'=>'user.localbank', 'uses'=> 'LocalbankFrontController@postlocalbank']);
 });
 
 

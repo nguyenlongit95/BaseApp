@@ -1,34 +1,39 @@
-
-@extends('frontend.master')
-
+@extends('frontend.common')
+@section('breadcrumbs', Breadcrumbs::render('wallet'))
 
 @section('content')
-    <style>
-        #menuLeft a{
-            display: block;
-        }
-    </style>
+    <h4><span class="text-uppercase">Các ví điện tử</span></h4>
     <section class="main">
-        <div class="section">
-            <div class="container">
-                <div class="fullColumn">
-                    <div class="blockTitle text-center bg-shadowimg">
-                        <h3><span class="text-uppercase">Tài khoản</span></h3>
-                    </div>
 
-                    <div class="blockContent">
-                        <div class="col-sm-12 right-seperate">
+     <div class="blockContent">
 
-                            @include('frontend.account.userpanel')
-                            <div class="col-sm-8">
-                                <h4><span class="text-uppercase">Ví của tui</span></h4>
-                                Số dư hiện tại: {{ $balance  }} {{ $wallet->currency_code }}
-                            </div>
+         <table class="table table-striped table-condensed">
+             <thead>
+             <tr>
+                 <th>Loại ví</th>
+                 <th>Địa chỉ ví</th>
+                 <th>Số dư khả dụng</th>
+                 <th>Số dư tạm giữ</th>
+                 <th>Trạng thái</th>
+             </tr>
+             </thead>
+             <tbody>
+             @foreach($wallets as $wallet)
+             <tr>
+                 <td>{{$wallet['currency_code']}}</td>
+                 <td><b>{{$wallet['number']}}</b></td>
+                 <td><span class="text-success"><b>{{$wallet['balance']}} {{strtolower($wallet['currency_code'])}}</b></span></td>
+                 <td><span class="text-danger"><i>{{$wallet['pending_balance']}} {{strtolower($wallet['currency_code'])}}</i></span></td>
+                 <td>@if($wallet['status'] == 1)<span class="label label-success">Hoạt động</span> @else <span class="label label-danger">Bị khóa</span> @endif
+                 </td>
+             </tr>
+             @endforeach
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+             </tbody>
+         </table>
+
+      </div>
+
+
     </section>
 @endsection

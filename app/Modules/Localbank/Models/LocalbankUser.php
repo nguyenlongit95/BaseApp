@@ -17,7 +17,7 @@ class LocalbankUser extends Model
      */
     protected $table = 'localbanks_user';
     protected $fillable = [
-        'user_id', 'bank_id', 'name', 'acc_num', 'acc_name','branch', 'approve', 'status'
+        'code', 'acc_num', 'acc_name', 'branch', 'approved', 'user_id'
     ];
 
 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 15, 2018 lúc 07:15 AM
--- Phiên bản máy phục vụ: 10.1.34-MariaDB
--- Phiên bản PHP: 7.2.7
+-- Thời gian đã tạo: Th8 17, 2018 lúc 08:42 PM
+-- Phiên bản máy phục vụ: 10.1.33-MariaDB
+-- Phiên bản PHP: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -145,7 +145,8 @@ CREATE TABLE `chargings` (
 
 INSERT INTO `chargings` (`id`, `user`, `user_info`, `code`, `serial`, `telco`, `declared_value`, `real_value`, `fees`, `penalty`, `amount`, `currency_code`, `type`, `error_code`, `error_message`, `charge_check`, `checksum`, `status`, `api_provider`, `order`, `description`, `admin_note`, `transaction_code`, `created_at`, `updated_at`) VALUES
 (31, 4, 'dsfdsafdsa', 'fdsafd', 'fdsafdas', 'VIETTEL', 20000, 20000, 12, 0, 19800, 'VND', 'Charging', '', '', 0, 'eeb80d0bfc6395fc4b9aa4e834ce238e', 1, '', NULL, '', NULL, 'T15337886546230', '2018-08-09 02:58:47', '2018-08-09 04:24:14'),
-(32, 4, 'dsfdsafdsa', 'dsadsa', 'fdsafdsaf', 'VIETTEL', 10000, 0, 12, 0, 9900, 'VND', 'Charging', '', '', 0, '6e2a6c7ea0665f8da9721853a0bedd28', 0, '', NULL, '', NULL, 'T15337886822461', '2018-08-09 03:16:33', '2018-08-09 04:52:35');
+(32, 4, 'dsfdsafdsa', 'dsadsa', 'fdsafdsaf', 'VIETTEL', 10000, 0, 12, 0, 9900, 'VND', 'Charging', '', '', 0, '6e2a6c7ea0665f8da9721853a0bedd28', 0, '', NULL, '', NULL, 'T15337886822461', '2018-08-09 03:16:33', '2018-08-09 04:52:35'),
+(33, 16, NULL, '99999999', '66666666', 'VIETTEL', 100000, 0, 1, 0, 99000, 'VND', 'Charging', '', '', 0, 'c429c0f6438256e1d37b786b278c3013', 0, '', NULL, '', '', NULL, '2018-08-15 18:07:09', '2018-08-15 18:07:09');
 
 -- --------------------------------------------------------
 
@@ -578,8 +579,29 @@ INSERT INTO `localbanks` (`id`, `code`, `name`, `acc_num`, `acc_name`, `branch`,
 --
 
 CREATE TABLE `localbanks_user` (
-  `id` int(11) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `code` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `acc_num` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `acc_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `branch` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `approved` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `localbanks_user`
+--
+
+INSERT INTO `localbanks_user` (`id`, `user_id`, `code`, `acc_num`, `acc_name`, `branch`, `approved`, `created_at`, `updated_at`) VALUES
+(1, 1, 'EAB', '0021355411', 'DO THUY TRANG', 'Ha Noi', 1, '2018-08-17 18:25:54', '0000-00-00 00:00:00'),
+(2, 0, 'EAB', '03366666666', 'nguyen van nghia', 'Hai Phong', 0, '2018-08-17 18:26:04', '2018-08-17 18:26:04'),
+(3, 0, 'EAB', '033666666667', 'nguyen van nghia', 'Hai Phong', 0, '2018-08-17 18:27:45', '2018-08-17 18:27:45'),
+(4, 0, 'EAB', '03111131313', 'nguyen van nghia', 'Hai Phong', 0, '2018-08-17 18:28:50', '2018-08-17 18:28:50'),
+(5, 0, 'EAB', 'ưewqeqwe', 'ưqeqweqwe', 'ưqeqwew', 0, '2018-08-17 18:30:29', '2018-08-17 18:30:29'),
+(6, 0, 'EAB', '03111131313', 'ưqewqewqe', 'eqwewqe', 0, '2018-08-17 18:32:37', '2018-08-17 18:32:37'),
+(7, 1, 'EAB', '03111131313', 'nguyen van nghia', 'Hai Phogn', 0, '2018-08-17 18:40:13', '2018-08-17 18:40:13');
 
 -- --------------------------------------------------------
 
@@ -790,6 +812,7 @@ INSERT INTO `menu` (`id`, `name`, `url`, `menu_type`, `parent_id`, `level`, `chi
 
 CREATE TABLE `merchants` (
   `id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `partner_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `partner_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -807,8 +830,8 @@ CREATE TABLE `merchants` (
 -- Đang đổ dữ liệu cho bảng `merchants`
 --
 
-INSERT INTO `merchants` (`id`, `name`, `partner_id`, `partner_key`, `wallet_num`, `ips`, `website`, `icon`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Nguyen Van Nghia', '8235324351', '0d70fa5e283408c80b6a303f886117e1', '0057382955', '192.36.58.55,87.58.120.221', 'http://winjsc.com', 'a.jpg', NULL, 1, '2018-08-14 08:29:14', '2018-08-14 08:29:07');
+INSERT INTO `merchants` (`id`, `user`, `name`, `partner_id`, `partner_key`, `wallet_num`, `ips`, `website`, `icon`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(2, 16, 'Nguyen Van Nghia', '8235324351', '0d70fa5e283408c80b6a303f886117e1', '006116807', '', 'http://winjsc.com', 'a.jpg', NULL, 1, '2018-08-15 17:26:28', '2018-08-14 08:29:07');
 
 -- --------------------------------------------------------
 
@@ -1310,24 +1333,24 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`key`, `value`, `created_at`, `updated_at`) VALUES
-('favicon', '1', NULL, '2018-07-31 04:56:12'),
-('backendlogo', '1', NULL, '2018-07-31 04:56:12'),
-('name', 'name', NULL, '2018-07-31 04:56:12'),
-('title', 'title 1', NULL, '2018-07-31 04:56:12'),
-('description', 'Description', NULL, '2018-07-31 04:56:12'),
-('language', 'vi', NULL, '2018-07-31 04:56:12'),
-('phone', '0123456789', NULL, '2018-07-31 04:56:12'),
-('twitter', 'fb.com/admin', NULL, '2018-07-31 04:56:12'),
-('email', 'admin@localhost.com', NULL, '2018-07-31 04:56:12'),
-('facebook', 'fb.com/admin', NULL, '2018-07-31 04:56:12'),
-('logo', '4', NULL, '2018-07-31 04:56:12'),
-('hotline', '0123456789', NULL, '2018-07-31 04:56:12'),
-('backendname', 'AdminLTE', NULL, '2018-07-31 04:56:12'),
-('backendlang', 'en', NULL, '2018-07-31 04:56:12'),
-('copyright', 'copyright', NULL, '2018-07-31 04:56:12'),
-('timezone', 'Asia/Ho_Chi_Minh', NULL, '2018-07-31 04:56:12'),
-('googleplus', 'fb.com/admin', NULL, '2018-07-31 04:56:12'),
-('websitestatus', 'ONLINE', NULL, '2018-07-31 04:56:12');
+('favicon', '/uploads/images/WIN-LOGO.png', NULL, '2018-08-16 16:47:19'),
+('backendlogo', '/uploads/images/WIN-LOGO.png', NULL, '2018-08-16 16:47:19'),
+('name', 'name', NULL, '2018-08-16 16:47:19'),
+('title', 'title 1', NULL, '2018-08-16 16:47:19'),
+('description', 'Description', NULL, '2018-08-16 16:47:19'),
+('language', 'vi', NULL, '2018-08-16 16:47:19'),
+('phone', '0123456789', NULL, '2018-08-16 16:47:19'),
+('twitter', 'fb.com/admin', NULL, '2018-08-16 16:47:19'),
+('email', 'admin@localhost.com', NULL, '2018-08-16 16:47:19'),
+('facebook', 'fb.com/admin', NULL, '2018-08-16 16:47:19'),
+('logo', '/uploads/images/WIN-LOGO.png', NULL, '2018-08-16 16:47:19'),
+('hotline', '0123456789', NULL, '2018-08-16 16:47:19'),
+('backendname', 'AdminLTE', NULL, '2018-08-16 16:47:19'),
+('backendlang', 'en', NULL, '2018-08-16 16:47:19'),
+('copyright', 'copyright', NULL, '2018-08-16 16:47:19'),
+('timezone', 'Asia/Ho_Chi_Minh', NULL, '2018-08-16 16:47:19'),
+('googleplus', 'fb.com/admin', NULL, '2018-08-16 16:47:19'),
+('websitestatus', 'ONLINE', NULL, '2018-08-16 16:47:19');
 
 -- --------------------------------------------------------
 
@@ -1742,11 +1765,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `email`, `phone`, `gender`, `group`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'admin@localhost.com', '123456789', 'male', 4, '$2y$10$NU6Ga/zsVoj1a/YbFyIIOulR27bdBymgX3xjsCZbDdeuaUaTwUN4e', 'H80RPv2WOSCFfeSnMpZUlegZ6xcWTyUvZNEZKg0ucaJKPcqYWKPgAoBQ5C4C', 1, '2018-06-21 09:27:42', '2018-07-28 00:12:41'),
+(1, 'admin', 'admin', 'admin@localhost.com', '123456789', 'male', 4, '$2y$10$NU6Ga/zsVoj1a/YbFyIIOulR27bdBymgX3xjsCZbDdeuaUaTwUN4e', 'gW6nRmv4dkDslwZvJuEAkymM8wXjoSzYrTp4pK9HAEVnvcRGGv1gsZ08froL', 1, '2018-06-21 09:27:42', '2018-07-28 00:12:41'),
 (2, 'duong', 'Duong Tuong Quan', 'duong@localhost.com', '234546', 'male', 4, '$2y$10$RIJOBJ3oBMooZ0JI6QLWw.00QSlOv5GMQP/9hK0YutpFJTpHOLsgi', 'lIRYcA4rRNQ8RfZaQ5eem4FQyFL9kFkWuJF5SUz29ZTpHoHPDCziwF2gjcFM', 1, '2018-06-23 07:22:42', '2018-06-30 18:36:04'),
 (4, 'dsfdsafdsa', 'fdsafdsa', 'admin@localhostdas.com', '0123456', 'male', 5, '$2y$10$bE8boykW4AyDtbSQ8pzGz.U7x/6SCbIvv0nVlUXk.fdQrZvTHRS1K', 'exeRScHWRAKkSAoWy2aiSHrOGOMjT846xAEwNkg1bhnfStb6M9FZdNjeL1R6', 1, '2018-07-25 21:42:06', '2018-07-25 21:48:39'),
 (15, NULL, 'Duongnguyen', NULL, '012345677', NULL, 4, '$2y$10$9RahHbICLVC06ylAICFZc.4Wm0XL69JifrQNi27co8hTU4.oSaSmy', 'z5ELQbgPqy3qjd2we9knumnbJlPPqXiqAHUT0qdxw3ZPbhEm5c54Dcl5nZ6T', 0, '2018-08-09 07:21:47', '2018-08-09 07:21:47'),
-(16, NULL, 'Duong', NULL, '012345655', NULL, 4, '$2y$10$dl5injCnkdrKZjeNt3qJRebm1KRxYg8TMma6OT8eVdpv375tzxrqm', NULL, 0, '2018-08-10 10:12:54', '2018-08-10 10:12:54');
+(16, NULL, 'Duong', NULL, '012345655', NULL, 4, '$2y$10$dl5injCnkdrKZjeNt3qJRebm1KRxYg8TMma6OT8eVdpv375tzxrqm', NULL, 1, '2018-08-10 10:12:54', '2018-08-10 10:12:54');
 
 -- --------------------------------------------------------
 
@@ -1775,9 +1798,9 @@ CREATE TABLE `wallets` (
 
 INSERT INTO `wallets` (`id`, `number`, `currency_id`, `currency_code`, `user`, `balance`, `balance_decode`, `pending_balance`, `checksum`, `status`, `created_at`, `updated_at`) VALUES
 (16, '001893644', 1, 'VND', 1, 'eyJpdiI6Im1qdTJUZ254SUVqSnJQMFwvMlYyYUZ3PT0iLCJ2YWx1ZSI6IkJiMFRDTkdualplaTJ4bVR4cEhXNHc9PSIsIm1hYyI6ImEwODIxYzQ4MDJjYWE3MDIyNzA3MTQ0MjMwYjk0ZTA0ZWY4ZmI5NmNkMDcyZGEzZmY3ZThmYTY5OWRjNjdlNGUifQ==', '303600.00000000', '1000000.00000000', '97d2e646f40d6d6fc57945fe7c5a5a8d', 1, '2018-08-14 06:40:32', '2018-08-11 06:56:43'),
-(17, '007793845', 1, 'VND', 4, 'eyJpdiI6IkJjNlVnREZjdG1nVnRBWWV6c0F6MHc9PSIsInZhbHVlIjoiUXpqVmJQUlpTWndFMk5KMjNyYUdyUT09IiwibWFjIjoiM2JjMWFlNzBhZWNlYzQwZGJlNWI0NGQyMmU2NzJmNTIwN2Q4YmNjOGMwNDMwZjA3MzgyMTVjMDk2ODQyNGI0OSJ9', '406400.00000000', '0.00000000', 'bf6f30da70b67ec03210f4f225dd8d84', 1, '2018-08-13 04:53:34', '2018-08-13 04:53:11'),
+(17, '007793845', 1, 'USD', 1, 'eyJpdiI6IkJjNlVnREZjdG1nVnRBWWV6c0F6MHc9PSIsInZhbHVlIjoiUXpqVmJQUlpTWndFMk5KMjNyYUdyUT09IiwibWFjIjoiM2JjMWFlNzBhZWNlYzQwZGJlNWI0NGQyMmU2NzJmNTIwN2Q4YmNjOGMwNDMwZjA3MzgyMTVjMDk2ODQyNGI0OSJ9', '406400.00000000', '0.00000000', 'bf6f30da70b67ec03210f4f225dd8d84', 0, '2018-08-17 14:14:41', '2018-08-13 04:53:11'),
 (18, '006009267', 1, 'VND', 15, 'eyJpdiI6IkF1TUJuaFZmY1ZIRnQ2YzFQUHVXckE9PSIsInZhbHVlIjoiZGxoT1VvS1hMaFZXNDBET0w5bndPdz09IiwibWFjIjoiYWFhNWUwMTdmYmUyNWE5MDY4MGFlZjZhMTZjYjNmYWFmOWNlN2IwNGY2ZDM3NTc5YzI2MmRkNDkyM2I0ZThlOCJ9', '100000.00000000', '0.00000000', 'ee2eee4a15927d2861f71e759c14be43', 1, '2018-08-11 07:00:03', '2018-08-11 07:00:03'),
-(19, '006116807', 1, 'VND', 16, 'eyJpdiI6Im1zbmJYWDd2VVl5cjVFRnA2aDBkbFE9PSIsInZhbHVlIjoiM05cL1pvRUowOGRjMVNRdk42TzhqQlE9PSIsIm1hYyI6IjFkN2ZiZGMyNjk4ZTVhMTkzYzJhNzBhMGUzZjY4N2E5N2QyOWEzZjllMmI2NDQ5NTFiMDU3NmMzNTcxZWI1ZGMifQ==', '1350000.00000000', '0.00000000', '6f897ce43607ebe98986fc49cd3b3025', 1, '2018-08-14 06:40:32', '2018-08-13 08:43:09');
+(19, '006116807', 1, 'VND', 16, 'eyJpdiI6Im1zbmJYWDd2VVl5cjVFRnA2aDBkbFE9PSIsInZhbHVlIjoiM05cL1pvRUowOGRjMVNRdk42TzhqQlE9PSIsIm1hYyI6IjFkN2ZiZGMyNjk4ZTVhMTkzYzJhNzBhMGUzZjY4N2E5N2QyOWEzZjllMmI2NDQ5NTFiMDU3NmMzNTcxZWI1ZGMifQ==', '1350000.00000000', '0.00000000', '6f897ce43607ebe98986fc49cd3b3025', 1, '2018-08-15 16:43:52', '2018-08-13 08:43:09');
 
 -- --------------------------------------------------------
 
@@ -1975,6 +1998,12 @@ ALTER TABLE `languages_trans`
 ALTER TABLE `localbanks`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `code` (`code`);
+
+--
+-- Chỉ mục cho bảng `localbanks_user`
+--
+ALTER TABLE `localbanks_user`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `ltm_translations`
@@ -2208,8 +2237,7 @@ ALTER TABLE `users`
 ALTER TABLE `wallets`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `checksum` (`checksum`),
-  ADD UNIQUE KEY `number` (`number`),
-  ADD UNIQUE KEY `user` (`user`);
+  ADD UNIQUE KEY `number` (`number`);
 
 --
 -- Chỉ mục cho bảng `wallet_fees`
@@ -2261,7 +2289,7 @@ ALTER TABLE `category_product`
 -- AUTO_INCREMENT cho bảng `chargings`
 --
 ALTER TABLE `chargings`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `chargings_cards`
@@ -2318,6 +2346,12 @@ ALTER TABLE `localbanks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT cho bảng `localbanks_user`
+--
+ALTER TABLE `localbanks_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT cho bảng `ltm_translations`
 --
 ALTER TABLE `ltm_translations`
@@ -2369,7 +2403,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT cho bảng `orders_1`
@@ -2483,7 +2517,7 @@ ALTER TABLE `tags_items`
 -- AUTO_INCREMENT cho bảng `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 
 --
 -- AUTO_INCREMENT cho bảng `uploads`

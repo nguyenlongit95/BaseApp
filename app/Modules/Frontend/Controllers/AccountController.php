@@ -8,8 +8,10 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Validator;
 use App;
+use \App\User;
 use Gloudemans\Shoppingcart\Facades\Cart as Cart;
 use App\Modules\Wallet\Models\Wallet;
+use App\Modules\Wallet\Models\WalletHistory;
 
 class AccountController extends FrontendController
 {
@@ -28,20 +30,44 @@ class AccountController extends FrontendController
 
     public function wallet()
     {
-        $wallet = Wallet::where('user', Auth::user()->id )->first();
-        $balance = number_format($wallet->balance_decode);
-        return view('frontend.account.wallet', compact('balance', 'wallet'));
+        $walletlists = Wallet::where('user', Auth::user()->id )->get();
+        foreach ($walletlists as $key => $wallet) {
+            $wallets[$key]['number'] = $wallet->number;
+            $wallets[$key]['balance'] = number_format($wallet->balance_decode);
+            $wallets[$key]['currency_code'] = $wallet->currency_code;
+            $wallets[$key]['pending_balance'] = number_format($wallet->pending_balance);
+            $wallets[$key]['status'] = $wallet->status;
+        }
+
+
+        return view('frontend.account.wallet', compact('wallets'));
     }
 
 
     public function profile()
     {
-        return view('frontend.account.profile');
+        if(Auth::check()) {
+            $user = User::find(Auth::user()->id);
+
+            $walletlists = Wallet::where('user', Auth::user()->id )->get();
+            foreach ($walletlists as $key => $wallet) {
+                $wallets[$key]['number'] = $wallet->number;
+                $wallets[$key]['balance'] = number_format($wallet->balance_decode);
+                $wallets[$key]['currency_code'] = $wallet->currency_code;
+            }
+
+        }
+
+
+        return view('frontend.account.profile', compact('user', 'wallets'));
+
     }
 
-    public function history()
+    public function wallettrans()
     {
-        return view('frontend.account.history');
+        $trans = WalletHistory::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+
+        return view('frontend.account.wallettrans', compact('trans'));
     }
 
 }

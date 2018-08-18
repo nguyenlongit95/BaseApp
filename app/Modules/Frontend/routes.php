@@ -8,10 +8,14 @@ Route::group(['middleware' => ['web'], 'module'=>'Frontend', 'namespace' => $nam
 
 
     // Acount
-    Route::get('/profile', 'AccountController@profile');
-    Route::get('/wallet', 'AccountController@wallet');
-    Route::get('/history', 'AccountController@wallet');
-    Route::get('/change-password', 'AccountController@changePassword');
+    Route::get('/profile', ['as'=>'user.profile', 'uses'=>'AccountController@profile']);
+    Route::get('/wallet', ['as'=>'user.wallet', 'uses'=>'AccountController@wallet']);
+    Route::get('/wallet/transactions', ['as'=>'wallet.transaction', 'uses'=>'AccountController@wallettrans']);
+    Route::get('/change-password', ['as'=>'user.changepassword', 'uses'=>'AccountController@changePassword']);
+
+
+    ////Front area
     Route::get('/reset-password',['as'=>'reset-password', 'uses'=> 'FrontendController@password_reset']);
+
 });
 
