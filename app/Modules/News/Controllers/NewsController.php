@@ -24,7 +24,7 @@ class NewsController extends BackendController
 	{
         $news = News::orderBy('id','DESC')->paginate(10);
         if($request->input('keyword')!='')
-        {   
+        {
             $keyword = $request->input('keyword');
             $typeSearch = $request->input('type');
             $title  = "Search: ";
@@ -149,7 +149,7 @@ class NewsController extends BackendController
             'title' => 'required',
             'content' => 'required',
         ]);
-
+        $input = $request->all();
         $news = News::find($id);
         $news->title = $request->title;
         if(!isset($request->url_key))
@@ -157,7 +157,7 @@ class NewsController extends BackendController
         else
         	$news->url_key =  $request->url_key;
         $news->short_description = $request->short_description;
-        $news->content = $request->content;
+        $news->content = $request->input['content'];
         $news->language = $request->language;
         $news->view_count = $request->view_count;
         // $news->custom_layout = $request->custom_layout;
@@ -231,7 +231,7 @@ class NewsController extends BackendController
             $news = News::find($value);
             $this->_runAction($value, $action);
         }
-        return redirect()->route('news.index')->with('success','News  '.$action.' successfully');
+        return redirect()->route('news.index')->with('success','News  '.$action.'successfully');
     }
 
     private function _runAction($id, $action)
@@ -240,7 +240,7 @@ class NewsController extends BackendController
             case 'delete':
                 $this->destroy($id);
                 break;
-            
+
             default:
                 break;
         }

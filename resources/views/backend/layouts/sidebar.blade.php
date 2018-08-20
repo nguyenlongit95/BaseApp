@@ -87,6 +87,14 @@ $(document).ready(function(){
                     </a>
                 </li>
 
+                <!-- Charging -->
+                <li class="nav-item has-treeview">
+                    <a href="{{ url($backendUrl.'/autochargings') }}" id="paygates" class="nav-link">
+                        <i class="nav-icon fa fa-paypal" aria-hidden="true"></i>
+                        <p>Tẩy thẻ nhanh</p>
+                    </a>
+                </li>
+
                 <!-- News -->
                 <li class="nav-item has-treeview">
                     <a href="news/" id="users" class="nav-link">
