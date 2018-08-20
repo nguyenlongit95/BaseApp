@@ -1,5 +1,6 @@
 @if (\Session::has('success'))
-    <div class="alert alert-success error-messages">
+    <div class="alert alert-success alert-dismissible error-messages">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <ul>
             <li>{!! \Session::get('success') !!}</li>
         </ul>
@@ -7,7 +8,8 @@
 @endif
 
 @if ($errors->any())
-    <div class="alert alert-danger error-messages ">
+    <div class="alert alert-danger alert-dismissible error-messages">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -15,3 +17,5 @@
         </ul>
     </div>
 @endif
+
+

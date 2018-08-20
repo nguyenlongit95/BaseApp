@@ -22,16 +22,31 @@ class ChargingFrontController extends FrontendController
     function viewPageFrontCharging()
     {
         $lsTelco = ChargingsTelco::where('status', 1)->get();
+
         $lsAmount = $lsTelco->first()->value;
         $lsAmount = explode(',', $lsAmount);
-        return view('frontend.pages.taythecham', compact('lsTelco', 'lsAmount') );
+
+        ///////Lịch sử tẩy thẻ
+        if(Auth::check()){
+            $user_id = Auth::user()->id;
+            $listHistory = Charging::where('user', $user_id)->orderBy('id','DESC')->get();
+        }
+        return view('frontend.pages.taythecham', compact('lsTelco', 'lsAmount', 'listHistory') );
+    }
+
+    public function renderContent()
+    {
+        $lsTelco = ChargingsTelco::where('status', 1)->get();
+        $lsAmount = $lsTelco->first()->value;
+        $lsAmount = explode(',', $lsAmount);
+        return view('frontend.widgets.taythecham-content', compact('lsTelco', 'lsAmount') );
     }
 
     public function insertCharging(Request $request)
     {
         if( ! Auth::check() )
         {
-            return view('frontend.pages.taythecham')->withErrors(['message' =>'Not logged.']);
+            return redirect('/login');
         }
         $this->validate($request, [
             'telco' => 'required',

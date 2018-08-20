@@ -182,6 +182,52 @@ $(document).ready(function(){
                     </ul>
                 </li>
 
+
+                <!-- Other Module-->
+                <li class="nav-item has-treeview">
+                    <a href="#" id="users" class="nav-link">
+                        <i class="nav-icon fa fa-cubes"></i>
+                        <p>Mô-đun khác<i class="right fa fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url($backendUrl.'/menu') }}" class="nav-link">
+                                <i class="fa fa-angle-right nav-icon"></i>
+                                <p>Menu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url($backendUrl.'/sliders') }}" class="nav-link">
+                                <i class="fa fa-angle-right nav-icon"></i>
+                                <p>Trình diễn ảnh</p>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a href="{{ url($backendUrl.'/categories') }}" class="nav-link">
+                                <i class="fa fa-angle-right nav-icon"></i>
+                                <p>Categories</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url($backendUrl.'/weblinks') }}" class="nav-link">
+                                <i class="fa fa-angle-right nav-icon"></i>
+                                <p>Trao đổi banner</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url($backendUrl.'/merchants') }}" class="nav-link">
+                                <i class="fa fa-angle-right nav-icon"></i>
+                                <p>Đối tác kết nối</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
                 <!-- Setting -->
                 <li class="nav-item has-treeview">
                     <a href="#" id="users" class="nav-link">
@@ -224,11 +270,20 @@ $(document).ready(function(){
                         </li>
 
                         <li class="nav-item">
+                            <a href="{{ url($backendUrl.'/sendmail/setting') }}" class="nav-link">
+                                <i class="fa fa-angle-right nav-icon"></i>
+                                <p>Cấu hình mail</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a href="{{ url($backendUrl.'/tagslist') }}" class="nav-link">
                                 <i class="fa fa-angle-right nav-icon"></i>
                                 <p>Tags</p>
                             </a>
                         </li>
+
+
                     </ul>
                 </li>
 

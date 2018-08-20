@@ -34,7 +34,7 @@ class LocalbankFrontController extends FrontendController
 
             LocalbankUser::create($input);
             return redirect()->route('user.localbank')
-                ->with('frontsuccess','Thêm ngân hàng thành công');
+                ->with('success','Thêm ngân hàng thành công');
 
     }
 

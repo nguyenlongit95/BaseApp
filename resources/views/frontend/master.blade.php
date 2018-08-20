@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     @yield('meta-tags')
     <title>@yield('title')</title>
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
     @include('frontend.widgets.headcss')
     @yield('customstyle')
 </head>
 <body>
     <div class="page homepage">
         @include('frontend.widgets.header')
-        @yield('breadcrumbs')
+        
         @yield('content')
         @include('frontend.widgets.contacts')
         @include('frontend.widgets.footer')

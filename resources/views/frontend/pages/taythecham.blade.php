@@ -1,18 +1,15 @@
-@extends('frontend.master')
+@extends('frontend.app')
+@section('breadcrumbs', Breadcrumbs::render('taythecham'))
 @section('content')
+
 <section class="main">
     <div class="section">
         <div class="container">
             <div class="fullColumn">
-                <div class="blockTitle text-center bg-shadowimg">
-                    <h3>
-                        <span class="text-uppercase">Nạp tiền đơn giản chỉ với vài thao tác</span>
-                    </h3>
-                </div>
                 <div class="blockContent">
-                    <div class=" right-seperate">
+                    <div class="right-seperate">
                         <div class="card-game-panel">
-                            <h3 class="panel-title">Mua thẻ game</h3>
+                            <h3 class="panel-title">Tẩy thẻ chậm</h3>
                             <p>Chú ý: Nạp chậm là hình thức khách hàng đưa yêu cầu nạp lên website, chúng tôi sẽ tìm thời điểm
                                 khuyến mãi tốt nhất để nạp. Chiết khấu chậm là 20%. Khi quý khách nạp 100k sẽ chỉ phải thanh
                                 toán 80k. Thời gian nạp sẽ từ 30 phuýt đến 5 tiếng. Quý khách có thể hủy nạp nếu không muốn
@@ -27,6 +24,7 @@
                                         <div  class="irow row-group">
                                                 <div class="col-sm-2 select">
                                                     <select class="telco form-control" name="telco[]" data-row="1" required autofocus>
+
                                                         @foreach( $lsTelco as $telco )
                                                         <option value="{{ $telco->key }}">{{ $telco->name }}</option>
                                                         @endforeach
@@ -50,10 +48,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                            <div style="position: absolute;"><button type="button" id="addRow" class="btn btn-success " style="float:left"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm</button></div>
+
+                                            <div><button type="button" id="addRow" class="btn btn-success " style="float:left"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm</button></div>
+                                            <br>
                                             <div class="text-center">
 
-                                                <button type="submit" class="btn btn-second"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Gửi thông tin</button>
+                                                <button type="submit" class="btn btn-warning btn-lg"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Gửi thông tin</button>
                                             </div>
                                             {{ csrf_field() }}
                                         </form>
@@ -63,6 +63,51 @@
                         </div>
                     </div>
                 </div>
+
+                @if(Auth::check())
+                <h3 class="panel-title">Lịch sử tẩy thẻ chậm</h3>
+
+                <table id="example1" class="table table-bordered table-striped dataTable">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>TT</th>
+                        <th>Mã Nạp</th>
+                        <th>Seri</th>
+                        <th>Mạng</th>
+                        <th>Khai</th>
+                        <th>Thực</th>
+                        <th>Phí</th>
+                        <th>Phạt</th>
+                        <th>Nhận</th>
+                        <th>Ngày</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach( $listHistory as $itemc )
+                        <tr>
+
+                            <td>{{$itemc->id}}</td>
+                            <td>@if($itemc['status'] == 1)<span class="label label-success">Xong</span> @else <span class="label label-warning">Chờ</span> @endif</td>
+                            <td>{{$itemc->code}}</td>
+                            <td>{{$itemc->serial}}</td>
+                            <td>{{$itemc->telco}}</td>
+                            <td>{{number_format($itemc->declared_value)}}</td>
+                            <td>{{$itemc->real_value}}</td>
+                            <td>{{$itemc->fees}}%</td>
+                            <td>{{$itemc->penalty}}</td>
+                            <td>{{number_format($itemc->amount)}} {{$itemc->currency_code}}</td>
+                            <td>{{$itemc->created_at}}</td>
+
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+
+
+                </table>
+                @endif
+
             </div>
         </div>
     </div>
@@ -96,7 +141,12 @@
     </div>
 </div>
 </div>
+
+
 @endsection
+
+
+
 
 @section('js-footer')
 

@@ -6,7 +6,7 @@ $as = config('backend.backendRoute');
 
 //Frontend
 Route::group(['middleware' => ['web'], 'module'=>'MTopup', 'namespace' => $namespace], function () {
-    Route::get('/napcham.html', 'MtopupFrontController@getViewPageMTopupIndex');
+    Route::get('/napcham.html', ['as'=>'frontend.page.napchamindex', 'uses' =>'MtopupFrontController@getViewPageMTopupIndex']);
 
     Route::get('/napcham/success.html',['as'=>'frontend.mtopup.success', 'uses'=>'MtopupFrontController@getViewCheckoutSuccess']);
     Route::get('/napcham/checkout.html',['as'=>'frontend.mtopup.checkout', 'uses'=>'MtopupFrontController@viewPageCheckout']);

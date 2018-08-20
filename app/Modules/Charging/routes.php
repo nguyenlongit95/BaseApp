@@ -14,8 +14,9 @@ Route::group(['middleware' => ['web'], 'module'=>'Charging', 'namespace' => $nam
 
 Route::group(['middleware' => ['api'], 'module'=>'Charging', 'namespace' => $namespace], function () {
     //Tay the cham
-    Route::get('/chargingws.html',['as'=>'frontend.api.charging', 'uses'=> 'ChargingApiController@blankPage'] );
-    Route::post('/chargingws.html',['as'=>'frontend.api.charging', 'uses'=> 'ChargingApiController@postApiCharging'] );
+    Route::get('/chargingws',['as'=>'frontend.api.charging', 'uses'=> 'ChargingApiController@blankPage'] );
+    Route::get('/chargingws/{trans_id}/{request_id}',['as'=>'frontend.api.charging.status', 'uses'=> 'ChargingApiController@getCheckStatus'] );
+    Route::post('/chargingws',['as'=>'frontend.api.charging', 'uses'=> 'ChargingApiController@postApiCharging'] );
 
 });
 

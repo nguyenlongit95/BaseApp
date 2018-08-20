@@ -57,7 +57,12 @@ class MtopupFrontController extends FrontendController
      */
     public function getViewPageMTopupIndex()
     {
-        return view('frontend.pages.napcham');
+        if(Auth::check()){
+            $user_id = Auth::user()->id;
+            $listmtopups = Mtopup::where('user', $user_id)->orderBy('id','DESC')->get();
+        }
+
+        return view('frontend.pages.napcham', compact('listmtopups'));
     }
 
     /*

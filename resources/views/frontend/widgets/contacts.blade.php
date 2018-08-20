@@ -3,21 +3,21 @@
         <div class="row">
             <div class="col-sm-3">
                 <a class="logo-footer">
-                    <img src="./assets//images/logo-white.png" alt="" />
+                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="" />
                 </a>
             </div>
             <div class="col-sm-5">
                 <div class="addressBlock">
                     <div class="info-pg">
-                        <h5 class="heading">Tại Hà Nội</h5>
+                        <h5 class="heading">Thông tin liên hệ</h5>
                         <div class="content">
                             <div>
                                 <i class="fa fa-map-marker"></i>
-                                <span>&nbsp;Số 123, phường XYZ, quận Cầu Giấy, TP. HN</span>
+                                <span>@if(isset($settings['address'])) {{ $settings['address'] }} @endif</span>
                             </div>
                             <div>
                                 <i class="fa fa-envelope"> </i>
-                                <span>&nbsp;support@company.vn</span>
+                                <span>@if(isset($settings['email'])) {{ $settings['email'] }} @endif</span>
                             </div>
                         </div>
                     </div>
@@ -30,11 +30,7 @@
                         <div class="content">
                             <div>
                                 <i class="fa fa-phone"></i>
-                                <span>&nbsp;0987 123 456 - 0989 123 456</span>
-                            </div>
-                            <div>
-                                <i class="fa fa-fax"> </i>
-                                <span>&nbsp; 123 123 456</span>
+                                <span>@if(isset($settings['phone'])) {{ $settings['phone'] }} @endif</span>
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,7 @@
         @endif
 </div>
 
-@if(count($list_news))
+@if(isset($list_news) && count($list_news))
 <div class="sidebar border-left">
     <div class="blockTitle row lineHorizontal">
         <h3><span><i class="fa fa-newspaper-o"></i> Tin mới</span></h3>

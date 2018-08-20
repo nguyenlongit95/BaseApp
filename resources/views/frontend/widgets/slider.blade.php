@@ -1,5 +1,5 @@
 
-@if(count($sliders))
+@if(isset($sliders) && count($sliders))
     <div class="container section-slider">
         <div class="col-sm-12">
             <div class="row">

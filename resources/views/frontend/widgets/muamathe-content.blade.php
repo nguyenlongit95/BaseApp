@@ -1,7 +1,7 @@
 <section class="main softcard-page">
         <div class="blockContent row">
           <div class="col-sm-12">
-              <h3 class="panel-title">Mua thẻ game</h3>
+              <h3 class="panel-title">Mua mã thẻ</h3>
               <p>Mua thẻ game hoặc thẻ điện thoại là do nhà phát hành cung cấp, để mua thẻ quý khách cần phải đồng ý với các điều khoản như sau: Thẻ của chúng tôi hoàn toàn được bảo mật từ nhà cung cấp, nếu thẻ bị lỗi thì sẽ được giải quyết dựa trên thời gian sử dụng thực của thẻ. Chúng tôi chỉ đổi thẻ khác khi thời gian thẻ bị sử dụng xảy ra trước khi thẻ được xuất khỏi hệ thống</p>
           </div>
           <div class="col-sm-7 right-seperate">

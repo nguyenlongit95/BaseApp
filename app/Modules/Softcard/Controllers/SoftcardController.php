@@ -16,6 +16,7 @@ use App\Modules\Softcard\Models\SoftcardGallery;
 use App\Modules\Softcard\Models\SoftcardCategories;
 use App\Modules\Softcard\Models\SoftcardPrice;
 use Storage;
+use App\Modules\Stockcard\Models\StockcardKeyConnect;
 
 class SoftcardController extends BackendController
 {
@@ -139,6 +140,7 @@ class SoftcardController extends BackendController
                     'status' => $item_status,
                 ));
                 $softcardItem->save();
+
                 /* save items prices */
                 foreach ($request->items['price'] as $currency_id => $value) {
                     $item_price = null;
@@ -311,7 +313,8 @@ class SoftcardController extends BackendController
                 ));
                 $parentId = $softcardItem->id;
 
-                /* update or add new items prices */
+
+               /* update or add new items prices */
                 foreach ($request->items['price'] as $currency_id => $value) {
                     $item_price = null;
                     if(isset($value[$item_number])) $item_price = $value[$item_number];

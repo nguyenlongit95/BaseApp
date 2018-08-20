@@ -234,7 +234,8 @@ class ChargingController extends BackendController
         $charging->amount = $row['amount'] - ($row['amount']*ChargingFees::getFees($row['telco']))/100;
         $charging->declared_value = $row['amount'];
         $charging->checksum = md5( $charging->code. $charging->telco. $charging->serial );
-        $charging->api_provider = '';
+        $charging->api_provider = 'WEB';
+        $charging->request_id = '';
         $charging->description = '';
         $charging->admin_note = '';
         $charging->fees = ChargingFees::getFees($row['telco']);
@@ -248,7 +249,7 @@ class ChargingController extends BackendController
     }
 
 
-    public static function insertChargebyUser($row, $user_id)
+    public static function insertChargebyUser($row, $user_id, $api_provider = NULL)
     {
         $charging = new \App\Modules\Charging\Models\Charging;
         $user = User::find($user_id);
@@ -260,17 +261,20 @@ class ChargingController extends BackendController
         $charging->telco = $row['telco'];
         $charging->code = $row['code'];
         $charging->serial = $row['serial'];
-        $charging->amount = $row['amount'] - ($row['amount']*ChargingFees::getFeesUserId($row['telco'], $user_id))/100;
-        $charging->declared_value = $row['amount'];
+        $charging->amount = $row['value'] - ($row['value']*ChargingFees::getFeesUserId($row['telco'], $user_id))/100;
+        $charging->declared_value = $row['value'];
         $charging->checksum = md5( $charging->code. $charging->telco. $charging->serial );
-        $charging->api_provider = '';
+        $charging->api_provider = $api_provider;
+        $charging->request_id = $row['request_id'];
         $charging->description = '';
         $charging->admin_note = '';
         $charging->fees = ChargingFees::getFeesUserId($row['telco'], $user_id);
         if( ! $charging->where('checksum', $charging->checksum)->first() )
         {
             $charging->save();
-            return true;
+            $result = ['trans_id' => $charging->id, 'request_id'=> $charging->request_id, 'status' => 99, 'message' =>'Thẻ đang chờ xử lý'];
+            return $result;
+
         }else{
             return false;
         }

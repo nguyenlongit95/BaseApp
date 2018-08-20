@@ -126,7 +126,7 @@
                                                     <div class="progress">
                                                         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ ($listmtopup->completed_value/$listmtopup->declared_value)*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ ($listmtopup->completed_value/$listmtopup->declared_value)*100 }}%">
                                                             {{ ($listmtopup->completed_value/$listmtopup->declared_value)*100 }}%
-                                                        </div>
+                                                        </div></div>
                                                 </td>
                                                 <td>{{ $listmtopup->discount }}%</td>
                                                 <td>{{ number_format($listmtopup->amount).' '.$listmtopup->currency_code }}</td>

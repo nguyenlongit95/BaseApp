@@ -13,7 +13,7 @@ use App\Modules\Setting\Helpers\SettingHelper;
 
 class SettingController extends BackendController
 {
-	public $general_arr =  ['favicon', 'logo', 'backendlogo', 'name','title', 'description', 'language', 'phone', 'hotline','email','facebook','googleplus','twitter','backendname','backendlang','copyright', 'timezone','websitestatus'];
+	public $general_arr =  ['favicon', 'logo', 'backendlogo', 'name','title', 'description', 'language', 'phone', 'hotline','email','facebook','googleplus','twitter','backendname','backendlang','copyright', 'timezone','websitestatus','address'];
 
 
 
@@ -26,7 +26,8 @@ class SettingController extends BackendController
 		foreach($this->general_arr as $key)
 		{
 			$obj = Setting::where('key',$key)->first();
-			$setting[$key] = $obj->value;
+			if(is_object($obj))
+				$setting[$key] = $obj->value;
 		}
 		$setting['favicon_link'] = SettingHelper::img($setting['favicon'],150);
 		$setting['logo_link'] = SettingHelper::img($setting['logo'],150);
@@ -42,7 +43,12 @@ class SettingController extends BackendController
 		{
 			if(isset($input[$key]))
 			{
-				Setting::where('key',$key)->update(['value'=>$input[$key]]);
+				$set = Setting::where('key',$key);
+				if($set->count()){
+					$set->update(['value'=>$input[$key]]);
+				}else{
+					$set->create(['key'=>$key,'value'=>$input[$key]]);
+				}
 			}
 		}
 		return redirect(url(config('backend.backendRoute').'/settings/general'))->with('success','Setting general Updated')->withInput();

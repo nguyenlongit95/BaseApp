@@ -108,7 +108,8 @@
                                             <th>Phạt</th>
                                             <th>Nhận về</th>
                                             <th>Đơn hàng</th>
-                                            <th>Hành động</th>
+                                            <th>Hình thức</th>
+                                            <th>Request ID</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -137,12 +138,9 @@
                                                 <td>{{ $charging->penalty }}%</td>
                                                 <td>{{ number_format($charging->amount).' '.$charging->currency_code}}</td>
                                                 <td>{{ $charging->order}}</td>
-                                                <td>
-                                                    <div class="action-buttons">
-                                                        <a href="{{ url($backendUrl.'/chargings/'.$charging->id.'/edit') }}"> <i title="Sửa" class="ace-icon fa fa-pencil bigger-130"></i> </a>  |
-                                                        <a href="#" name="{{ $charging->name }}" link="{{ url($backendUrl.'/chargings/'.$charging->id) }}" class="deleteClick red id-btn-dialog2"data-toggle="modal" data-target="#deleteModal" > <i title="Delete" class="ace-icon fa fa-trash-o bigger-130"></i></a>
-                                                    </div>
-                                                </td>
+                                                <td>{{ $charging->api_provider}}</td>
+                                                <td>{{ $charging->request_id}}</td>
+
                                             </tr>
                                         @endforeach
 

@@ -1,5 +1,5 @@
-@extends('frontend.master')
-
+@extends('frontend.app')
+@section('breadcrumbs', Breadcrumbs::render('napcham'))
 @section('content')
 <style>
 .row-group{ margin-bottom: 0px; }
@@ -9,13 +9,10 @@
         <div class="section">
           <div class="container">
             <div class="fullColumn">
-              <div class="blockTitle text-center bg-shadowimg">
-                <h3><span class="text-uppercase">Nạp tiền đơn giản chỉ với vài thao tác</span></h3>
-              </div>
               <div class="blockContent">
                 <div class="col-sm-12 right-seperate">
                   <div class="card-game-panel">
-                    <h3 class="panel-title">Mua thẻ game</h3>
+                    <h3 class="panel-title">Nạp Topup điện thoại chậm</h3>
                     <p>Chú ý: Nạp chậm là hình thức khách hàng đưa yêu cầu nạp lên website, chúng tôi sẽ tìm thời điểm khuyến mãi tốt nhất để nạp. Chiết khấu chậm là 20%. Khi quý khách nạp 100k sẽ chỉ phải thanh toán 80k. Thời gian nạp sẽ từ 30 phuýt đến 5 tiếng. Quý khách có thể hủy nạp nếu không muốn đợi lâu.</p>
                     <p>Chỉ áp dụng cho các thuê bao trả sau.</p><br>
                       @include('frontend.errors.errors')
@@ -96,10 +93,83 @@
               <div class="text-center"><button type="submit" class="btn btn-primary btn-lg btn-block" style=""><i class="fa fa-cart-plus" aria-hidden="true"></i> Thanh toán</button></div>
               {{ csrf_field() }}
               </form>
-
-
-
               </div>
+
+                @if(Auth::check())
+                <h3 class="panel-title">Lịch sử nạp chậm</h3>
+
+
+                <table id="tablez" class="table">
+                    <thead>
+                    <tr>
+                        <th>Trạng thái</th>
+                        <th>Mạng</th>
+                        <th>Thuê bao</th>
+                        <th>Số ĐT</th>
+                        <th>Muốn nạp</th>
+                        <th>Đã nạp</th>
+                        <th>Chiết khấu</th>
+                        <th>Phải trả</th>
+                        <th>T.toán</th>
+                        <th>Cho gộp</th>
+                        <th>Ngày tạo</th>
+                        <th>Hành động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach( $listmtopups as $listmtopup )
+                        <tr class="irow" data-id="">
+
+                            <td>
+                                @if($listmtopup->status == 'completed')
+                                    <span class="label label-success">Hoàn thành</span>
+                                @elseif($listmtopup->status == 'pending')
+                                    <span class="label label-warning">Chờ nạp</span>
+                                @elseif($listmtopup->status == 'none')
+                                    <span class="label label-warning">Chưa rõ</span>
+                                @elseif($listmtopup->status == 'wrong')
+                                    <span class="label label-danger">Nạp lỗi</span>
+                                @elseif($listmtopup->status == 'canceled')
+                                    <span class="label label-danger">Hủy</span>
+                                @else
+                                    <span class="label label-dark">Chưa rõ</span>
+                                @endif
+                            </td>
+                            <td>{{ $listmtopup->telco }}</td>
+                            <td>{{ $listmtopup->telco_type }}</td>
+                            <td>{{ $listmtopup->phone_number }}</td>
+                            <td>{{ number_format($listmtopup->declared_value)}}</td>
+                            <td>
+
+                                <span> {{number_format($listmtopup->completed_value)}}/{{number_format($listmtopup->declared_value)}}</span>
+
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ ($listmtopup->completed_value/$listmtopup->declared_value)*100 }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ ($listmtopup->completed_value/$listmtopup->declared_value)*100 }}%">
+                                        {{ ($listmtopup->completed_value/$listmtopup->declared_value)*100 }}%
+                                    </div>
+                                    </div>
+                            </td>
+                            <td>{{ $listmtopup->discount }}%</td>
+                            <td>{{ number_format($listmtopup->amount).' '.$listmtopup->currency_code }}</td>
+                            <td>{{ $listmtopup->payment_status }}</td>
+                            <td>@if ($listmtopup->mix == 1) Có @else Không @endif</td>
+                            <td>{{ date('d-m-Y',strtotime($listmtopup->created_at)) }}</td>
+                            <td>
+                                <div class="action-buttons">
+                             <a href="#" link="{{ url('/listmtopup/'.$listmtopup->id) }}" class="deleteClick red id-btn-dialog2" data-toggle="modal" data-target="#deleteModal" > <i title="Delete" class="ace-icon fa fa-trash-o bigger-130"></i></a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+
+
+                </table>
+
+            @endif
+
             </div>
           </div>
         </div>

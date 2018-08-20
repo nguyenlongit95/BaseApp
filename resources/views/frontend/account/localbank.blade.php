@@ -1,9 +1,9 @@
 @extends('frontend.common')
 @section('breadcrumbs', Breadcrumbs::render('localbank'))
-
 @section('content')
+    @include('frontend.errors.errors')
     <h4><span class="text-uppercase">Tài khoản ngân hàng</span></h4>
-    <section class="main">
+      <section class="main">
 
         <div class="blockContent">
 

@@ -41,14 +41,14 @@
                                 <td>{{$tran->transaction_code}}</td>
                                 <td>{{$tran->wallet_number}}</td>
                                 <td>{{number_format($tran->before_balance)}} {{$tran->currency_code}}</td>
-                                <td><span class="text-success"><b>{{$tran->operation}}{{number_format($tran->total)}} {{$tran->currency_code}}</b><span></span></td>
+                                <td><span class="text-success"><b>{{$tran->operation}}{{number_format($tran->pay_amount)}} {{$tran->currency_code}}</b></span></td>
                                 <td>{{number_format($tran->after_balance)}} {{$tran->currency_code}}</td>
                                 <td>{{$tran->currency_code}}</td>
                                 <td>{{$tran->created_at}}</td>
                                 <td>{{$tran->description}}</td>
 
                                 <td>
-                                    <span class="label label-success">Thành công</span>
+                                    <span class="label label-success">Hoàn thành</span>
                                 </td>
                             </tr>
                         @endforeach
