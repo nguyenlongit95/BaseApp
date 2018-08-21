@@ -1,5 +1,5 @@
 @extends('frontend.app')
-@section('breadcrumbs', Breadcrumbs::render('taythenhanh'))
+@section('breadcrumbs', Breadcrumbs::render('autocharging'))
 @section('content')
 
     <section class="main">
@@ -12,16 +12,16 @@
                                 <h3 class="panel-title">Tẩy thẻ nhanh</h3>
                                 <p>Chú ý: Nạp chậm là hình thức khách hàng đưa yêu cầu nạp lên website, chúng tôi sẽ tìm thời điểm
                                     khuyến mãi tốt nhất để nạp. Chiết khấu chậm là 20%. Khi quý khách nạp 100k sẽ chỉ phải thanh
-                                    toán 80k. Thời gian nạp sẽ từ 30 phuýt đến 5 tiếng. Quý khách có thể hủy nạp nếu không muốn
+                                    toán 80k. Thời gian nạp sẽ từ 30 phút đến 1 tiếng. Quý khách có thể hủy nạp nếu không muốn
                                     đợi lâu.</p>
                                 <p>Chỉ áp dụng cho các thuê bao trả sau.</p>
                                 <br>
                                 <div class="form-frontpage form-sm">
                                     <div class="row-group">
                                         @include('frontend.errors.errors')
-                                        <form action="{{ route('frontend.charging.postCharging')  }}" method="POST" >
+                                        <form action="{{ route('frontend.charging.postAutoCharging')  }}" method="POST" >
                                             <div id="list-row">
-                                                <div  class="irow row-group">
+                                                <div  class="row irow row-group">
                                                     <div class="col-sm-2 select">
                                                         <select class="telco form-control" name="telco[]" data-row="1" required autofocus>
 
@@ -70,15 +70,12 @@
                         <table id="example1" class="table table-bordered table-striped dataTable">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>TT</th>
+                                {{--<th>ID</th>--}}
+                                <th>Trạng Thái</th>
                                 <th>Mã Nạp</th>
                                 <th>Seri</th>
-                                <th>Mạng</th>
-                                <th>Khai</th>
-                                <th>Thực</th>
+                                <th>Nhà Mạng</th>
                                 <th>Phí</th>
-                                <th>Phạt</th>
                                 <th>Nhận</th>
                                 <th>Ngày</th>
                             </tr>
@@ -87,15 +84,12 @@
                             @foreach( $listHistory as $itemc )
                                 <tr>
 
-                                    <td>{{$itemc->id}}</td>
+                                    {{--<td>{{$itemc->id}}</td>--}}
                                     <td>@if($itemc['status'] == 1)<span class="label label-success">Xong</span> @else <span class="label label-warning">Chờ</span> @endif</td>
                                     <td>{{$itemc->code}}</td>
                                     <td>{{$itemc->serial}}</td>
                                     <td>{{$itemc->telco}}</td>
-                                    <td>{{number_format($itemc->declared_value)}}</td>
-                                    <td>{{$itemc->real_value}}</td>
                                     <td>{{$itemc->fees}}%</td>
-                                    <td>{{$itemc->penalty}}</td>
                                     <td>{{number_format($itemc->amount)}} {{$itemc->currency_code}}</td>
                                     <td>{{$itemc->created_at}}</td>
 

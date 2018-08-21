@@ -42,7 +42,7 @@
   <script src="{{ asset('adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
   <!-- ChartJS 1.0.2 -->
   <script src="{{ asset('adminlte/plugins/chartjs-old/Chart.min.js') }}"></script>
-
+    <script src="{{ asset('adminlte/js/ckeditor/ckeditor.js') }}"></script>
   <!-- PAGE SCRIPTS -->
   <script src="{{ asset('adminlte/js/admin.js') }}"></script>
 

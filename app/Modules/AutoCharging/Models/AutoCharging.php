@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AutoCharging extends Model
 {
-    protected $table="autocharging";
+    protected $table="autochargings";
 
     protected $fillable = [
         'user','user_info','code','serial', 'telco','declared_value','real_value','fees','api_provider','request_id','order','description',

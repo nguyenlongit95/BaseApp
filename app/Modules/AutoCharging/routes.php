@@ -6,8 +6,8 @@ $as = config('backend.backendRoute');
 //--FRONTEND
 Route::group(['middleware' => ['web'], 'module'=>'AutoCharging', 'namespace' => $namespace], function () {
     //Tay the cham
-    Route::get('/taythenhanh.html',['as'=>'frontend.pages.taythenhanh', 'uses'=> 'AutoChargingFrontController@viewPageFrontCharging'] );
-    Route::post('/taythenhanh.html', ['as'=>'frontend.charging.postAutoCharging', 'uses'=>'AutoChargingFrontController@insertCharging']);
+    Route::get('/doithe.html',['as'=>'frontend.pages.taythenhanh', 'uses'=> 'AutoChargingFrontController@viewPageFrontCharging'] );
+    Route::post('/doithenhanh.html', ['as'=>'frontend.charging.postAutoCharging', 'uses'=>'AutoChargingFrontController@insertCharging']);
 });
 
 /// API
@@ -42,10 +42,16 @@ Route::group(['prefix' => $as, 'middleware' => ['web','role:BACKEND'], 'module'=
     Route::patch('/autochargings/telcos/{id}/update',['as'=>'autochargings.telcopostupdate','uses'=>'AutoChargingController@postUpdateTelco']);
     Route::delete('/autochargings/telcos/{id}','AutoChargingController@destroyTelco');
 
+    // Route autochargins settings
+    Route::get('/autochargins/setting',['as'=>'autochargins.setting.index','uses'=>'AutoChargingController@setting']);
+    Route::get('/autochargins/setting/new',['as'=>'autochargins.setting.new','uses'=>'AutoChargingController@addNew']);
+    Route::patch('/autochargins/setting/add',['as'=>'autochargins.setting.add','uses'=>'AutoChargingController@postAdd']);
+    Route::get('/autochargins/setting/{id}',['as'=>'autochargins.setting.update','uses'=>'AutoChargingController@getEditSetting']);
+    Route::patch('/autochargins/setting/update/{id}',['as'=>'autochargins.setting.update','uses'=>'AutoChargingController@postUpdateSetting']);
 
 
     //AJAX
-    Route::get('/ajax/autocharging/{id}',['as'=>'ajax.charging','uses'=>'AutoChargingController@ajaxChargingMaster']);
-    Route::post('/ajax/autocharging/{id}',['as'=>'ajax.charging.actions','uses'=>'AutoChargingController@ajaxChargingActions']);
+    Route::get('/ajax/autocharging/{id}',['as'=>'ajax.autocharging','uses'=>'AutoChargingController@ajaxChargingMaster']);
+    Route::post('/ajax/autocharging/{id}',['as'=>'ajax.autocharging.actions','uses'=>'AutoChargingController@ajaxChargingActions']);
 });
 

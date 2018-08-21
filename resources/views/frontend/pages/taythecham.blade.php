@@ -21,7 +21,7 @@
                                     @include('frontend.errors.errors')
                                         <form action="{{ route('frontend.charging.postCharging')  }}" method="POST" >
                                         <div id="list-row">
-                                        <div  class="irow row-group">
+                                        <div  class="row irow row-group">
                                                 <div class="col-sm-2 select">
                                                     <select class="telco form-control" name="telco[]" data-row="1" required autofocus>
 

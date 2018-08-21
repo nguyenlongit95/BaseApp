@@ -24,7 +24,7 @@ class AutoChargingFees extends Model
 
     public static function getFees($telco)
     {
-        $fees = new ChargingFees;
+        $fees = new AutoChargingFees;
         $val = $fees->where('telco_key',$telco)->where('group', Auth::user()->group )->select('fees')->first();
         if( $val )
         {
@@ -35,7 +35,7 @@ class AutoChargingFees extends Model
 
     public static function getFeesUserId($telco, $user_id)
     {
-        $fees  = new ChargingFees;
+        $fees  = new AutoChargingFees;
         $user = User::findOrFail($user_id);
         $group = $user->group;
         $val = $fees->where('telco_key',$telco)->where('group', $group )->select('fees')->first();
@@ -48,7 +48,7 @@ class AutoChargingFees extends Model
 
     public static function getPenalty($telco, $user_id)
     {
-        $fees  = new ChargingFees;
+        $fees  = new AutoChargingFees;
         $user = User::findOrFail($user_id);
         $group = $user->group;
         $val = $fees->where('telco_key',$telco)->where('group', $group )->select('penalty')->first();

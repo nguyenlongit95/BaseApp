@@ -14,6 +14,7 @@ use App\Modules\AutoCharging\Models\AutoChargingsTelco;
 use App\Modules\Group\Models\Group;
 use App\Modules\Transaction\Models\Transaction;
 use App\Modules\Wallet\Models\Wallet;
+use App\Modules\AutoCharging\Models\AutoChargingSetting;
 
 class AutoChargingController extends BackendController
 {
@@ -151,8 +152,7 @@ class AutoChargingController extends BackendController
         $mtopup->icon = $request->input('icon');
         $mtopup->description = $request->input('description');
         $mtopup->value = $request->input('value');
-        if( $request->input('status') )
-        {
+        if( $request->input('status') ) {
             $mtopup->status = 1;
         }else{
             $mtopup->status = 0;
@@ -224,16 +224,16 @@ class AutoChargingController extends BackendController
     public static function insertCharge($row)
     {
         $charging = new \App\Modules\AutoCharging\Models\AutoCharging;
-        $charging->user  = Auth::user()->id;
-        $charging->user_info  = Auth::user()->username;
-        $charging->type  = 'Charging';
+        $charging->user = Auth::user()->id;
+        $charging->user_info = Auth::user()->username;
+        $charging->type = 'Charging';
         $charging->error_code = '';
         $charging->error_message = '';
         $charging->telco = $row['telco'];
         $charging->code = $row['code'];
         $charging->serial = $row['serial'];
         $charging->amount = $row['amount'] - ($row['amount']*AutoChargingFees::getFees($row['telco']))/100;
-        $charging->declared_value = $row['amount'];
+        //$charging->declared_value = $row['amount'];
         $charging->checksum = md5( $charging->code. $charging->telco. $charging->serial );
         $charging->api_provider = 'WEB';
         $charging->request_id = '';
@@ -485,6 +485,47 @@ class AutoChargingController extends BackendController
         $card->delete();
         return redirect()->route('autochargings.index')
             ->with('success','Charging deleted successfully');
+    }
+
+
+    // CURD settings
+    public function setting(){
+        $autoChargingSetting = AutoChargingSetting::all();
+        //var_dump($autoChargingSetting);
+        return view('AutoCharging::configsetting',compact("autoChargingSetting"));
+    }
+
+    public function getEditSetting($id){
+        //echo $id;
+        $autoChargingSetting = AutoChargingSetting::findOrFail($id);
+        return view('AutoCharging::edit-setting',['autoChargingSetting'=>$autoChargingSetting]);
+    }
+
+    public function postUpdateSetting(Request $request, $id){
+        $autoChargingSetting = AutoChargingSetting::findOrFail($id);
+        $this->validate($request,[
+            'meta_title'=>'required',
+            'meta_description'=>'required',
+            'meta_keywords'=>'required',
+            'page_title'=>'required',
+            'description'=>'required'
+        ],[
+            'meta_title.required'=>'Điển thông tin tiêu đề của web ',
+            'meta_description.required'=>'Điền thông tin chi tiết ',
+            'meta_keywords.required'=>'Điền từ khóa tìm kiếm ',
+            'page_title.required'=>'Điền tiêu đề của page ',
+            'description.required'=>'Nhập thông tin chi tiết của trang ',
+        ]);
+        $autoChargingSetting->meta_title = $request->meta_title;
+        $autoChargingSetting->meta_description = $request->meta_description;
+        $autoChargingSetting->meta_keywords = $request->meta_keywords;
+        $autoChargingSetting->page_title = $request->page_title;
+        $autoChargingSetting->description = $request->description;
+        if($autoChargingSetting->update()){
+            return redirect()->back()->with('success','Chỉnh sửa thành công');
+        }else{
+            return redirect()->back()->with('message','Chỉnh sửa thất bại');
+        }
     }
 
 }

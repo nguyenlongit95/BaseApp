@@ -142,7 +142,6 @@
 
                                         </tbody>
 
-
                                     </table>
                                 </div></div>
                             <div class="row">
@@ -210,7 +209,6 @@
                         </div>
                     </div>
                     <!-- End Delete form-->
-
 
                     <!-- /.card-body -->
                 </div>

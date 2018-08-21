@@ -29,7 +29,7 @@ class AutoChargingFrontController extends FrontendController
         ///////Lịch sử tẩy thẻ
         if(Auth::check()){
             $user_id = Auth::user()->id;
-            $listHistory = Charging::where('user', $user_id)->orderBy('id','DESC')->get();
+            $listHistory = AutoCharging::where('user', $user_id)->orderBy('id','DESC')->get();
         }
         return view('frontend.pages.taythenhanh', compact('lsTelco', 'lsAmount', 'listHistory') );
     }
