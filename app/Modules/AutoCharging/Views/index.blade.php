@@ -4,28 +4,6 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables/dataTables.bootstrap4.css') }}">
 @endsection
 
-@section('js')
-    <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('adminlte/plugins/datatables/dataTables.bootstrap4.js') }}"></script>
-    <!-- SlimScroll -->
-    <script src="{{ asset('adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-    <!-- FastClick -->
-    <script src="{{ asset('adminlte/plugins/fastclick/fastclick.js') }}"></script>
-    <script>
-        $(document).ready(function(){
-            $("tr.irow").click(function(){
-                var id = $(this).attr('data-id');
-                $( "#CharigngAjaxContent" ).html('');
-                $.get( "/admin/ajax/charging/"+id, function( data ) {
-                    $( "#CharigngAjaxContent" ).html( data );
-                });
-                $("#ChargingModal").modal();
-            });
-        });
-    </script>
-@endsection
-
 @section('content')
 <style>
 
@@ -185,31 +163,7 @@
                             });
                         });
                     </script>
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <form id="deleteForm" action="" method="POST">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div id="deleteMes" class="modal-body">
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                    <input type="hidden" name="_method" value="delete" />
-                                    {{ csrf_field() }}
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Delete form-->
-
+                   
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

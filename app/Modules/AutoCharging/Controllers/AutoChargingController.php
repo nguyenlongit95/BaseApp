@@ -281,11 +281,6 @@ class AutoChargingController extends BackendController
         }
     }
 
-
-
-
-
-
     /** ------------- AJAX ------------**/
     public function ajaxChargingMaster($id)
     {
@@ -293,52 +288,6 @@ class AutoChargingController extends BackendController
         $lsAmount = AutoChargingsTelco::where('key',$card->telco)->first();
         $lsAmount = explode(',',$lsAmount->value);
         return view("AutoCharging::ajax.chargingmaster", compact('card','lsAmount'));
-    }
-
-    public function ajaxChargingActions(Request $request, $id)
-    {
-        /*
-         *  0: pending
-            1: success
-            2: sai menh gia
-            3: khongdungduoc
-            4: dasudung
-         */
-
-        DB::beginTransaction();
-        try {
-            $action = $request->input('submit');
-            switch ($action){
-                case 'THEDUNG':
-                    $run =  $this->setChargingTHEDUNG($request,$id);
-                    DB::commit();
-                    break;
-                case 'XOATHE':
-                    $run = $this->destroyCharging($id);
-                    DB::commit();
-                    break;
-                case 'KHONGDUNGDUOC':
-                    $run =  $this->setChargingKHONGDUNGDUOC($request, $id);
-                    DB::commit();
-                    break;
-                case 'SAIMENHGIA':
-                    $run =  $this->setChargingSAIMENHGIA($request, $id);
-                    DB::commit();
-                    break;
-                case 'DASUDUNG':
-                    $run = $this->setChargingDASUDUNG($request,$id);
-                    DB::commit();
-                    break;
-                default:
-                    return redirect()->route('chargings.index')
-                        ->withErrors(['message'=>'Charging not completed']);
-                    break;
-            }
-        }catch (\Exception $e) {
-            DB::rollback();
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
-        return $run;
     }
 
     /*

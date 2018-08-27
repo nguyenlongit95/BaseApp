@@ -6,7 +6,7 @@ $as = config('backend.backendRoute');
 //--FRONTEND
 Route::group(['middleware' => ['web'], 'module'=>'AutoCharging', 'namespace' => $namespace], function () {
     //Tay the cham
-    Route::get('/doithe.html',['as'=>'frontend.pages.taythenhanh', 'uses'=> 'AutoChargingFrontController@viewPageFrontCharging'] );
+    Route::get('/doithenhanh.html',['as'=>'frontend.pages.taythenhanh', 'uses'=> 'AutoChargingFrontController@viewPageFrontCharging'] );
     Route::post('/doithenhanh.html', ['as'=>'frontend.charging.postAutoCharging', 'uses'=>'AutoChargingFrontController@insertCharging']);
 });
 
