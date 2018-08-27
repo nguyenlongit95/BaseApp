@@ -22,7 +22,7 @@
     <div class="col-12">
       @include('layouts.errors')
 <div class="card">
-  
+
   <div class="card-header" style="border-bottom: 0">
     <h3 class="card-title">Danh sách đối tác</h3>
     <div class="float-right" style="margin-right: 150px">
@@ -48,7 +48,7 @@
     <table id="example1" class="table table-bordered table-striped dataTable">
       <thead>
         <tr>
-          <th class="center sorting_disabled" rowspan="1" colspan="1" aria-label=""> 
+          <th class="center sorting_disabled" rowspan="1" colspan="1" aria-label="">
             <label class="pos-rel">
               <input type="checkbox" class="ace" id="checkall">
               <span class="lbl"></span> </label>
@@ -65,7 +65,7 @@
           <th>Status</th>
           <th>Action</th>
         </tr>
-      </thead>  
+      </thead>
       <tbody>
       @foreach( $merchants as $merchant )
         <tr>
@@ -97,10 +97,10 @@
           </td>
         </tr>
       @endforeach
-     
+
       </tbody>
-      
-    
+
+
     </table>
   </div></div>
     <div class="row">
