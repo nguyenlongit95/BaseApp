@@ -9,7 +9,7 @@
 	$code	    = $_POST['code']; // ma the
     $serial		= $_POST['serial']; //serial the
 	$value	    = $_POST['value'];
-    $request_id = 	'7884545454';   /// Đây có thể là mã đơn hàng của bạn
+    $request_id = 	'7884545454';   // Đây có thể là mã đơn hàng của bạn
 
     $result = $api->check_card($telco, $code, $serial, $value, $request_id);
 
@@ -24,7 +24,7 @@
         $request_id =  $result->amount; //request_id ma đối tác gửi sang
         $transid    = $result->transid; //mã giao dịch bên key24h.com
 
-        echo 'Bạn đã nạp thành công thẻ '.$key .' mệnh giá '.number_format($amount).' đ';
+        echo 'Bạn đã nạp thành công thẻ '. $key .' mệnh giá '.number_format($amount).' đ';
     }
     //có lỗi
     else

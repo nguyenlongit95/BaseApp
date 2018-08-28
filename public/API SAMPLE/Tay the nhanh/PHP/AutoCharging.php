@@ -2,7 +2,7 @@
 class AutoCharging {
 
     // Api url do ben nha mang cung cap
-    const URL_POST = 'http://localhost/RESfulAPI/public/api';
+    const URL_POST = 'http://localhost/laravelfull/public/chargingws.html'; // URL nay la URL phia nha mang cung cap
     protected $partner_id = '13081995'; //do bên API cap
     protected $partner_key = 'bbea8b1c4c5341372d52f49093702423'; //do bên API cap
 
@@ -17,7 +17,7 @@ class AutoCharging {
 		$params->PartnerKey   = $this->_PartnerKey;
 
 		// Request to api, goi den API cua phia nha mang
-		$url = self::URL_POST . '/article';
+		$url = self::URL_POST . '/get_card_keys.html';
 
 		$res = $this->_curl($url, $params);
 
