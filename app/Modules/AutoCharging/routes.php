@@ -16,7 +16,7 @@ Route::group(['middleware' => ['api'], 'module'=>'AutoCharging', 'namespace' => 
     //Tay the cham
     Route::get('/autochargingws',['as'=>'frontend.api.autocharging', 'uses'=> 'AutoChargingApiController@blankPage'] );
     Route::get('/autochargingws/{trans_id}/{request_id}',['as'=>'frontend.api.charging.status', 'uses'=> 'AutoChargingApiController@getCheckStatus'] );
-    Route::post('/autochargingws',['as'=>'frontend.api.autocharging', 'uses'=> 'AutoChargingApiController@postApiAutoCharging'] );
+    Route::post('/autochargingws.html',['as'=>'frontend.api.autocharging', 'uses'=> 'AutoChargingApiController@postApiAutoCharging'] );
 
 });
 

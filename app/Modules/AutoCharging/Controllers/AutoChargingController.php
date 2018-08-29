@@ -273,7 +273,38 @@ class AutoChargingController extends BackendController
         if( ! $charging->where('checksum', $charging->checksum)->first() )
         {
             $charging->save();
-            $result = ['trans_id' => $charging->id, 'request_id'=> $charging->request_id, 'status' => 99, 'message' =>'Thẻ đang chờ xử lý'];
+            $result = ['trans_id' => $charging->id, 'request_id'=> $charging->request_id, 'status' => 0, 'message' =>'Thẻ đang chờ xử lý'];
+            return $result;
+
+        }else{
+            return false;
+        }
+    }
+
+    public static function insertChargebyUserAPI($row, $user_id, $api_provider = NULL)
+    {
+        $charging = new \App\Modules\AutoCharging\Models\AutoCharging;
+        $user = User::find($user_id);
+        $charging->user  = $user_id;
+        $charging->user_info  = $user->username;
+        $charging->type  = 'Charging';
+        $charging->error_code = '';
+        $charging->error_message = '';
+        $charging->telco = $row['telco'];
+        $charging->code = $row['code'];
+        $charging->serial = $row['serial'];
+        //$charging->amount = $row['value'] - ($row['value']*AutoChargingFees::getFeesUserId($row['telco'], $user_id))/100;
+        //$charging->declared_value = $row['value'];
+        $charging->checksum = md5( $charging->code. $charging->telco. $charging->serial );
+        $charging->api_provider = $api_provider;
+        $charging->request_id = $row['request_id'];
+        $charging->description = '';
+        $charging->admin_note = '';
+        $charging->fees = AutoChargingFees::getFeesUserId($row['telco'], $user_id);
+        if( ! $charging->where('checksum', $charging->checksum)->first() )
+        {
+            $charging->save();
+            $result = ['trans_id' => $charging->id, 'request_id'=> $charging->request_id, 'status' => 0, 'message' =>'Thẻ đang chờ xử lý'];
             return $result;
 
         }else{

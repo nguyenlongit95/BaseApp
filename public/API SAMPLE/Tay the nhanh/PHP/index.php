@@ -10,24 +10,17 @@
          <select name="telco">
              <option>Nhà mạng:</option>
               <option value="VIETTEL" selected>VIETTEL</option>
-			  <option value="VINAPHONE">VINAPHONE</option>
+			  <option value="VINA">VINAPHONE</option>
 			  <option value="MOBIFONE">MOBIFONE</option>
          </select>
      </p>
-	      <p>
-         <select name="value">
-              <option>Mệnh giá:</option>
-              <option value="100000" selected>100.000</option>
-              <option value="200000">200.000</option>
-              <option value="500000">500.000</option>
-              <option value="100000">100.000</option>
-          </select>
-     </p>
+     <p>Mã thẻ:</p>
      <p>
-         <input type="text" name="code" placeholder="Mã thẻ:" value="99999999" >
+         <input type="text" name="code" placeholder="Mã thẻ:" value="11234198709" >
      </p>
+     <p>Số serial:</p>
      <p>
-          <input type="text" name="serial" placeholder="Serial:" value="66666666">
+          <input type="text" name="serial" placeholder="Serial:" value="4234234234">
      </p>
      <button type="submit">Đổi thẻ cào</button>
 </form>
