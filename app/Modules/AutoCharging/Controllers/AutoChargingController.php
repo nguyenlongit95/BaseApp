@@ -15,6 +15,7 @@ use App\Modules\Group\Models\Group;
 use App\Modules\Transaction\Models\Transaction;
 use App\Modules\Wallet\Models\Wallet;
 use App\Modules\AutoCharging\Models\AutoChargingSetting;
+use App\Modules\AutoCharging\Models\AutoChargingProvider;
 
 use App\Modules\AutoCharging\Providers\NapTheNgay\NapTheNgay;
 
@@ -138,7 +139,9 @@ class AutoChargingController extends BackendController
     public function editTelco($id)
     {
         $telco = AutoChargingsTelco::findOrFail($id);
-        return view("AutoCharging::edit-telco", compact('telco') );
+        // Lay ra ten cua nha cung cap can ho tro
+        $autoChargingProvider = AutoChargingProvider::all();
+        return view("AutoCharging::edit-telco", compact('telco','autoChargingProvider') );
     }
 
     public function postCreateTelco(Request $request)
