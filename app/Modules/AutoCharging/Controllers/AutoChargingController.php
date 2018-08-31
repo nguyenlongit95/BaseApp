@@ -16,6 +16,8 @@ use App\Modules\Transaction\Models\Transaction;
 use App\Modules\Wallet\Models\Wallet;
 use App\Modules\AutoCharging\Models\AutoChargingSetting;
 
+use App\Modules\AutoCharging\Providers\NapTheNgay\NapTheNgay;
+
 class AutoChargingController extends BackendController
 {
     public function index(Request $request)
@@ -188,7 +190,8 @@ class AutoChargingController extends BackendController
 
     public function destroyTelco($id)
     {
-        AutoChargingsTelco::find($id)->delete();
+        $autoChargingsTelco = AutoChargingsTelco::find($id);
+        $autoChargingsTelco->delete();
         return redirect()->route('autochargings.settings')
             ->with('success','Telco deleted successfully');
     }
@@ -235,7 +238,7 @@ class AutoChargingController extends BackendController
         $charging->amount = $row['amount'] - ($row['amount']*AutoChargingFees::getFees($row['telco']))/100;
         //$charging->declared_value = $row['amount'];
         $charging->checksum = md5( $charging->code. $charging->telco. $charging->serial );
-        $charging->api_provider = 'WEB';
+        $charging->method = 'WEB';
         $charging->request_id = '';
         $charging->description = '';
         $charging->admin_note = '';
@@ -248,7 +251,6 @@ class AutoChargingController extends BackendController
             return false;
         }
     }
-
 
     public static function insertChargebyUser($row, $user_id, $api_provider = NULL)
     {
@@ -265,7 +267,7 @@ class AutoChargingController extends BackendController
         $charging->amount = $row['value'] - ($row['value']*AutoChargingFees::getFeesUserId($row['telco'], $user_id))/100;
         $charging->declared_value = $row['value'];
         $charging->checksum = md5( $charging->code. $charging->telco. $charging->serial );
-        $charging->api_provider = $api_provider;
+        $charging->method = $api_provider;
         $charging->request_id = $row['request_id'];
         $charging->description = '';
         $charging->admin_note = '';
@@ -281,6 +283,7 @@ class AutoChargingController extends BackendController
         }
     }
 
+    // Insert changrebyUser thong qua hinh thuc la API
     public static function insertChargebyUserAPI($row, $user_id, $api_provider = NULL)
     {
         $charging = new \App\Modules\AutoCharging\Models\AutoCharging;
@@ -296,7 +299,7 @@ class AutoChargingController extends BackendController
         //$charging->amount = $row['value'] - ($row['value']*AutoChargingFees::getFeesUserId($row['telco'], $user_id))/100;
         //$charging->declared_value = $row['value'];
         $charging->checksum = md5( $charging->code. $charging->telco. $charging->serial );
-        $charging->api_provider = $api_provider;
+        $charging->method = $api_provider;
         $charging->request_id = $row['request_id'];
         $charging->description = '';
         $charging->admin_note = '';
@@ -508,4 +511,101 @@ class AutoChargingController extends BackendController
         }
     }
 
+    // pickup du lieu tu server de gui di
+    public function AutoCharingSetting(){
+        $title = "Cấu hình kho thẻ tự động";
+        /// Kho đã được cài đặt
+        $listinstalled = AutoChargingSetting::all();
+        //// Kho chưa được cài đặt
+        $path = app_path('Modules//Stockcard//Providers//NapTheNgay');
+        $listProvider = array_map('basename', File::directories($path) );
+        $list_not_installed = [];
+        foreach ($listProvider as $value){
+            $checkinstalled = AutoChargingSetting::where('provider', $value)->first();
+            if(file_exists($path.'/'.$value.'/'.$value.'.php') && !$checkinstalled) {
+                $list_not_installed[
+                    ] = [
+                    'name' => 'Kho thẻ '.$value,
+                    'provider' => $value,
+                ];
+            }
+        }
+        return view('AutoCharging::setting', compact('title', 'list_not_installed', 'listinstalled'));
+    }
+    // Cai dat
+    public function install($name) {
+        $path = app_path('Modules//AutoCharging//Providers//NapTheNgay');
+        $listProvider = array_map('basename', File::directories($path) );
+        if(in_array($name, $listProvider)){
+            $provider = AutoChargingSetting::where('provider', $name)->first();
+            if(!$provider) {
+                $ns = '\App\Modules\AutoCharging\Providers\\'. $name.'\\'.$name;
+                $configp = new $ns;
+                $input = [
+                    'meta_title' =>'Kho thẻ '.$name,
+                    'meta_description' => $name,
+                    'meta_keywords' => json_encode($configp->config),
+                    'page_title' => NULL,
+                    'description' => 0,
+                    'installed' => 1
+                ];
+                $result = DB::table('autochargings_setting')->insert($input);
+                if($result){
+                    return redirect()->route('/autochargins/setting')->with('success', 'Cài đặt kho thẻ thành công. Bạn cần sửa lại thông tin kết nối!');
+                }else {
+                    return 'Error insert data';
+                }
+            }else {
+                return $name.' đã được cài đặt';
+            }
+        }else {
+            return 'Cài đặt thất bại. Mã kho không tồn tại trong hệ thống';
+        }
+    }
+    /*
+     * Send info to Napthengay.com voi cac thong tin nhu sau:
+     * 	'merchant_id'=>intval($merchant_id),
+     *  'api_email'=>trim($api_email),
+     *  'trans_id'=>trim($trans_id),
+     *  'card_id'=>trim($mang),
+     *  'card_value'=> intval($card_value),
+     *  'pin_field'=>trim($sopin),
+     *  'seri_field'=>trim($seri),
+     *  'algo_mode'=>'hmac'
+     * */
+    public function checkCard($data){
+        $NapTheNgay = new NapTheNgay();
+        //var_dump($NapTheNgay->config);
+        /*
+         * Send data to API
+         * Cac tham so truyen vao nhu sau
+         * $arrayPost = array(
+                'merchant_id'=>intval($merchant_id),
+                'api_email'=>trim($api_email),
+                'trans_id'=>trim($trans_id),
+                'card_id'=>trim($mang),
+                'card_value'=> intval($card_value),
+                'pin_field'=>trim($sopin),
+                'seri_field'=>trim($seri),
+                'algo_mode'=>'hmac'
+            );
+         * voi url da duoc truyen vao tu ben Provider và tuân thủ theo mẫu sau:
+         *  $data_sign = hash_hmac('SHA1',implode('',$arrayPost),$secure_code);
+            $arrayPost['data_sign'] = $data_sign;
+            $curl = curl_init($api_url);
+            curl_setopt_array($curl, array(
+                CURLOPT_POST=>true,
+                CURLOPT_HEADER=>false,
+                CURLINFO_HEADER_OUT=>true,
+                CURLOPT_TIMEOUT=>30,
+                CURLOPT_RETURNTRANSFER=>true,
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_POSTFIELDS=>http_build_query($arrayPost)
+            ));
+            $data = curl_exec($curl);
+         * */
+        $arr = $NapTheNgay->config;
+        $ArrayPOST = array_merge($data,$arr);
+        var_dump($ArrayPOST);
+    }
 }

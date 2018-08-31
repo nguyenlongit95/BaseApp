@@ -19,7 +19,7 @@
                     <div class="card-header" style="border-bottom: 0">
                         <h3 class="card-title">Chargings Settings</h3>
                         <div class="float-right" style="">
-                            <a href="{{ url($backendUrl.'/chargings/telcos/create') }}"><button class="btn btn-success"><i class="fa fa-plus-circle"></i> New Telco</button></a>
+                            <a href="{{ url($backendUrl.'/autochargings/telcos/create') }}"><button class="btn btn-success"><i class="fa fa-plus-circle"></i> New Telco</button></a>
                         </div>
                     </div>
 
@@ -31,7 +31,8 @@
                                     <th class="center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                                         <label class="pos-rel">
                                             <input type="checkbox" class="ace" id="checkall">
-                                            <span class="lbl"></span> </label>
+                                            <span class="lbl"></span>
+                                        </label>
                                     </th>
                                     <th>Name</th>
                                     <th>Key</th>
@@ -60,18 +61,15 @@
                                         <td>{{ $telco->created_at }}</td>
                                         <td>
                                             <div class="action-buttons">
-                                                <a href="{{ url($backendUrl.'/chargings/telcos/'.$telco->id.'/edit') }}"> <i title="Sửa" class="ace-icon fa fa-pencil bigger-130"></i> </a>  |
+                                                <a href="{{ url($backendUrl.'/autochargings/telcos/'.$telco->id.'/edit') }}"> <i title="Sửa" class="ace-icon fa fa-pencil bigger-130"></i> </a>  |
 
-                                                <a href="#" name="{{ $telco->name }}" link="{{ url($backendUrl.'/chargings/telcos/'.$telco->id) }}" class="deleteClick red id-btn-dialog2" data-toggle="modal" data-target="#deleteModal" > <i title="Delete" class="ace-icon fa fa-trash-o bigger-130"></i></a>
+                                                <a href="#" name="{{ $telco->name }}" link="{{ url($backendUrl.'/autochargings/telcos/'.$telco->id) }}" class="deleteClick red id-btn-dialog2" data-toggle="modal" data-target="#deleteModal" > <i title="Delete" class="ace-icon fa fa-trash-o bigger-130"></i></a>
 
                                             </div>
                                         </td>
                                     </tr>
                                 @endforeach
-
                                 </tbody>
-
-
                             </table>
                         </div>
                         <form action="" method="POST" >
@@ -148,6 +146,8 @@
 
                     </div>
                     <!-- /.card-body -->
+
+
                 </div>
                 <!-- /.card -->
             </div>

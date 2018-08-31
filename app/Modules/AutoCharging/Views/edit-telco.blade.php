@@ -56,11 +56,19 @@
                                         <div class="Toggle"></div>
                                     </div>
                                 </div>
-
-
                             </div>
 
-
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="description">Nhà cung cấp hỗ trợ nhà mạng:</label>
+                                    <select name="api_provider" class="form-control">
+                                        <option value="NAPTHENGAY">VINAPHONE</option>
+                                        <script>
+                                            var $product = [];
+                                        </script>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
 

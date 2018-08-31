@@ -15,6 +15,9 @@ use App\Modules\AutoCharging\Models\AutoChargingsTelco;
 use App\Modules\Group\Models\Group;
 use App\Modules\Merchant\Models\Merchant;
 
+use App\Modules\AutoCharging\Providers\NapTheNgay\NapTheNgay;
+use function Sodium\add;
+
 class AutoChargingApiController extends FrontendController
 {
     public $client_ip;
@@ -193,7 +196,6 @@ class AutoChargingApiController extends FrontendController
         if(!isset($data['partner_id']) || !isset($data['code']) || !isset($data['serial']) ||
             !isset($data['value']) || !isset($data['telco']) || !isset($data['request_time']) ||
             !isset($data['request_id']) || !isset($data['sign'])){
-
             return false;
         }else {
             return true;
@@ -201,22 +203,16 @@ class AutoChargingApiController extends FrontendController
     }
 
 
-    private function insertApiCharging($data, $user_id, $api_provider = NULL) {
+    private function insertApiCharging($data, $user_id, $api_provider) {
+//        var_dump($api_provider);
         $result = \App\Modules\AutoCharging\Controllers\AutoChargingController::insertChargebyUserAPI($data, $user_id, $api_provider);
         if(!$result) {
             $result['status']   = 110;
             $result['message']  = 'Lỗi nhập dữ liệu';
             $this->set_output($result);
+            $autoChargingController = new AutoChargingController();
+            $autoChargingController->checkCard($data,$api_provider);
         }
-        return $result;
+        //return $result;
     }
-
-
-
-
-
-
-
-
-
 }

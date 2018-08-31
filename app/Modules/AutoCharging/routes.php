@@ -5,15 +5,14 @@ $as = config('backend.backendRoute');
 
 //--FRONTEND
 Route::group(['middleware' => ['web'], 'module'=>'AutoCharging', 'namespace' => $namespace], function () {
-    //Tay the cham
+    //Tay the nhanh
     Route::get('/doithenhanh.html',['as'=>'frontend.pages.taythenhanh', 'uses'=> 'AutoChargingFrontController@viewPageFrontCharging'] );
     Route::post('/doithenhanh.html', ['as'=>'frontend.charging.postAutoCharging', 'uses'=>'AutoChargingFrontController@insertCharging']);
 });
 
 /// API
-
 Route::group(['middleware' => ['api'], 'module'=>'AutoCharging', 'namespace' => $namespace], function () {
-    //Tay the cham
+    //Tay the nhanh
     Route::get('/autochargingws',['as'=>'frontend.api.autocharging', 'uses'=> 'AutoChargingApiController@blankPage'] );
     Route::get('/autochargingws/{trans_id}/{request_id}',['as'=>'frontend.api.charging.status', 'uses'=> 'AutoChargingApiController@getCheckStatus'] );
     Route::post('/autochargingws.html',['as'=>'frontend.api.autocharging', 'uses'=> 'AutoChargingApiController@postApiAutoCharging'] );

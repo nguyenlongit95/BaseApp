@@ -23,7 +23,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        {!! Form::open(array('route' => 'autochargings.telcopostcreate','method'=>'POST')) !!}
+                        {!! Form::open(array('route' => '/autochargings/telcos/postcreate','method'=>'POST')) !!}
                         <div class="card-body row">
                             <div class="col-md-6">
                                 <div class="form-group">

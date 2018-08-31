@@ -85,6 +85,7 @@
                                             <th>Nhận về</th>
                                             <th>Đơn hàng</th>
                                             <th>Hình thức</th>
+                                            <th>Nhà cung cấp</th>
                                             <th>Request ID</th>
                                         </tr>
                                         </thead>
@@ -110,10 +111,11 @@
                                                 <td>{{ $charging->telco }}</td>
                                                 <td>{{ number_format($charging->value).' '.$charging->currency_code }}</td>
                                                 <td>{{ $charging->fees }} %</td>
-                                                <td>{{ number_format($charging->amount).' '.$charging->currency_code}}</td>
-                                                <td>{{ $charging->order}}</td>
-                                                <td>{{ $charging->api_provider}}</td>
-                                                <td>{{ $charging->request_id}}</td>
+                                                <td>{{ number_format($charging->amount).' '.$charging->currency_code }}</td>
+                                                <td>{{ $charging->order }}</td>
+                                                <td>{{ $charging->method }}</td>
+                                                <td>{{ $charging->provider }}</td>
+                                                <td>{{ $charging->request_id }}</td>
 
                                             </tr>
                                         @endforeach
