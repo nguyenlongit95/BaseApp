@@ -40,11 +40,15 @@ class CategoryProductController extends Controller
         return $CategoryProducts;
     }
 
+    public function getStore(){
+        return view('admin.CategoryProducts.create');
+    }
+
     public function store(Request $request){
         $data = $request->all();
         $CategoryProducts = $this->CategoryRepository->create($data);
         if($CategoryProducts){
-            return view('admin.CategoryProducts.addNew')->with('thong_bao','Add new item success!');
+            return view('admin.CategoryProducts.create')->with('thong_bao','Add new item success!');
         }else{
             return view('admin.CategoryProducts.index')->with('thong_bao','Add new item failed');
         }
@@ -60,7 +64,7 @@ class CategoryProductController extends Controller
         }
     }
 
-    public function Destroy($id){
+    public function destroy($id){
         $CategoryProduct = $this->CategoryRepository->delete($id);
         if($CategoryProduct){
             return view('admin.CategoryProducts.index')->with('thong_bao','Delete an item success!');

@@ -11,7 +11,7 @@ class adminController extends Controller
      * Chia cac vung widgets tuong tu cho website
      * widget sẽ được hiểu là các thành phần phụ của website
      * */
-    public function index(){
+    public function DashBoard(){
         return view('admin.index');
     }
 }
