@@ -41,35 +41,36 @@ class CategoryProductController extends Controller
     }
 
     public function getStore(){
-        return view('admin.CategoryProducts.create');
+        $Parent_id = $this->getParentID();
+        return view('admin.CategoryProducts.create',['Parent_id'=>$Parent_id]);
     }
 
     public function store(Request $request){
         $data = $request->all();
         $CategoryProducts = $this->CategoryRepository->create($data);
-        if($CategoryProducts){
-            return view('admin.CategoryProducts.create')->with('thong_bao','Add new item success!');
+        if($CategoryProducts == true){
+            $this->index();
         }else{
-            return view('admin.CategoryProducts.index')->with('thong_bao','Add new item failed');
+            return redirect()->back()->with('thong_bao','Add new item failed');
         }
     }
 
     public function update(Request $request, $id){
         $data = $request->all();
         $CategoryProduct = $this->CategoryRepository->update($data,$id);
-        if($CategoryProduct){
-            return view('admin.CategoryProducts.update')->with('thong_bao','Update an item success!');
+        if($CategoryProduct == true){
+            return redirect()->back()->with('thong_bao','Update an item success!');
         }else{
-            return view('admin.CategoryProducts.index')->with('thong_bao','Update an item failed');
+            return redirect()->back()->with('thong_bao','Update an item failed!');
         }
     }
 
     public function destroy($id){
         $CategoryProduct = $this->CategoryRepository->delete($id);
-        if($CategoryProduct){
-            return view('admin.CategoryProducts.index')->with('thong_bao','Delete an item success!');
+        if($CategoryProduct == true){
+            return redirect('admin/Categories/CategoriesProduct')->with('thong_bao','Delete an item success!');
         }else{
-            return view('admin.CategoryProducts.index')->with('thong_bao','Delete an item failed');
+            return redirect('admin/Categories/CategoriesProduct')->with('thong_bao','Delete an item failed');
         }
     }
 
@@ -85,5 +86,15 @@ class CategoryProductController extends Controller
     public function getInfo(){
         $getInfoCategoryProducts = $this->CategoryRepository->getInfo();
         return $getInfoCategoryProducts;
+    }
+
+    /*
+     * Các phương thức mở rộng khác được viết ở đây
+     * Phương thức getUpdate
+     * */
+    public function getUpdate($id){
+        $showCategoryProduct = $this->show($id);
+        $Parent_id = $this->getParentID();
+        return view('admin.CategoryProducts.update', ['CategoryProduct'=>$showCategoryProduct,'Parent_id'=>$Parent_id]);
     }
 }

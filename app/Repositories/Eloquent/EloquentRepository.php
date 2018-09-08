@@ -56,13 +56,14 @@ abstract class EloquentRepository implements RepositoryInterface{
     public function update(array $attribute, $id)
     {
         // TODO: Implement update() method.
-        $result = $this->_model->find($id);
-        if($result){
-            $result = $this->update($attribute);
-            return $result;
+        $model = $this->_model->findOrFail($id);
+        $model->fill($attribute);
+        if($model->save()){
+            return true;
         }else{
             return false;
         }
+
     }
 
     // Phương thức xóa, trả về kiểu boolean
@@ -71,8 +72,11 @@ abstract class EloquentRepository implements RepositoryInterface{
         // TODO: Implement delete() method.
         $result = $this->_model->find($id);
         if($result){
-            $result->delete($id);
-            return true;
+            if($result->delete($id)){
+                return true;
+            }else{
+                return false;
+            }
         }else{
             return false;
         }

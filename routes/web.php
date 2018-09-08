@@ -41,11 +41,14 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('CategoriesBlog','CategoryBlogController@index');
         Route::get('addCategoriesBlog','CategoryBlogController@create');
         Route::get('updateCategoriesBlog/{id}','CategoryBlogController@show');
+        Route::post('updateCategoriesBlog/{id}','CategoryProductController@update');
         Route::get('deleteCategoriesBlog/{id}','CategoryBlogController@destroy');
 
         Route::get('CategoriesProduct','CategoryProductController@index');
-        Route::get('addCategoriesProduct','CategoryProductController@create');
-        Route::get('updateCategoriesProduct/{id}','CategoryProductController@show');
+        Route::get('addCategoriesProduct','CategoryProductController@getStore');
+        Route::post('addCategoriesProduct','CategoryProductController@store');
+        Route::get('updateCategoriesProduct/{id}','CategoryProductController@getUpdate');
+        Route::post('updateCategoriesProduct/{id}','CategoryProductController@update');
         Route::get('deleteCategoriesProduct/{id}','CategoryProductController@destroy');
     });
 });
