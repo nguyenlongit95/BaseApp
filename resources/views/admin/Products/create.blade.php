@@ -1,13 +1,12 @@
 @extends('admin.master')
 
 @section('content')
-
     <section class="content">
 
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Products</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -18,8 +17,8 @@
             <div class="box-body">
                 @include('admin.layouts.alert')
                 <div class="row">
-                    <div class="col-md-6">
-                        <form action="admin/Categories/addCategoriesProduct" method="POST" enctype="multipart/form-data">
+                    <div class="col-md-6 pull-left">
+                        <form action="admin/Product/addProduct" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -28,12 +27,77 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Name of Product</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" placeholder="...">
+                                            <input type="text" name="NameProduct" class="form-control" value="Name of product">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- Date mm/dd/yyyy -->
+                                    <div class="form-group">
+                                        <label for="">Price($)</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-edit fa-pen-alt"></i>
+                                            </div>
+                                            <input type="text" name="Price" class="form-control" placeholder="10$">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- Date mm/dd/yyyy -->
+                                    <div class="form-group">
+                                        <label for="">Sales(%)</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-edit fa-pen-alt"></i>
+                                            </div>
+                                            <input type="number" name="Sales" class="form-control" placeholder="10%">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- Date mm/dd/yyyy -->
+                                    <div class="form-group">
+                                        <label for="">Info of product</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-edit fa-pen-alt"></i>
+                                            </div>
+                                            <textarea class="form-control ckeditor" name="Info" id="info" cols="30" rows="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis magnam, saepe! Consectetur consequatur, cumque deserunt ducimus ea earum eligendi eveniet excepturi fugit illum molestiae nam, porro quis sint voluptatem voluptates?</textarea>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- Date mm/dd/yyyy -->
+                                    <div class="form-group">
+                                        <label for="">Descriptions</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-edit fa-pen-alt"></i>
+                                            </div>
+                                            <textarea class="form-control ckeditor" name="Description" id="info" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut itaque quaerat qui repudiandae? Commodi debitis delectus eum illum, ipsam, laborum magnam minima non porro provident quod reprehenderit tempore vero voluptatibus!</textarea>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- Date mm/dd/yyyy -->
+                                    <div class="form-group">
+                                        <label for="">Quantity</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-edit fa-pen-alt"></i>
+                                            </div>
+                                            <input type="number" name="Quantity" class="form-control" placeholder="10">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -47,30 +111,15 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" placeholder="...">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Parent category:</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-compress"></i>
-                                            </div>
-                                            <SELECT class="form-control" name="Parent_id">
-                                                @foreach($Parent_id as $parent_id)
-                                                <OPTION value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
+                                            <SELECT class="form-control" name="idCategories">
+                                                @foreach($Categories as $category)
+                                                    <OPTION value="{{ $category->id }}">{{ $category->NameCategory }}</OPTION>
                                                 @endforeach
                                             </SELECT>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
-
 
                                     <!-- IP mask -->
                                     <div class="form-group">
@@ -93,7 +142,7 @@
                         </form>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 pull-right">
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
                         </p>
@@ -115,13 +164,14 @@
                         </p>
                     </div>
                 </div>
+
             </div>
-            <!-- /.col (right) -->
+        </div>
+        </div>
+        <!-- /.col (right) -->
         </div>
         <!-- /.row -->
-        </tbody>
-
         <!-- /.content -->
-
-
+        </div>
+    </section>
 @endsection

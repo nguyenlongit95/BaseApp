@@ -7,7 +7,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List categories</h3>
+                    <h3 class="box-title">List categories / <a href="admin/Categories/addCategoriesBlog">Add new</a></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -23,17 +23,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+                        @foreach($CategoryBlogs as $categoryBlog)
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>{{ $categoryBlog->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                {{ $categoryBlog->NameCategory }}
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                {{ $categoryBlog->Info }}
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td class="text-center"><a href="admin/Categories/updateCategoriesBlog/{{$categoryBlog->id}}" class="btn-warning padding510510">Update</a></td>
+                            <td class="text-center"><a href="admin/Categories/deleteCategoriesBlog/{{$categoryBlog->id}}" class="btn-danger padding510510">Delete</a></td>
                         </tr>
                         @endforeach
                         </tfoot>

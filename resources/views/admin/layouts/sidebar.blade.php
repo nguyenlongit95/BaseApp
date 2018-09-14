@@ -7,7 +7,7 @@
                 <img src="admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>Adminstator</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -34,20 +34,13 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard </a></li>
+                    <li class="active"><a href="admin/DashBoard"><i class="fa fa-circle-o"></i> Dashboard </a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <ul class="treeview-menu">
-                    <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                    <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                    <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                    <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-                </ul>
-            </li>
+
             <!-- Widgets dùng để quản lý các thành phần của website như header, sidebar footer -->
             <li>
-                <a href="pages/widgets.html">
+                <a href="admin/Widgets">
                     <i class="fa fa-th"></i> <span>Widgets</span>
                     <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
@@ -64,17 +57,18 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-                    <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-                    <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-                    <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-                    <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-                    <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+                    <li><a href="admin/Categories/CategoriesProduct"><i class="fa fa-bars"></i> Categories Products</a></li>
+                    <li><a href="admin/Categories/CategoriesBlog"><i class="fa fa-bars"></i> Categories Blogs</a></li>
+                    <li><a href="admin/Product/Products"><i class="fa fa-gift"></i> Products</a></li>
+                    <li><a href="admin/Blog/Blogs"><i class="fa fa-file"></i> Blogs</a></li>
+                    <li><a href="admin/Article/Articles"><i class="fa fa-address-card"></i> Article</a></li>
+                    <li><a href="admin/Order/Orders"><i class="fa fa-shopping-cart"></i> Orders</a></li>
+                    <li><a href="admin/User/Users"><i class="fa fa-users"></i> Users</a></li>
                 </ul>
             </li>
             <li class="header">ORTHER NAVIGATION</li>
             <li>
-                <a href="pages/mailbox/mailbox.html">
+                <a href="admin/Mailbox">
                     <i class="fa fa-envelope"></i> <span>Mailbox</span>
                     <span class="pull-right-container">
               <small class="label pull-right bg-yellow">12</small>
@@ -92,14 +86,15 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                    <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-                    <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                    <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                    <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+                    <li><a href="admin/Comment/Comments"><i class="fa fa-comments"></i> Comments</a></li>
+                    <li><a href="admin/Contact/Contacts"><i class="fa fa-compress"></i> Contacts</a></li>
+                    <li><a href="admin/Info/InfoOfPage"><i class="fa fa-info-circle"></i> Info of page</a></li>
+                    <li><a href="admin/Linked/Linkeds"><i class="fa fa-link"></i> Linkeds</a></li>
+                    <li><a href="admin/Slider/Sliders"><i class="fa fa-slideshare"></i> Sliders</a></li>
+                    <li><a href="admin/API/API"><i class="fa fa-compress"></i> API</a></li>
                 </ul>
             </li>
-            <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+            <li><a href="admin/Documentation"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

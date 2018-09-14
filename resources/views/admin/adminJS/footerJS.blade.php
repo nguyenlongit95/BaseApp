@@ -16,3 +16,5 @@
 <script src="admin/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="admin/dist/js/demo.js"></script>
+<!-- JS Ckeditor -->
+<script src="admin/asset/js/ckeditor/ckeditor.js"></script>

@@ -30,5 +30,17 @@ class AppServiceProvider extends ServiceProvider
           \App\Repositories\CategoryProducts\CategoryProductReporitoryInterface::class,
           \App\Repositories\CategoryProducts\CateoryEloquentRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\CategoryBlogs\CategoryBlogReporitoryInterface::class,
+            \App\Repositories\CategoryBlogs\CateoryEloquentRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\Products\ProductReporitoryInterface::class,
+            \App\Repositories\Products\ProductEloquentRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\ImageProduct\ImageProductReporitoryInterface::class,
+            \App\Repositories\ImageProduct\ImageProductEloquentRepository::class
+        );
     }
 }

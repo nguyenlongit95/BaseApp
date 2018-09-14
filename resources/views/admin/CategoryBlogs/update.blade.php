@@ -18,7 +18,7 @@
                 @include('admin.layouts.alert')
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="admin/Categories/updateCategoriesProduct/{{ $CategoryProduct->id }}" method="POST" enctype="multipart/form-data">
+                        <form action="admin/Categories/updateCategoriesBlog/{{ $CategoryBlogs->id }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -32,7 +32,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" value="{{ $CategoryProduct->NameCategory }}">
+                                            <input type="text" name="NameCategory" class="form-control" value="{{ $CategoryBlogs->NameCategory }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -46,7 +46,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" value="{{ $CategoryProduct->Info }}">
+                                            <input type="text" name="Info" class="form-control" value="{{ $CategoryBlogs->Info }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -62,7 +62,7 @@
                                             </div>
                                             <SELECT class="form-control" name="Parent_id">
                                                 @foreach($Parent_id as $parent_id)
-                                                <OPTION <?php if ($parent_id->id == $CategoryProduct->Parent_id) {echo "selected";}else{} ?> value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
+                                                <OPTION <?php if ($parent_id->id == $CategoryBlogs->Parent_id) {echo "selected";}else{} ?> value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
                                                 @endforeach
                                             </SELECT>
                                         </div>

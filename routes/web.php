@@ -39,8 +39,9 @@ Route::group(['prefix'=>'admin'],function(){
      * */
     Route::group(['prefix'=>'Categories'],function(){
         Route::get('CategoriesBlog','CategoryBlogController@index');
-        Route::get('addCategoriesBlog','CategoryBlogController@create');
-        Route::get('updateCategoriesBlog/{id}','CategoryBlogController@show');
+        Route::get('addCategoriesBlog','CategoryBlogController@getStore');
+        Route::post('addCategoriesBlog','CategoryBlogController@store');
+        Route::get('updateCategoriesBlog/{id}','CategoryBlogController@getUpdate');
         Route::post('updateCategoriesBlog/{id}','CategoryProductController@update');
         Route::get('deleteCategoriesBlog/{id}','CategoryBlogController@destroy');
 
@@ -50,6 +51,21 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('updateCategoriesProduct/{id}','CategoryProductController@getUpdate');
         Route::post('updateCategoriesProduct/{id}','CategoryProductController@update');
         Route::get('deleteCategoriesProduct/{id}','CategoryProductController@destroy');
+    });
+
+    Route::group(['prefix'=>'Product'],function(){
+        Route::get('Products','ProductController@index');
+        Route::get('addProducts','ProductController@getStore');
+        Route::post('addProduct','ProductController@store');
+
+        Route::get('updateProduct/{id}','ProductController@getUpdate');
+        Route::post('updateProduct/{id}','ProductController@Update');
+
+        Route::get('deleteProduct/{id}','ProductController@destroy');
+
+
+        Route::post('addImage/{id}','ProductController@postAddImage');
+        Route::get('deleteImage/{id}','ProductController@getDeleteImage');
     });
 });
 

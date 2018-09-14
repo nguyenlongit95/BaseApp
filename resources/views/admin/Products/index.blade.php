@@ -7,7 +7,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List categories</h3>
+                    <h3 class="box-title">List categories / <a href="admin/Product/addProducts">Add new</a></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -16,24 +16,36 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name Categories</th>
+                            <th>Name Products</th>
+                            <th>Price</th>
+                            <th>Sales</th>
                             <th>Info</th>
+                            <th>Quantity</th>
                             <th class="text-center">Update</th>
                             <th class="text-center">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+                        @foreach($Products as $products)
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>{{ $products->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                {{ $products->NameProduct }}
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                {{ $products->Price }}
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td>
+                                {{ $products->Sales }}
+                            </td>
+                            <td>
+                                {{ $products->Info }}
+                            </td>
+                            <td>
+                                {{ $products->Quantity }}
+                            </td>
+                            <td class="text-center"><a href="admin/Product/updateProduct/{{$products->id}}" class="btn-warning padding510510">Update</a></td>
+                            <td class="text-center"><a href="admin/Product/deleteProduct/{{$products->id}}" class="btn-danger padding510510">Delete</a></td>
                         </tr>
                         @endforeach
                         </tfoot>

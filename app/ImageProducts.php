@@ -10,7 +10,7 @@ class ImageProducts extends Model
     protected $table="image_products";
 
     protected $fillable=[
-        "ImgProduct",
+        "ImageProduct",
         "idProduct"
     ];
 }

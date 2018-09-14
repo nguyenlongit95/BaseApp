@@ -11,6 +11,7 @@ class CategoriesBlog extends Model
 
     protected $fillable=[
         "NameCategory",
+        "Info",
         "Parent_id",
     ];
 }

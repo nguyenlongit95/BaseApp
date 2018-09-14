@@ -19,7 +19,7 @@
                 @include('admin.layouts.alert')
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="admin/Categories/addCategoriesProduct" method="POST" enctype="multipart/form-data">
+                        <form action="admin/Categories/addCategoriesBlog" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -62,6 +62,7 @@
                                                 <i class="fa fa-compress"></i>
                                             </div>
                                             <SELECT class="form-control" name="Parent_id">
+                                                <OPTION value="0">None</OPTION>
                                                 @foreach($Parent_id as $parent_id)
                                                 <OPTION value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
                                                 @endforeach
