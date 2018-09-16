@@ -17,6 +17,10 @@ interface ImageProductReporitoryInterface{
     public function getImages($idProduct);
 
     public function ResizeImage($id);
+    // $id lay vao tham so id cua san pham
+    public function addImage($Image, $id);
+    // $id se lay vao id cua hinh anh
+    public function deleteImage($id);
 }
 
 ?>

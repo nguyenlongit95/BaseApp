@@ -15,6 +15,7 @@ class Blogs extends Model
         "Description",
         "Author",
         "Tags",
+        "Image",
         "idCategoryBlog"
     ];
 }

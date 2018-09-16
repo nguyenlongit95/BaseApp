@@ -63,9 +63,18 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('deleteProduct/{id}','ProductController@destroy');
 
-
         Route::post('addImage/{id}','ProductController@postAddImage');
         Route::get('deleteImage/{id}','ProductController@getDeleteImage');
+    });
+
+    Route::group(['prefix'=>'Blog'],function(){
+        Route::get('Blogs','BlogController@index');
+
+        Route::get('addBlogs','BlogController@getAddBlogs');
+
+        Route::get('updateBlog/{id}','BlogController@getUpdateBlogs');
+
+        Route::get('deleteBlog/{id}','BlogController@destroy');
     });
 });
 

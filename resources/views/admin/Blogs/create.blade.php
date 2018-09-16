@@ -7,7 +7,7 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Blogs</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -19,21 +19,21 @@
                 @include('admin.layouts.alert')
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="admin/Categories/addCategoriesProduct" method="POST" enctype="multipart/form-data">
+                        <form action="admin/Blog/AddBlogs" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
-                                    <h3 class="box-title">Update form data element</h3>
+                                    <h3 class="box-title">Add form data element</h3>
                                 </div>
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Title this blog</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" placeholder="...">
+                                            <input type="text" name="Title" class="form-control" placeholder="Title this blog">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -41,13 +41,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Info blog</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" placeholder="...">
+                                            <textarea name="Info" class="form-control ckeditor" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur corporis, dignissimos dolorum eaque enim expedita facere, hic magnam necessitatibus numquam odit quidem similique sint, tempore. Deleniti itaque perspiciatis vero.</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -55,15 +55,71 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Parent category:</label>
+                                        <label>Description</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <textarea name="Description" class="form-control ckeditor" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur corporis, dignissimos dolorum eaque enim expedita facere, hic magnam necessitatibus numquam odit quidem similique sint, tempore. Deleniti itaque perspiciatis vero.</textarea>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Author</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="text" name="Author" class="form-control" placeholder="Adminstator">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Tags</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="text" name="Tags" class="form-control" placeholder="Blog">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Image blog</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="file" name="Image" class="form-control" value="DefaultImage.jpg">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Blog categories</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-compress"></i>
                                             </div>
                                             <SELECT class="form-control" name="Parent_id">
-                                                @foreach($Parent_id as $parent_id)
-                                                <OPTION value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
+                                                @foreach($CategoryBlogs as $categoryBlogs)
+                                                <OPTION value="{{ $categoryBlogs->id }}">{{ $categoryBlogs->NameCategory }}</OPTION>
                                                 @endforeach
                                             </SELECT>
                                         </div>

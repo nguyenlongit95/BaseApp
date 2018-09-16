@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Repositories\Products\ProductReporitoryInterface;
 use App\Repositories\ImageProduct\ImageProductReporitoryInterface;
@@ -69,11 +69,33 @@ class ProductController extends Controller
     }
 
     public function destroy($id){
-        $Product = $this->ProductRepository->delete($id);
-        if($Product == true){
-            return redirect('admin/Product/Products')->with('thong_bao','Delete an item success!');
-        }else{
-            return redirect('admin/Product/Products')->with('thong_bao','Delete an item failed');
+        $ImageProduct = $this->ImageProductRepository->getImages($id);
+        foreach($ImageProduct as $item){
+            if($item != null){
+                $image = $this->deleteImage($item->id);
+                switch ($image){
+                    case 0:
+                        return redirect()->back()->with('thong_bao','Delete Image failed');
+                        break;
+                    case 1:
+                        $Product = $this->ProductRepository->delete($id);
+                        if($Product == true){
+                            return redirect('admin/Product/Products')->with('thong_bao','Delete an item success!');
+                            break;
+                        }else{
+                            return redirect('admin/Product/Products')->with('thong_bao','Delete an item failed');
+                            break;
+                        }
+                    case 2:
+                        return redirect()->back()->with('thong_bao','Delete file image failed, please check again system');
+                        break;
+                    case 3:
+                        return redirect()->back()->with('thong_bao','File has not exits in system!');
+                        break;
+                }
+            }else{
+                return redirect()->back()->with('thong_bao','Delete Image failed, please check again');
+            }
         }
     }
 
@@ -115,9 +137,74 @@ class ProductController extends Controller
      * */
     public function postAddImage(Request $request ,$id){
         // Upload hình ảnh tại đây
-
+        // Hình ảnh upload sẽ được chuyển vào thư mục ../public/Product/
+        $this->validate($request,[
+           'ImageProduct'=>'required'
+            ],[
+            'ImageProduct.required'=>'Please chose a images'
+        ]);
+        if($request->hasFile('ImageProduct')){
+            $file = $request->file('ImageProduct');
+            $fileExtendtion = $file->getClientOriginalExtension();
+            if($fileExtendtion == "jpg" || $fileExtendtion == "png" || $fileExtendtion == "JPG" || $fileExtendtion == "PNG" || $fileExtendtion == "jpeg"){
+                $fileName = $file->getClientOriginalName();
+                $Name = str_random(3) . $fileName;
+                if($file->move("upload/Product/",$Name) && $this->callFunctionPostImage($Name, $id)){
+                    // Sau khi lưu hình ảnh vào thư mục thì gọi dến phương thức thêm hình ảnh trong Repository
+                    return redirect()->back()->with('thong_bao','Upload image success!');
+                }else{
+                    return redirect()->back()->with('thong_bao','Upload file failed, please check again system!');
+                }
+            }else{
+                return redirect()->back()->with('thong_bao','The image is not formatted correctly!');
+            }
+        }else{
+            return redirect()->back()->with('thong_bao','Please chose a images');
+        }
     }
     public function getDeleteImage($id){
-        echo $id;
+        $Image = $this->deleteImage($id);
+        switch ($Image){
+            case 0:
+                return redirect()->back()->with('thong_bao','Delete Image failed');
+                break;
+            case 1:
+                return redirect()->back()->with('thong_bao','Delete Image success');
+                break;
+            case 2:
+                return redirect()->back()->with('thong_bao','Delete file image failed, please check again system');
+                break;
+            case 3:
+                return redirect()->back()->with('thong_bao','File has not exits in system!');
+                break;
+        }
+    }
+    // More function: function ở đây để tách cho code của các function chính khỏi bị dài
+    // Đạt đúng tiêu chuẩn của McCall: không nên để quá 3 lệnh if else trong 1 phương thức
+    public function callFunctionPostImage($Image, $id){
+        $AddImage = $this->ImageProductRepository->addImage($Image,$id);
+        if ($AddImage == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function deleteImage($id){
+        // TODO: Implement deleteImage() method.
+        $ImageProduct = $this->ImageProductRepository->find($id);
+        if(file_exists("upload/Product/".$ImageProduct->ImageProduct)){
+            if(File::delete("upload/Product/".$ImageProduct->ImageProduct)) {
+                $deleteImage = $this->ImageProductRepository->delete($id);
+                if ($deleteImage) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }else{
+                return 2;
+            }
+        }else{
+            return 3;
+        }
     }
 }

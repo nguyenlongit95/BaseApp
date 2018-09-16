@@ -31,7 +31,7 @@ abstract class EloquentRepository implements RepositoryInterface{
     // Phương thức sẽ trả về giá trị: Illuminate\Database\Eloquent\Collection\Static[]
     public function getAll(){
         // TODO: Implement getAll() method.
-        return $this->_model->all();
+        return $this->_model->paginate(10);
     }
 
     // Phương thức lấy về 1 bản ghi rồi trả về dạng mixed

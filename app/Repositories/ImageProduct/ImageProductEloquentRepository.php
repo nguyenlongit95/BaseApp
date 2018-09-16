@@ -31,6 +31,19 @@ class ImageProductEloquentRepository extends EloquentRepository implements Image
         // TODO: Implement getModel() method.
         return \App\ImageProducts::class;
     }
+    public function addImage($image, $id){
+        $ImageProduct = new ImageProducts();
+        $ImageProduct->ImageProduct = $image;
+        $ImageProduct->idProduct = $id;
+        if($ImageProduct->save()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function deleteImage($id){
+        echo $id;
+    }
 }
 
 ?>
