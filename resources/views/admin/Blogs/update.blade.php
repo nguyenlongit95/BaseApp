@@ -46,7 +46,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea name="Info" class="form-control ckeditor" id="" cols="30" rows="10">{{ $Blog->Info }}</textarea>
+                                            <textarea name="Info" class="form-control ckeditor" id="" cols="30" rows="5">{{ $Blog->Info }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -102,9 +102,9 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-compress"></i>
                                             </div>
-                                            <SELECT class="form-control" name="Parent_id">
+                                            <SELECT class="form-control" name="idCategoryBlog">
                                                 @foreach($CategoryBlog as $categoryBlogs)
-                                                    <OPTION <?php if($categoryBlogs->id == $Blog->idCategoryBlog){}else{} ?> value="{{ $categoryBlogs->id }}">{{ $categoryBlogs->NameCategory }}</OPTION>
+                                                    <OPTION <?php if($categoryBlogs->id == $Blog->idCategoryBlog){echo "SELECTED";}else{} ?> value="{{ $categoryBlogs->id }}">{{ $categoryBlogs->NameCategory }}</OPTION>
                                                 @endforeach
                                             </SELECT>
                                         </div>

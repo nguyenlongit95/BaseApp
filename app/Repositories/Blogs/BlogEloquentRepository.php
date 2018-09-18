@@ -20,11 +20,16 @@ class BlogEloquentRepository extends EloquentRepository implements BlogReporitor
 
     }
 
-    public function getDescription(){
+    public function getDescription($id){
 
     }
 
-    public function Search(){
+    public function Search($keySearch){
+
+    }
+    public function deleteImageBlog($id)
+    {
+        // TODO: Implement deleteImageBlog() method.
 
     }
 

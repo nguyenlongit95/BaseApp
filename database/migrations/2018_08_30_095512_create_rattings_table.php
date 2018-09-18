@@ -17,6 +17,7 @@ class CreateRattingsTable extends Migration
             $table->increments('id');
             $table->integer('idProduct');
             $table->integer('Ratting');
+            $table->string("Info");
             $table->timestamps();
         });
     }

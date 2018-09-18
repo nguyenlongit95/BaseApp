@@ -87,6 +87,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="admin/Comment/Comments"><i class="fa fa-comments"></i> Comments</a></li>
+                    <li><a href="admin/Ratting/Rattings"><i class="fa fa-star"></i> Rattings</a></li>
                     <li><a href="admin/Contact/Contacts"><i class="fa fa-compress"></i> Contacts</a></li>
                     <li><a href="admin/Info/InfoOfPage"><i class="fa fa-info-circle"></i> Info of page</a></li>
                     <li><a href="admin/Linked/Linkeds"><i class="fa fa-link"></i> Linkeds</a></li>

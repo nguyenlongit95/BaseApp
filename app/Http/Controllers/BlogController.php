@@ -4,14 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Blogs\BlogReporitoryInterface;
-use App\Repositories\Blogs\BlogEloquentRepository;
 
 use App\Repositories\CategoryBlogs\CategoryBlogReporitoryInterface;
 
 class BlogController extends Controller
 {
-    //
-    //
     /*
      *
      * Tại đây ta gọi và sử dungj các Repository một cách đơn giản
@@ -43,8 +40,8 @@ class BlogController extends Controller
     }
 
     public function show($id){
-        $Product = $this->ProductRepository->find($id);
-        return $Product;
+        $Blogs = $this->BlogRepositories->find($id);
+        return $Blogs;
     }
 
     public function getStore(){
@@ -54,9 +51,9 @@ class BlogController extends Controller
 
     public function store(Request $request){
         $data = $request->all();
-        $Products = $this->ProductRepository->create($data);
-        if($Products == true){
-            return redirect('admin/Product/Products')->with('thong_bao','Add new item success');
+        $Blogs = $this->BlogRepositories->create($data);
+        if($Blogs == true){
+            return redirect('admin/Blog/Blogs')->with('thong_bao','Add new item success');
         }else{
             return redirect()->back()->with('thong_bao','Add new item failed');
         }
@@ -64,42 +61,34 @@ class BlogController extends Controller
 
     public function update(Request $request, $id){
         $data = $request->all();
-        $Product = $this->ProductRepository->update($data,$id);
-        if($Product == true){
+        $Blogs = $this->BlogRepositories->update($data,$id);
+        if($Blogs == true){
             return redirect()->back()->with('thong_bao','Update an item success!');
         }else{
             return redirect()->back()->with('thong_bao','Update an item failed!');
         }
     }
+    /*
+     * Phương thức thay đổi hình ảnh của bài viết
+     * Trước khi thay đổi hình ảnh thì phải xóa hình ảnh cũ đi
+     * Tham số đầu vào là id của bài viết
+     * Gọi đến phương thức xóa hình ảnh tại Eloquent
+     * */
+    public function changeImage(Request $request,$id){
 
+    }
+
+    /*
+     * Khi xóa Blog thì phải xóa hình ảnh của Blog trước
+     * Sau khi xóa thành công thì mới xáo Blog
+     * Gọi đến phương thức xóa hình ảnh tại Eloquent
+     * */
     public function destroy($id){
-        $ImageProduct = $this->ImageProductRepository->getImages($id);
-        foreach($ImageProduct as $item){
-            if($item != null){
-                $image = $this->deleteImage($item->id);
-                switch ($image){
-                    case 0:
-                        return redirect()->back()->with('thong_bao','Delete Image failed');
-                        break;
-                    case 1:
-                        $Product = $this->ProductRepository->delete($id);
-                        if($Product == true){
-                            return redirect('admin/Product/Products')->with('thong_bao','Delete an item success!');
-                            break;
-                        }else{
-                            return redirect('admin/Product/Products')->with('thong_bao','Delete an item failed');
-                            break;
-                        }
-                    case 2:
-                        return redirect()->back()->with('thong_bao','Delete file image failed, please check again system');
-                        break;
-                    case 3:
-                        return redirect()->back()->with('thong_bao','File has not exits in system!');
-                        break;
-                }
-            }else{
-                return redirect()->back()->with('thong_bao','Delete Image failed, please check again');
-            }
+        $deleteImage = $this->BlogRepositories->deleteImageBlog($id);
+        if($deleteImage == true){
+
+        }else{
+
         }
     }
 

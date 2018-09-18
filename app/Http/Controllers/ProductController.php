@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Repositories\Products\ProductReporitoryInterface;
 use App\Repositories\ImageProduct\ImageProductReporitoryInterface;
-
+use App\Repositories\Rattings\RattingsReporitoryInterface;
 class ProductController extends Controller
 {
     //
@@ -18,11 +18,17 @@ class ProductController extends Controller
     // Đây là biến trung gian để gọi đến Interface
     protected $ProductRepository;
     protected $ImageProductRepository;
+    protected $RattingRepository;
     // Phương thức khởi tạo để gọi đến interface, Tham số đầu vào chính là interface
-    public function __construct(ProductReporitoryInterface $repositoryProduct, ImageProductReporitoryInterface $imageProductReporitory)
+    public function __construct(
+        ProductReporitoryInterface $repositoryProduct,
+        ImageProductReporitoryInterface $imageProductReporitory,
+        RattingsReporitoryInterface $rattingsReporitory
+    )
     {
         $this->ProductRepository = $repositoryProduct;
         $this->ImageProductRepository = $imageProductReporitory;
+        $this->RattingRepository = $rattingsReporitory;
     }
 
     /*
@@ -126,7 +132,19 @@ class ProductController extends Controller
         $showProcuct = $this->show($id);
         $getCategory = $this->getCategories();
         $ImageProduct = $this->getImageProduct($id);
-        return view('admin.Products.update', ['Product'=>$showProcuct,'Category'=>$getCategory,'ImageProduct'=>$ImageProduct]);
+        /*
+         * Tại đây sẽ lấy ra Ratting của sản phẩm
+         * Tại đây sẽ lấy ra số lượng trung bình của sản phẩm
+         * */
+        $RattingProduct = $this->RattingRepository->getProductRatting($id);
+        $StarProduct = $this->RattingRepository->getStarAVG($id);
+        return view('admin.Products.update', [
+            'Product'=>$showProcuct,
+            'Category'=>$getCategory,
+            'ImageProduct'=>$ImageProduct,
+            'RattingProduct'=>$RattingProduct,
+            'StarProduct'=>$StarProduct
+        ]);
     }
 
     /*

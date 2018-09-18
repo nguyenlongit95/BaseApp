@@ -11,6 +11,7 @@ class Rattings extends Model
 
     protected $fillable=[
         "idProduct",
-        "Ratting"
+        "Ratting",
+        "Info"
     ];
 }

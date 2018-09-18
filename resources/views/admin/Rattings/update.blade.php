@@ -18,7 +18,7 @@
                 @include('admin.layouts.alert')
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="admin/Categories/updateCategoriesProduct/{{ $CategoryProduct->id }}" method="POST" enctype="multipart/form-data">
+                        <form action="admin/Ratting/updateRattings/{{ $Ratting->id }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -27,12 +27,16 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Star</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" value="{{ $CategoryProduct->NameCategory }}">
+                                            <SELECT name="Ratting" class="form-control">
+                                                <?php for($i = 1; $i<=5; $i++){ ?>
+                                                <OPTION <?php if($Ratting->Ratting == $i){echo "selected";}else{} ?> value="<?php echo $i; ?>"> <?php echo $i; ?> star </OPTION>
+                                                <?php } ?>
+                                            </SELECT>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -40,13 +44,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Info of ratting:</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" value="{{ $CategoryProduct->Info }}">
+                                            <textarea name="Info" class="form-control ckeditor" id="" cols="30" rows="10">{{ $Ratting->Info }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -54,15 +58,15 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Parent category:</label>
+                                        <label>Chose a product:</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-compress"></i>
                                             </div>
-                                            <SELECT class="form-control" name="Parent_id">
-                                                @foreach($Parent_id as $parent_id)
-                                                <OPTION <?php if ($parent_id->id == $CategoryProduct->Parent_id) {echo "selected";}else{} ?> value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
+                                            <SELECT class="form-control" name="idProduct">
+                                                @foreach($Product as $product)
+                                                <OPTION <?php if ($product->id == $Ratting->idProduct) {echo "selected";}else{} ?> value="{{ $product->id }}">{{ $product->NameProduct }}</OPTION>
                                                 @endforeach
                                             </SELECT>
                                         </div>

@@ -172,6 +172,27 @@
                             @endforeach
                             </tfoot>
                         </table>
+                        <h4>Mumber average this product: <span class="btn <?php if($StarProduct >= 3){ echo "btn-success";}else if($StarProduct<3){echo "btn-danger";} ?>"><?php echo number_format($StarProduct); ?> <i class="fa fa-star"></i></span></h4>
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Number star</th>
+                                <th>Product evaluation</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($RattingProduct as $rattingProduct)
+                                <tr>
+                                    <td>{{ $rattingProduct->id }}</td>
+                                    <td>
+                                        {{ $rattingProduct->Ratting }}
+                                    </td>
+                                    <td>{!! $rattingProduct->Info !!}</td>
+                                </tr>
+                            @endforeach
+                            </tfoot>
+                        </table>
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
                         </p>

@@ -65,14 +65,25 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::post('addImage/{id}','ProductController@postAddImage');
         Route::get('deleteImage/{id}','ProductController@getDeleteImage');
+
+    });
+
+    Route::group(['prefix'=>'Ratting'],function(){
+        Route::get('Rattings','RattingController@index');
+        Route::get('updateRattings/{id}','RattingController@getUpdateRatting');
+        Route::post('updateRattings/{id}','RattingController@update');
     });
 
     Route::group(['prefix'=>'Blog'],function(){
         Route::get('Blogs','BlogController@index');
 
         Route::get('addBlogs','BlogController@getAddBlogs');
+        Route::post('addBlogs','BlogController@store');
 
         Route::get('updateBlog/{id}','BlogController@getUpdateBlogs');
+        Route::post('updateBlogs/{id}','BlogController@update');
+
+        Route::post('changeImageBlog/{id}','BlogController@changeImage');
 
         Route::get('deleteBlog/{id}','BlogController@destroy');
     });

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repositories\Rattings\RattingsReporitoryInterface;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -45,6 +46,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             \App\Repositories\Blogs\BlogReporitoryInterface::class,
             \App\Repositories\Blogs\BlogEloquentRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\Rattings\RattingsReporitoryInterface::class,
+            \App\Repositories\Rattings\RattingsEloquentRepository::class
         );
     }
 }

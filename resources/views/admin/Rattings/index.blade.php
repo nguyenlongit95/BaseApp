@@ -7,7 +7,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List categories</h3>
+                    <h3 class="box-title">List ratting</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -16,24 +16,28 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name Categories</th>
+                            <th>Star number</th>
                             <th>Info</th>
                             <th class="text-center">Update</th>
                             <th class="text-center">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+                        @foreach($Rattings as $rattings)
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>{{ $rattings->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                <?php
+                                for ($i=1; $i <= $rattings->Ratting; $i++){
+                                    echo '<i class="fa fa-star"></i>';
+                                }
+                                ?>
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                {{ $rattings->Info }}
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td class="text-center"><a href="admin/Ratting/updateRattings/{{$rattings->id}}" class="btn-warning padding510510">Update</a></td>
+                            <td class="text-center"><a href="admin/Ratting/deleteRattings/{{$rattings->id}}" class="btn-danger padding510510">Delete</a></td>
                         </tr>
                         @endforeach
                         </tfoot>
