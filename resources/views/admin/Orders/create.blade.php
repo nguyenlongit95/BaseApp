@@ -1,13 +1,12 @@
 @extends('admin.master')
 
 @section('content')
-
     <section class="content">
 
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Order</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -19,7 +18,7 @@
                 @include('admin.layouts.alert')
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="admin/Categories/addCategoriesProduct" method="POST" enctype="multipart/form-data">
+                        <form action="admin/Order/addOrder" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -28,12 +27,16 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Clients own</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" placeholder="...">
+                                            <select name="idUser" class="form-control" id="">
+                                                @foreach($User as $user)
+                                                    <option value="{{ $user->id }}"> {{ $user->name }} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -41,35 +44,81 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Your Name</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" placeholder="...">
+                                            <input type="text" name="Name" class="form-control" placeholder="What your name?">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
+
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Parent category:</label>
+                                        <label>Address ship area</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-compress"></i>
+                                                <i class="fa fa-align-left"></i>
                                             </div>
-                                            <SELECT class="form-control" name="Parent_id">
-                                                @foreach($Parent_id as $parent_id)
-                                                <OPTION value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
-                                                @endforeach
-                                            </SELECT>
+                                            <textarea name="Address" class="form-control ckeditor" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, beatae blanditiis delectus dignissimos distinctio, dolores eos ex illum maiores modi natus porro possimus praesentium quibusdam quisquam quo, sint tenetur vel.</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
+
+
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Phone</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="text" name="Phone" class="form-control" placeholder="What you phone number?">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Total price</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="text" name="Total" class="form-control" placeholder="1000000">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Check Code Order:</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="text" name="CodeOrder" class="form-control" value="<?php echo str_random(5); ?>">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
 
 
                                     <!-- IP mask -->
@@ -119,9 +168,7 @@
             <!-- /.col (right) -->
         </div>
         <!-- /.row -->
-        </tbody>
-
         <!-- /.content -->
-
-
+        </div>
+    </section>
 @endsection

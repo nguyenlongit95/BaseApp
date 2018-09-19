@@ -6,7 +6,7 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Order</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -18,7 +18,7 @@
                 @include('admin.layouts.alert')
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="admin/Categories/updateCategoriesProduct/{{ $CategoryProduct->id }}" method="POST" enctype="multipart/form-data">
+                        <form action="admin/Order/updateOrder/{{ $Order->id }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -27,12 +27,16 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Clients own</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" value="{{ $CategoryProduct->NameCategory }}">
+                                            <select name="idUser" class="form-control" id="">
+                                                @foreach($User as $user)
+                                                <option <?php if($user->id == $Order->idUser){echo "SELECTED";}else{} ?> value="{{ $user->id }}"> {{ $user->name }} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -40,35 +44,81 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Your Name</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" value="{{ $CategoryProduct->Info }}">
+                                            <input type="text" name="Name" class="form-control" value="{{ $Order->Name }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
+
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Parent category:</label>
+                                        <label>Address ship area</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-compress"></i>
+                                                <i class="fa fa-align-left"></i>
                                             </div>
-                                            <SELECT class="form-control" name="Parent_id">
-                                                @foreach($Parent_id as $parent_id)
-                                                <OPTION <?php if ($parent_id->id == $CategoryProduct->Parent_id) {echo "selected";}else{} ?> value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
-                                                @endforeach
-                                            </SELECT>
+                                            <textarea name="Address" class="form-control ckeditor" id="" cols="30" rows="10">{{ $Order->Address }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
+
+
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Phone</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="text" name="Phone" class="form-control" value="{{ $Order->Phone }}">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Total price</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="text" name="Total" class="form-control" value="{{ $Order->Total }}">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Check Code Order:</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="text" name="CodeOrder" class="form-control" value="{{ $Order->CodeOrder }}">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
 
 
                                     <!-- IP mask -->
@@ -93,6 +143,49 @@
                     </div>
 
                     <div class="col-md-6">
+                        <div class="box-header">
+                            <h3 class="box-title">Update item in orders</h3>
+                        </div>
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product</th>
+                                <th>Name PRoduct</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Code order</th>
+                                <th class="text-center">Update</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($OrderDetails as $orderDetail)
+                                <form action="admin/Order/updateOrderDetails/{{$orderDetail->id}}">
+                                <tr>
+                                    <td>{{ $orderDetail->id }}</td>
+                                    <td>
+                                        {{ $orderDetail->idProduct }}
+                                    </td>
+                                    <td>
+                                        {{ $orderDetail->NameProduct }}
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control" onclick="changeQTY({{ $orderDetail->id }})" name="Quantity" id="qty" value="{{ $orderDetail->Quantity }}">
+                                    </td>
+                                    <td>
+                                        {{ $orderDetail->Price }} $
+                                    </td>
+                                    <td>
+                                        {{ $orderDetail->CodeOrder }}
+                                    </td>
+                                    <td class="text-center"><a href="admin/Order/updateOrderDetails/{{$orderDetail->id}}" class="btn-warning padding510510">Update</a></td>
+                                    <td class="text-center"><a href="admin/Order/deleteOrderDetails/{{$orderDetail->id}}" class="btn-danger padding510510">Delete</a></td>
+                                </tr>
+                                </form>
+                            @endforeach
+                            </tfoot>
+                        </table>
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
                         </p>

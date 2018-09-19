@@ -18,3 +18,5 @@
 <script src="admin/dist/js/demo.js"></script>
 <!-- JS Ckeditor -->
 <script src="admin/asset/js/ckeditor/ckeditor.js"></script>
+
+<script src="admin/dist/js/CustomJS.js"></script>

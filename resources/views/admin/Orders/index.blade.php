@@ -7,7 +7,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List categories / <a href="">Add new</a></h3>
+                    <h3 class="box-title">List orders / <a href="admin/Order/addOrder">Add new</a></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -16,28 +16,43 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name Categories</th>
-                            <th>Info</th>
+                            <th>Users</th>
+                            <th>Name users</th>
+                            <th>Address ship</th>
+                            <th>Phone</th>
+                            <th>Total</th>
+                            <th>Code order</th>
                             <th class="text-center">Update</th>
                             <th class="text-center">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+                        @foreach($Orders as $order)
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>{{ $order->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                {{ $order->idUser }}
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                {{ $order->Name }}
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td>{{ $order->Address }}</td>
+                            <td>
+                                {{ $order->Phone }}
+                            </td>
+                            <td>
+                                {{ $order->Total }}
+                            </td>
+                            <td>
+                                {{ $order->CodeOrder }}
+                            </td>
+                            <td class="text-center"><a href="admin/Order/updateOrder/{{$order->id}}" class="btn-warning padding510510">Update</a></td>
+                            <td class="text-center"><a href="admin/Order/deleteOrder/{{$order->id}}" class="btn-danger padding510510">Delete</a></td>
                         </tr>
                         @endforeach
                         </tfoot>
                     </table>
+                    {{ $Orders->render() }}
                 </div>
                 <!-- /.box-body -->
             </div>

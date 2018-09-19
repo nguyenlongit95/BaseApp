@@ -51,5 +51,17 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Rattings\RattingsReporitoryInterface::class,
             \App\Repositories\Rattings\RattingsEloquentRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\Orders\OrdersReporitoryInterface::class,
+            \App\Repositories\Orders\OrdersEloquentRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\Users\UsersReporitoryInterface::class,
+            \App\Repositories\Users\UserEloquentRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\OrdersDetails\OrderDetilasReporitoryInterface::class,
+            \App\Repositories\OrdersDetails\OrderDetailsEloquentRepository::class
+        );
     }
 }

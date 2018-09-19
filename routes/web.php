@@ -87,6 +87,24 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('deleteBlog/{id}','BlogController@destroy');
     });
+
+    Route::group(['prefix'=>'Order'],function(){
+        Route::get('Orders','OrderCOntroller@index');
+
+        Route::get('updateOrder/{id}','OrderController@getUpdateOrder');
+        Route::post('updateOrder/{id}','OrderCOntroller@update');
+
+        Route::get('addOrder','OrderController@getStore');
+        Route::post('addOrder','OrderController@store');
+
+        Route::get('deleteOrder/{id}','OrderController@destroy');
+
+        Route::get('updateOrderDetails/{id}','OrderController@getUpdateOrderDetails');
+
+        Route::post('updateOrderDetails/{id}','OrderController@postUpdateOrderDetails');
+
+        Route::get('deleteOrderDetails/{id}','OrderController@deleteOrderDetails');
+    });
 });
 
 /*
