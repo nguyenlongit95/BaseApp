@@ -20,6 +20,8 @@ interface BlogReporitoryInterface{
     public function Search($keySearch);
 
     public function deleteImageBlog($id);
+
+    public function insertImage($id,$Image);
 }
 
 ?>

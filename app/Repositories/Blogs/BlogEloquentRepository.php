@@ -5,11 +5,9 @@
  * */
 namespace App\Repositories\Blogs;
 
+use Illuminate\Support\Facades\File;
 use App\Blogs;
-use App\Repositories\Eloquent;
 use App\Repositories\Eloquent\EloquentRepository;
-use App\Repositories\Blogs\BlogReporitoryInterface;
-use App\CategoriesBlog;
 
 class BlogEloquentRepository extends EloquentRepository implements BlogReporitoryInterface{
     /*
@@ -30,7 +28,30 @@ class BlogEloquentRepository extends EloquentRepository implements BlogReporitor
     public function deleteImageBlog($id)
     {
         // TODO: Implement deleteImageBlog() method.
-
+        $ImageBlog = Blogs::find($id);
+        if(file_exists("upload/Blogs/".$ImageBlog->Image)){
+            if(FIle::delete("upload/Blogs/".$ImageBlog->Image)){
+                $ImageBlog = Blogs::find($id);
+                $ImageBlog->Image = "";
+                $ImageBlog->update();
+                return 1;
+            }else{
+                return 0;
+            }
+        }else{
+            return 2;
+        }
+    }
+    public function insertImage($id, $Image)
+    {
+        // TODO: Implement insertImage() method.
+        $ImageBlog = Blogs::find($id);
+        $ImageBlog->Image = $Image;
+        if($ImageBlog->update()){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     public function getModel()

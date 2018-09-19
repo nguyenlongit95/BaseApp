@@ -68,6 +68,7 @@ class BlogController extends Controller
             return redirect()->back()->with('thong_bao','Update an item failed!');
         }
     }
+
     /*
      * Phương thức thay đổi hình ảnh của bài viết
      * Trước khi thay đổi hình ảnh thì phải xóa hình ảnh cũ đi
@@ -75,7 +76,56 @@ class BlogController extends Controller
      * Gọi đến phương thức xóa hình ảnh tại Eloquent
      * */
     public function changeImage(Request $request,$id){
-
+        $ImageBlog = $this->BlogRepositories->deleteImageBlog($id);
+        $this->validate($request,[
+           'Image'=>'required'
+        ],[
+            'Image.required'=>'Please chose a image'
+        ]);
+        if($ImageBlog == 1){
+            // Tiến hành thêm mới hình ảnh tại đây
+            $file = $request->file("Image");
+            $fileExtendstion = $file->getClientOriginalExtension();
+            if($fileExtendstion == "jpg" || $fileExtendstion == "JPG" || $fileExtendstion == "jpeg" || $fileExtendstion == "JPEG"){
+                 $fileName = $file->getClientOriginalName();
+                 $Name = str_random(5) . $fileName;
+                 if($file->move("upload/Blogs/",$Name)){
+                     // Sau khi kiểm tra tất cả xong thì thêm hình ảnh tại đây
+                     $InsertImage = $this->BlogRepositories->insertImage($id,$Name);
+                     if($InsertImage == 1){
+                         return redirect("admin/Blog/updateBlog/" . $id)->with('thong_bao','Update image success');
+                     }else{
+                         return redirect("admin/Blog/updateBlog/" . $id)->with('thong_bao','Update image failed');
+                     }
+                 }else{
+                     return redirect("admin/Blog/updateBlog/" . $id)->with('thong_bao','Upload image failed');
+                 }
+            }else{
+                return redirect("admin/Blog/updateBlog/" . $id)->with('thong_bao','Wrong image format');
+            }
+        }else if($ImageBlog == 2){
+            $file = $request->file("Image");
+            $fileExtendstion = $file->getClientOriginalExtension();
+            if($fileExtendstion == "jpg" || $fileExtendstion == "JPG" || $fileExtendstion == "jpeg" || $fileExtendstion == "JPEG"){
+                $fileName = $file->getClientOriginalName();
+                $Name = str_random(5) . $fileName;
+                if($file->move("upload/Blogs/",$Name)){
+                    // Sau khi kiểm tra tất cả xong thì thêm hình ảnh tại đây
+                    $InsertImage = $this->BlogRepositories->insertImage($id,$Name);
+                    if($InsertImage == 1){
+                        return redirect("admin/Blog/updateBlog/" . $id)->with('thong_bao','Update image success');
+                    }else{
+                        return redirect("admin/Blog/updateBlog/" . $id)->with('thong_bao','Update image failed');
+                    }
+                }else{
+                    return redirect("admin/Blog/updateBlog/" . $id)->with('thong_bao','Upload image failed');
+                }
+            }else{
+                return redirect("admin/Blog/updateBlog/" . $id)->with('thong_bao','Wrong image format');
+            }
+        }else{
+            return redirect()->back()->with('thong_bao','Cannot delete image file!');
+        }
     }
 
     /*
@@ -85,10 +135,22 @@ class BlogController extends Controller
      * */
     public function destroy($id){
         $deleteImage = $this->BlogRepositories->deleteImageBlog($id);
-        if($deleteImage == true){
-
+        if($deleteImage == 1){
+            $deleteBlog = $this->BlogRepositories->delete($id);
+            if($deleteBlog == true){
+                return redirect("admin/Blog/Blogs" . $id)->with('thong_bao','Delete blogs success');
+            }else{
+                return redirect("admin/Blog/Blogs" . $id)->with('thong_bao','Delete blog failed');
+            }
+        }else if($deleteImage == 2){
+            $deleteBlog = $this->BlogRepositories->delete($id);
+            if($deleteBlog == true){
+                return redirect("admin/Blog/Blogs" . $id)->with('thong_bao','Delete blogs success');
+            }else{
+                return redirect("admin/Blog/Blogs" . $id)->with('thong_bao','Delete blogs failed');
+            }
         }else{
-
+            return redirect("admin/Blog/Blogs" . $id)->with('thong_bao','Cannot delete image, please check system again');
         }
     }
 

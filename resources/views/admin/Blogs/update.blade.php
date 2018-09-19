@@ -136,10 +136,10 @@
 
                     <div class="col-md-6">
                         <img src="upload/Blogs/{{ $Blog->Image }}" style="max-width: 100%; max-height: 300px; padding-bottom:20px;" alt="">
-                        <form class="form-group" action="admin/Blogs/ChangeImage/{{$Blog->id}}" method="POST" enctype="multipart/form-data">
+                        <form class="form-group" action="admin/Blog/changeImageBlogs/{{$Blog->id}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input class="form-control" type="file" name="Image">
-                            <input class="form-control" type="submit" value="Change Image">
+                            <input class="form-control" type="submit" value="Submit Image">
                         </form>
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.

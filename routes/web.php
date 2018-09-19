@@ -83,7 +83,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('updateBlog/{id}','BlogController@getUpdateBlogs');
         Route::post('updateBlogs/{id}','BlogController@update');
 
-        Route::post('changeImageBlog/{id}','BlogController@changeImage');
+        Route::post('changeImageBlogs/{id}','BlogController@changeImage');
 
         Route::get('deleteBlog/{id}','BlogController@destroy');
     });
