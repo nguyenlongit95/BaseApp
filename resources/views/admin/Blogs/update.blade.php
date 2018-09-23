@@ -139,7 +139,7 @@
                         <form class="form-group" action="admin/Blog/changeImageBlogs/{{$Blog->id}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input class="form-control" type="file" name="Image">
-                            <input class="form-control" type="submit" value="Submit Image">
+                            <input class="form-control btn btn-primary" type="submit" value="Submit Image">
                         </form>
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.

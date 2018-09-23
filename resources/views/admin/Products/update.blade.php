@@ -6,7 +6,7 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Products</h3>
+                <h3 class="box-title">Products details</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -150,7 +150,7 @@
                         <form action="admin/Product/addImage/{{$Product->id}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="file" name="ImageProduct" value="Add Image" class="form-control">
-                            <input type="submit" value="Add Image" class="form-control">
+                            <input type="submit" value="Add Image" class="form-control btn btn-primary">
                         </form>
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
@@ -172,7 +172,7 @@
                             @endforeach
                             </tfoot>
                         </table>
-                        <h4>Mumber average this product: <span class="btn <?php if($StarProduct >= 3){ echo "btn-success";}else if($StarProduct<3){echo "btn-danger";} ?>"><?php echo number_format($StarProduct); ?> <i class="fa fa-star"></i></span></h4>
+                        <h4>Mumber average this product: <span class="btn <?php if($StarProduct >= 3){ echo "btn-success";}else if($StarProduct<3){echo "btn-danger";} ?>"><?php $StarAVG = number_format($StarProduct); for($i=1; $i<=$StarAVG;$i++){ ?> <i class="fa fa-star"></i><?php } ?></span></h4>
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
@@ -186,7 +186,11 @@
                                 <tr>
                                     <td>{{ $rattingProduct->id }}</td>
                                     <td>
-                                        {{ $rattingProduct->Ratting }}
+                                        <?php
+                                        for($i=1; $i<=$rattingProduct->Ratting; $i++){
+                                            ?><i class="fa fa-star"></i><?php
+                                        }
+                                        ?>
                                     </td>
                                     <td>{!! $rattingProduct->Info !!}</td>
                                 </tr>
