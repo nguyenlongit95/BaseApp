@@ -16,28 +16,39 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name Categories</th>
-                            <th>Info</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Authentication</th>
                             <th class="text-center">Update</th>
                             <th class="text-center">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+                        @foreach($Users as $user)
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>{{ $user->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                {{ $user->name }}
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                {{ $user->email }}
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td>{{ $user->password }}</td>
+                            <td><?php
+                                if($user->Level == 0){
+                                    echo "Customer";
+                                }else if($user->Level == 1){
+                                    echo "Adminstator";
+                                }
+                                ?></td>
+                            <td class="text-center"><a href="admin/User/updateUser/{{$user->id}}" class="btn-warning padding510510">Update</a></td>
+                            <td class="text-center"><a href="admin/User/deleteUser/{{$user->id}}" class="btn-danger padding510510">Delete</a></td>
                         </tr>
                         @endforeach
                         </tfoot>
                     </table>
+                    {!! $Users->render() !!}
                 </div>
                 <!-- /.box-body -->
             </div>

@@ -39,7 +39,7 @@
                                 {{ $products->Sales }}
                             </td>
                             <td>
-                                {{ $products->Info }}
+                                {!! $products->Info !!}
                             </td>
                             <td>
                                 {{ $products->Quantity }}

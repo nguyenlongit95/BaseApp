@@ -13,6 +13,7 @@ interface UsersReporitoryInterface{
      * Phương thức riêng là: getParent_id để làm menu đa cấp
      * Phương thức getInfo
      * */
+    public function deleteImage($id);
 }
 
 ?>

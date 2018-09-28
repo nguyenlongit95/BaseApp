@@ -105,6 +105,12 @@ Route::group(['prefix'=>'admin'],function(){
 
         Route::get('deleteOrderDetails/{id}','OrderController@deleteOrderDetails');
     });
+
+    Route::group(['prefix'=>'User'],function(){
+        Route::get('Users','UserController@index');
+
+        Route::get('updateUser/{id}','UserController@getUpdate');
+    });
 });
 
 /*

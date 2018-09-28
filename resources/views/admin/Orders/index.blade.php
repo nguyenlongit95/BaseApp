@@ -36,7 +36,7 @@
                             <td>
                                 {{ $order->Name }}
                             </td>
-                            <td>{{ $order->Address }}</td>
+                            <td>{!! $order->Address !!}</td>
                             <td>
                                 {{ $order->Phone }}
                             </td>
