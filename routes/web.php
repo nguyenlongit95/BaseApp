@@ -1,29 +1,15 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 /*
  * Route test demo
  * */
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('ListCategoryProducts','CategoryProductController@index');
-Route::post('addNewCategoryProduct','CategoryProductController@store');
-
 /*
  * Route cho phia admin
  * */
 Route::group(['prefix'=>'admin'],function(){
+    // Trang DashBoard sẽ là nơi thống kê sản phẩm và các thông tin liên quan
     Route::get('DashBoard','adminController@DashBoard');
 
     /*
@@ -110,7 +96,39 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('Users','UserController@index');
 
         Route::get('updateUser/{id}','UserController@getUpdate');
+        Route::post('updateUser/{ud}','UserController@update');
+
+        Route::get('deleteUser/{id}','UserController@destroy');
     });
+
+    /*
+     * Route cho các thành phần con trong hệ thống
+     * Comments
+     * Contacts
+     * Info of page
+     * Linkeds
+     * Sliders
+     * API
+     * */
+
+    /*
+     * Route cho Widgets
+     * Menu header
+     * Menu footer
+     * Sidebar
+     * theme
+     * */
+
+    /*
+     * Route cho Mailbox
+     * Mail sends
+     * Total email
+     * Mail wait
+     * */
+
+    /*
+     * Route cho documentation
+     * */
 });
 
 /*
