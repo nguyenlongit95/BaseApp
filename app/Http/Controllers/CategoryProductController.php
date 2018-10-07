@@ -31,7 +31,7 @@ class CategoryProductController extends Controller
      * restore
      * */
     public function index(){
-        $CategoryProducts = $this->CategoryRepository->getAll();
+        $CategoryProducts = $this->CategoryRepository->getAll(30);
         return view('admin.CategoryProducts.index', ['CategoryProducts'=>$CategoryProducts]);
     }
 

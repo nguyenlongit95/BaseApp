@@ -50,6 +50,7 @@
                         @endforeach
                         </tfoot>
                     </table>
+                    {!! $Products->render() !!}
                 </div>
                 <!-- /.box-body -->
             </div>

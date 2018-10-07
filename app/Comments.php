@@ -13,6 +13,8 @@ class Comments extends Model
         "idBlog",
         "idUser",
         "Comment",
-        "Author"
+        "Author",
+        "State",
+        "Parent_id"
     ];
 }

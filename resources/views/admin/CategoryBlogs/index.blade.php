@@ -38,6 +38,7 @@
                         @endforeach
                         </tfoot>
                     </table>
+                    {!! $CategoryBlogs->render() !!}
                 </div>
                 <!-- /.box-body -->
             </div>

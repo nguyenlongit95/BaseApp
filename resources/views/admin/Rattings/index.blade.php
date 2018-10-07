@@ -42,6 +42,7 @@
                         @endforeach
                         </tfoot>
                     </table>
+                    {!! $Rattings->render() !!}
                 </div>
                 <!-- /.box-body -->
             </div>

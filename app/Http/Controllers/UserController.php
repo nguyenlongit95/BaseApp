@@ -15,7 +15,7 @@ class UserController extends Controller
         $this->UserRepository = $usersReporitory;
     }
     public function index(){
-        $Users = $this->UserRepository->getAll();
+        $Users = $this->UserRepository->getAll(30);
         return view('admin.Users.index', ['Users'=>$Users]);
     }
 

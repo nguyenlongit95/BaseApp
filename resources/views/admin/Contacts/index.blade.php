@@ -7,7 +7,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List categories</h3>
+                    <h3 class="box-title">List contact</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -16,28 +16,45 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name Categories</th>
-                            <th>Info</th>
-                            <th class="text-center">Update</th>
-                            <th class="text-center">Delete</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Message</th>
+                            <th>Status</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+                        @foreach($Contacts as $contact)
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>{{ $contact->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                {{ $contact->Name }}
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                {{ $contact->Email }}
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td>
+                                {{ $contact->Address }}
+                            </td>
+                            <td>
+                                {!! $contact->Message !!}
+                            </td>
+                            <td>
+                                <select onchange="changeState({{ $contact->id }})" name="State" class="form-control" id="StateContact">
+                                    <option <?php if($contact->State == 1){echo "selected";} ?> value="1">Approvide</option>
+                                    <option <?php if($contact->State == 0){echo "selected";} ?> value="0">Un Approvide</option>
+                                </select>
+                            </td>
+                            <td>
+                                <a href="admin/Contact/deleteContact" class="btn-danger">Delete</a>
+                            </td>
                         </tr>
                         @endforeach
+                        <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                         </tfoot>
                     </table>
+                    {!! $Contacts->render() !!}
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -46,4 +63,32 @@
 
     </section>
     <!-- /.content -->
+
+    <!--
+    code JS thay đổi trạng thái của phản hồi
+    Dữ liệu truyền đi bao gồm: id của phản hồi và trạng thái muốn thay đổi
+    Sử dụng Ajax để truyền dữ liệu đi
+    -->
+    <script>
+        function changeState(id){
+            var State = $("#StateContact").val();
+            var _token = $("#token").val();
+            //alert(State);
+            $.ajax({
+                url: "admin/Contact/ChangeStatus/" + id,
+                type: "POST",
+                data: {
+                    _token: _token
+                },
+                success: function (result) {
+                    if(result == 1){
+                        alert("Change contact success");
+                    }else{
+                        alert("Change contact fail");
+                    }
+                }
+            });
+        }
+    </script>
+
 @endsection

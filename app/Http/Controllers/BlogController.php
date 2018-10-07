@@ -35,7 +35,7 @@ class BlogController extends Controller
      * restore
      * */
     public function index(){
-        $Blogs = $this->BlogRepositories->getAll();
+        $Blogs = $this->BlogRepositories->getAll(10);
         return view('admin.Blogs.index', ['Blogs'=>$Blogs]);
     }
 

@@ -18,7 +18,7 @@
                 @include('admin.layouts.alert')
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="admin/Categories/updateCategoriesProduct/{{ $CategoryProduct->id }}" method="POST" enctype="multipart/form-data">
+                        <form action="admin/Comment/updateComment/{{ $Comments->id }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -27,12 +27,12 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Author</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" value="{{ $CategoryProduct->NameCategory }}">
+                                            <input type="text" name="Author" class="form-control" value="{{ $Comments->Author }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -40,13 +40,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Comment:</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" value="{{ $CategoryProduct->Info }}">
+                                            <textarea name="Comment" class="form-control ckeditor" id="" cols="30" rows="10">{!! $Comments->Comment !!}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -54,16 +54,15 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Parent category:</label>
+                                        <label>Status</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-compress"></i>
                                             </div>
-                                            <SELECT class="form-control" name="Parent_id">
-                                                @foreach($Parent_id as $parent_id)
-                                                <OPTION <?php if ($parent_id->id == $CategoryProduct->Parent_id) {echo "selected";}else{} ?> value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
-                                                @endforeach
+                                            <SELECT class="form-control" name="State">
+                                                <option <?php if($Comments->State == 1){echo "selected";}else{} ?> value="1">Approved</option>
+                                                <option <?php if($Comments->State == 1){echo "selected";}else{} ?> value="0">Pending</option>
                                             </SELECT>
                                         </div>
                                         <!-- /.input group -->

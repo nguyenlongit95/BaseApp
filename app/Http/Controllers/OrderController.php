@@ -32,7 +32,7 @@ class OrderController extends Controller
     }
 
     public function index(){
-        $Orders = $this->OrderRepository->getAll();
+        $Orders = $this->OrderRepository->getAll(30);
         return view("admin.Orders.index",['Orders'=>$Orders]);
     }
 

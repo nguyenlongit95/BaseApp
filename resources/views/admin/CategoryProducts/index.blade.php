@@ -38,6 +38,7 @@
                         @endforeach
                         </tfoot>
                     </table>
+                    {!! $CategoryProducts->render() !!}
                 </div>
                 <!-- /.box-body -->
             </div>

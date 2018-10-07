@@ -7,7 +7,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List categories</h3>
+                    <h3 class="box-title">List Comment</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -16,29 +16,40 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name Categories</th>
-                            <th>Info</th>
-                            <th class="text-center">Update</th>
-                            <th class="text-center">Delete</th>
+                            <th>Author</th>
+                            <th>Comment</th>
+                            <th>State</th>
+                            <th class="text-center">Details</th>
+                            <th class="text-center">Reply</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+                        @foreach($Comment as $comment)
+                            <?php if($comment->Parent_id == 0){ ?>
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>{{ $comment->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                {{ $comment->Author }}
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                {{ $comment->Comment }}
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td>
+                                <?php if($comment->State == 1){
+                                    echo "Approved";
+                                }else{
+                                    echo "Un Approved";
+                                } ?>
+                            </td>
+                            <td class="text-center"><a href="admin/Comment/Comments/{{$comment->id}}" class="btn-warning padding510510">Details</a></td>
+                            <td class="text-center"><a href="admin/Comment/addComment/{{$comment->id}}" class="btn-success padding510510">Reply</a></td>
                         </tr>
+                        <?php }else{} ?>
                         @endforeach
                         </tfoot>
                     </table>
                 </div>
+                {!! $Comment->render() !!}
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->

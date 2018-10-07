@@ -40,7 +40,7 @@ class ProductController extends Controller
      * restore
      * */
     public function index(){
-        $Products = $this->ProductRepository->getAll();
+        $Products = $this->ProductRepository->getAll(15);
         return view('admin.Products.index', ['Products'=>$Products]);
     }
 

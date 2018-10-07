@@ -19,7 +19,7 @@ Route::group(['prefix'=>'admin'],function(){
      * Product
      * Blog
      * Comments
-     * Contacts
+     * Contact
      * Linkeds
      * ...
      * */
@@ -104,12 +104,33 @@ Route::group(['prefix'=>'admin'],function(){
     /*
      * Route cho các thành phần con trong hệ thống
      * Comments
-     * Contacts
+     * Contact
      * Info of page
      * Linkeds
      * Sliders
      * API
      * */
+    Route::group(['prefix'=>'Comment'],function(){
+        Route::get('Comments','CommentController@index');
+
+        Route::get('Comments/{id}','CommentController@getDetails');
+        Route::get('updateComment/{id}','CommentController@getUpdate');
+        Route::post('updateComment/{id}','CommentController@update');
+        //Route::post('updateComment/{id}','CommentController@updateState');
+
+        Route::get('deleteComment/{id}','CommentController@destroy');
+
+        Route::get('addComment/{id}','CommentController@getStore');
+        Route::post('addComment','CommentController@store');
+    });
+
+    Route::group(['prefix'=>'Contact'],function(){
+        Route::get('Contacts','ContactController@index');
+
+        Route::post('ChangeStatus/{id}','ContactController@ajaxChangeContact');
+
+        Route::get('deleteContact','ContactController@destroy');
+    });
 
     /*
      * Route cho Widgets

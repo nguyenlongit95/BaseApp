@@ -63,5 +63,13 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\OrdersDetails\OrderDetilasReporitoryInterface::class,
             \App\Repositories\OrdersDetails\OrderDetailsEloquentRepository::class
         );
+        $this->app->singleton(
+          \App\Repositories\Comments\CommentReporitoryInterface::class,
+          \App\Repositories\Comments\CommentEloquentRepository::class
+        );
+        $this->app->singleton(
+            \App\Repositories\Contact\ContactReporitoryInterface::class,
+            \App\Repositories\Contact\ContactEloquentRepository::class
+        );
     }
 }

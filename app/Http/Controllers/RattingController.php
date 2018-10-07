@@ -27,7 +27,7 @@ class RattingController extends Controller
      * delete
      * */
     public function index(){
-        $Rattings = $this->RattingRepositories->getAll();
+        $Rattings = $this->RattingRepositories->getAll(30);
         return view("admin.Rattings.index",compact('Rattings'));
     }
 

@@ -292,7 +292,7 @@
                             </div>
                             <!--/.direct-chat-messages-->
 
-                            <!-- Contacts are loaded here -->
+                            <!-- Contact are loaded here -->
                             <div class="direct-chat-contacts">
                                 <ul class="contacts-list">
                                     <li>

@@ -12,7 +12,7 @@ interface RepositoryInterface{
      * Tham số đầu vào cũng được định nghĩa tại đây
      * */
     // Lấy tất cả các bản ghi
-    public function getAll();
+    public function getAll($paginate);
 
     // Lấy thông tin chi tiết 1 bản ghi
     public function find($id);
