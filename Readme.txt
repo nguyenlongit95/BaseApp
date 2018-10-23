@@ -32,4 +32,9 @@ Cấu trục hệ thống cơ bản
 Về phía quản trị
 - Hệ thống được viết với model và tối ưu lệnh truy vấn cho tất cả các DBMS
 - Hệ thống chia ra làm 3 luồng cho việc quản lý
-
+- Hệ thống 1 dành cho Sản phẩm: CategoriesProduct - Product - ImageProduct - Ratting - CustomProperties - Order - OrderDetails - StateOrders
+- Hệ thống 2 dành cho Blog: CategoriesBlog - Blogs- Comments
+- Hệ thống 3 dánh cho Article
+- Ngoài ra các thành phần khác như Info, TokenAPI, Slider, Users là 1 hệ thống riêng.
+- Các hệ thống chính sẽ nằm trong phần System Elements của sidebar
+- Các hệ thống phụ sẽ nằm ở phần Orther Elelemts
