@@ -17,8 +17,9 @@
             <div class="box-body">
                 @include('admin.layouts.alert')
                 <div class="row">
-                    <div class="col-md-6">
-                        <form action="admin/Blog/updateBlogs/{{ $Blog->id }}" method="POST" enctype="multipart/form-data">
+                    <form action="admin/Blog/updateBlogs/{{ $Blog->id }}" method="POST" enctype="multipart/form-data">
+                    <div class="col-md-9">
+
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -65,102 +66,87 @@
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Author</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-left"></i>
-                                            </div>
-                                            <input type="text" name="Author" class="form-control" value="{{ $Blog->Author }}">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Tags</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-left"></i>
-                                            </div>
-                                            <input type="text" name="Tags" class="form-control" value="{{ $Blog->Tags }}">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Blog categories</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-compress"></i>
-                                            </div>
-                                            <SELECT class="form-control" name="idCategoryBlog">
-                                                @foreach($CategoryBlog as $categoryBlogs)
-                                                    <OPTION <?php if($categoryBlogs->id == $Blog->idCategoryBlog){echo "SELECTED";}else{} ?> value="{{ $categoryBlogs->id }}">{{ $categoryBlogs->NameCategory }}</OPTION>
-                                                @endforeach
-                                            </SELECT>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-
-                                    <!-- IP mask -->
-                                    <div class="form-group">
-                                        <label>Submit data:</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-paper-plane"></i>
-                                            </div>
-                                            <input type="submit" class="form-control" value="Submit">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
                                 </div>
                                 <!-- /.box-body -->
                             </div>
                             <!-- /.box -->
-                        </form>
                     </div>
 
-                    <div class="col-md-6">
-                        <img src="upload/Blogs/{{ $Blog->Image }}" style="max-width: 100%; max-height: 300px; padding-bottom:20px;" alt="">
+                    <div class="col-md-3">
+
+                        <img src="upload/Blogs/{{ $Blog->Image }}" style="width: 100%; max-height: 300px; padding-bottom:20px;" alt="">
                         <form class="form-group" action="admin/Blog/changeImageBlogs/{{$Blog->id}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input class="form-control" type="file" name="Image">
                             <input class="form-control btn btn-primary" type="submit" value="Submit Image">
                         </form>
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
-                        </p>
+
+                        <!-- phone mask -->
+                        <div class="form-group">
+                            <label>Author</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <input type="text" name="Author" class="form-control" value="{{ $Blog->Author }}">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- phone mask -->
+                        <div class="form-group">
+                            <label>Tags</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <input type="text" name="Tags" class="form-control" value="{{ $Blog->Tags }}">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- phone mask -->
+                        <div class="form-group">
+                            <label>Blog categories</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-compress"></i>
+                                </div>
+                                <SELECT class="form-control" name="idCategoryBlog">
+                                    @foreach($CategoryBlog as $categoryBlogs)
+                                        <OPTION <?php if($categoryBlogs->id == $Blog->idCategoryBlog){echo "SELECTED";}else{} ?> value="{{ $categoryBlogs->id }}">{{ $categoryBlogs->NameCategory }}</OPTION>
+                                    @endforeach
+                                </SELECT>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
 
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet maxime neque accusantium perferendis repudiandae magni sint amet tempora repellendus recusandae eligendi temporibus cupiditate atque, porro consectetur voluptas cum incidunt.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam. et enim fugit expedita ullam laudantium minus quam.
                         </p>
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ipsa repellat accusamus nemo fuga, neque asperiores consectetur tempora necessitatibus minima rem aspernatur. Beatae eius aliquam maxime distinctio id reprehenderit repudiandae.
-                        </p>
+                        <!-- IP mask -->
+                        <div class="form-group">
+                            <label>Submit data:</label>
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nemo ea maiores saepe quo minima, culpa sint incidunt perspiciatis omnis dolore accusamus adipisci quam architecto pariatur natus! Necessitatibus, quibusdam exercitationem!
-                        </p>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-paper-plane"></i>
+                                </div>
+                                <input type="submit" class="form-control" value="Submit">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
 
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis! Unde ipsum architecto culpa corrupti vitae!
-                        </p>
                     </div>
+                    </form>
                 </div>
             </div>
             <!-- /.col (right) -->

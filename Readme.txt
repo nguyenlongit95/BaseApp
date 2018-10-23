@@ -30,6 +30,6 @@ Cấu trục hệ thống cơ bản
 - View chỉ xuất dữ liệu và xử lý logic nghiệp vụ đơn giản.
 
 Về phía quản trị
-- Từ Controller đẩy dữ liệu về view bằng API
-- Tại Controller chỉ return dữ liệu dưới dạng JSON
-- Tại view sẽ gửi request đến controller gọi đến API bằng CURL
+- Hệ thống được viết với model và tối ưu lệnh truy vấn cho tất cả các DBMS
+- Hệ thống chia ra làm 3 luồng cho việc quản lý
+

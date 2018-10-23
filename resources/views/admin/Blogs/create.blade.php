@@ -17,9 +17,9 @@
             <!-- /.box-header -->
             <div class="box-body">
                 @include('admin.layouts.alert')
-                <div class="row">
-                    <div class="col-md-6">
-                        <form action="admin/Blog/AddBlogs" method="POST" enctype="multipart/form-data">
+                <form class="row">
+                    <form action="admin/Blog/AddBlogs" method="POST" enctype="multipart/form-data">
+                    <div class="col-md-9">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -66,90 +66,73 @@
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Author</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-left"></i>
-                                            </div>
-                                            <input type="text" name="Author" class="form-control" placeholder="Adminstator">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Tags</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-left"></i>
-                                            </div>
-                                            <input type="text" name="Tags" class="form-control" placeholder="Blog">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Image blog</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-left"></i>
-                                            </div>
-                                            <input type="file" name="Image" class="form-control" value="DefaultImage.jpg">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Blog categories</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-compress"></i>
-                                            </div>
-                                            <SELECT class="form-control" name="Parent_id">
-                                                @foreach($CategoryBlogs as $categoryBlogs)
-                                                <OPTION value="{{ $categoryBlogs->id }}">{{ $categoryBlogs->NameCategory }}</OPTION>
-                                                @endforeach
-                                            </SELECT>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-
-                                    <!-- IP mask -->
-                                    <div class="form-group">
-                                        <label>Submit data:</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-paper-plane"></i>
-                                            </div>
-                                            <input type="submit" class="form-control" value="Submit">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
                                 </div>
                                 <!-- /.box-body -->
                             </div>
                             <!-- /.box -->
-                        </form>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
+
+                        <!-- phone mask -->
+                        <div class="form-group">
+                            <label>Author</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <input type="text" name="Author" class="form-control" placeholder="Adminstator">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- phone mask -->
+                        <div class="form-group">
+                            <label>Tags</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <input type="text" name="Tags" class="form-control" placeholder="Blog">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- phone mask -->
+                        <div class="form-group">
+                            <label>Image blog</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <input type="file" name="Image" class="form-control" value="DefaultImage.jpg">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- phone mask -->
+                        <div class="form-group">
+                            <label>Blog categories</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-compress"></i>
+                                </div>
+                                <SELECT class="form-control" name="Parent_id">
+                                    @foreach($CategoryBlogs as $categoryBlogs)
+                                        <OPTION value="{{ $categoryBlogs->id }}">{{ $categoryBlogs->NameCategory }}</OPTION>
+                                    @endforeach
+                                </SELECT>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
                         </p>
@@ -163,13 +146,24 @@
                         </p>
 
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nemo ea maiores saepe quo minima, culpa sint incidunt perspiciatis omnis dolore accusamus adipisci quam architecto pariatur natus! Necessitatibus, quibusdam exercitationem!
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         </p>
 
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis! Unde ipsum architecto culpa corrupti vitae!
-                        </p>
+                        <!-- IP mask -->
+                        <div class="form-group">
+                            <label>Submit data:</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-paper-plane"></i>
+                                </div>
+                                <input type="submit" class="form-control" value="Submit">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
                     </div>
+                </form>
                 </div>
             </div>
             <!-- /.col (right) -->
