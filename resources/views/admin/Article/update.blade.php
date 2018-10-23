@@ -1,12 +1,13 @@
 @extends('admin.master')
 
 @section('content')
+
     <section class="content">
 
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Article</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -17,9 +18,9 @@
             <div class="box-body">
                 @include('admin.layouts.alert')
                 <div class="row">
-                    <div class="col-md-6">
-                        <form action="admin/Categories/updateCategoriesProduct/{{ $CategoryProduct->id }}" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <form action="admin/Article/addArticle" method="POST" enctype="multipart/form-data">
+                        <div class="col-md-9">
+                            <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
                                     <h3 class="box-title">Update form data element</h3>
@@ -27,12 +28,12 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Title of article</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" value="{{ $CategoryProduct->NameCategory }}">
+                                            <input type="text" id="TitleArticle" name="Title" class="form-control" placeholder="...">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -40,13 +41,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Information of article</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" value="{{ $CategoryProduct->Info }}">
+                                            <textarea class="ckeditor" name="Info" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -54,71 +55,131 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Parent category:</label>
+                                        <label>Description of article</label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-compress"></i>
+                                                <i class="fa fa-align-left"></i>
                                             </div>
-                                            <SELECT class="form-control" name="Parent_id">
-                                                @foreach($Parent_id as $parent_id)
-                                                <OPTION <?php if ($parent_id->id == $CategoryProduct->Parent_id) {echo "selected";}else{} ?> value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
-                                                @endforeach
-                                            </SELECT>
+                                            <textarea class="form-control ckeditor" name="Details" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
-
-
-                                    <!-- IP mask -->
-                                    <div class="form-group">
-                                        <label>Submit data:</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-paper-plane"></i>
-                                            </div>
-                                            <input type="submit" class="form-control" value="Submit">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
                                 </div>
                                 <!-- /.box-body -->
                             </div>
                             <!-- /.box -->
-                        </form>
-                    </div>
 
-                    <div class="col-md-6">
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
-                        </p>
+                        </div>
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet maxime neque accusantium perferendis repudiandae magni sint amet tempora repellendus recusandae eligendi temporibus cupiditate atque, porro consectetur voluptas cum incidunt.
-                        </p>
+                        <div class="col-md-3">
+                            <div class="box box-danger">
+                                <div class="box-header">
+                                    <h3 class="box-title">SEO Infomation spiner</h3>
+                                </div>
+                                <!-- Date mm/dd/yyyy -->
+                                <div class="form-group">
+                                    <label for="">Slug in article</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-edit fa-pen-alt"></i>
+                                        </div>
+                                        <input type="text" id="Slug" name="Slug" class="form-control" placeholder="...">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+                                <!-- phone mask -->
+                                <div class="form-group">
+                                    <label>Author of article</label>
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ipsa repellat accusamus nemo fuga, neque asperiores consectetur tempora necessitatibus minima rem aspernatur. Beatae eius aliquam maxime distinctio id reprehenderit repudiandae.
-                        </p>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" name="Author" class="form-control" placeholder="...">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nemo ea maiores saepe quo minima, culpa sint incidunt perspiciatis omnis dolore accusamus adipisci quam architecto pariatur natus! Necessitatibus, quibusdam exercitationem!
-                        </p>
+                                <!-- phone mask -->
+                                <div class="form-group">
+                                    <label>Linked this article</label>
 
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis! Unde ipsum architecto culpa corrupti vitae!
-                        </p>
-                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-compress"></i>
+                                        </div>
+                                        <input type="text" name="Linked" class="form-control" placeholder="...">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+
+                                <!-- phone mask -->
+                                <div class="form-group">
+                                    <label>Status of article</label>
+
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-lock"></i>
+                                        </div>
+                                        Public: <input type="radio" name="Status" value="1">
+                                        Private: <input checked type="radio" name="Status" value="0">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+
+                                <!-- phone mask -->
+                                <div class="form-group">
+                                    <label>Representative of the article</label>
+
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-image"></i>
+                                        </div>
+                                        <input type="file" name="Images" class="form-control" value="default.jpg">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
+                                </p>
+
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet maxime neque accusantium perferendis repudiandae magni sint amet tempora repellendus recusandae eligendi temporibus cupiditate atque, porro consectetur voluptas cum incidunt.
+                                </p>
+
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ipsa. accusantium perferendis repudiandae.
+                                </p>
+
+                                <div class="form-group">
+                                    <label>Submit data:</label>
+
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-paper-plane"></i>
+                                        </div>
+                                        <input type="submit" class="form-control" value="Submit">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+
+                            </div>
+                        </div>
                 </div>
+                </form>
             </div>
             <!-- /.col (right) -->
+            <!-- /.form group -->
         </div>
         <!-- /.row -->
+        </tbody>
+
         <!-- /.content -->
-        </div>
-    </section>
 @endsection

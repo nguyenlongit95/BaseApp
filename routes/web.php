@@ -101,6 +101,16 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('deleteUser/{id}','UserController@destroy');
     });
 
+    Route::group(['prefix'=>'Article'],function(){
+        Route::get('Articles','ArticleController@index');
+        Route::get('addArticle','ArticleController@getStore');
+        Route::post('addArticle','ArticleController@store');
+
+        Route::get('deleteArticle/{id}','ArticleController@destroy');
+        // Ajax Title
+        Route::post('createSlug','ArticleController@postAjaxSlug');
+    });
+
     /*
      * Route cho các thành phần con trong hệ thống
      * Comments

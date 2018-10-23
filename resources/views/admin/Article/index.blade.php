@@ -7,7 +7,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List categories / <a href="">Add new</a></h3>
+                    <h3 class="box-title">List article / <a href="admin/Article/addArticle">Add new</a></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -16,28 +16,41 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name Categories</th>
-                            <th>Info</th>
+                            <th>Title</th>
+                            <th>Slug</th>
+                            <th>Information</th>
+                            <th>Author</th>
+                            <th>Representative</th>
                             <th class="text-center">Update</th>
                             <th class="text-center">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+                        @foreach($Articles as $article)
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>{{ $article->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                {{ $article->Title }}
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                {{ $article->Slug }}
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td>
+                                {!! $article->Info !!}
+                            </td>
+                            <td>
+                                {{ $article->Author }}
+                            </td>
+                            <td>
+                                <img height="100px" width="100px" src="upload/Articles/{{ $article->Images }}" alt="{{ $article->Title }}">
+                            </td>
+                            <td class="text-center"><a href="admin/Article/updateArticle/{{$article->id}}" class="btn-warning padding510510">Update</a></td>
+                            <td class="text-center"><a href="admin/Article/deleteArticle/{{$article->id}}" class="btn-danger padding510510">Delete</a></td>
                         </tr>
                         @endforeach
                         </tfoot>
                     </table>
+                    {!! $Articles->render() !!}
                 </div>
                 <!-- /.box-body -->
             </div>

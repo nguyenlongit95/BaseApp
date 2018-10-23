@@ -155,7 +155,7 @@ class BlogController extends Controller
     }
 
     public function getAddBlogs(){
-        $CategoryBlogs = $this->CategoryBlogs->getAll();
+        $CategoryBlogs = $this->CategoryBlogs->getAll(1000);
         return view('admin.Blogs.create',['CategoryBlogs'=>$CategoryBlogs]);
     }
     public function getUpdateBlogs($id){

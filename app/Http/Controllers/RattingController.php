@@ -37,7 +37,7 @@ class RattingController extends Controller
     }
 
     public function update(Request $request, $id){
-        $properties = $request->all();
+        $properties = $request->all(10000);
         $Rattings = $this->RattingRepositories->update($properties,$id);
         if($Rattings == true){
             return redirect()->back()->with('thong_bao','Update ratting success');
@@ -57,7 +57,7 @@ class RattingController extends Controller
 
     public function getUpdateRatting($id){
         $Ratting = $this->show($id);
-        $Product = $this->ProductRepositories->getAll();
+        $Product = $this->ProductRepositories->getAll(10000);
         return view("admin.Rattings.update",compact('Ratting','Product'));
     }
 }

@@ -20,3 +20,23 @@
 <script src="admin/asset/js/ckeditor/ckeditor.js"></script>
 
 <script src="admin/dist/js/CustomJS.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("#TitleArticle").keyup(function(){
+            var TitleArticle = $(this).val();
+            var _token = $("#_token").val();
+            $.ajax({
+                url: "admin/Article/createSlug",
+                type: "post",
+                data:{
+                    _token: _token,
+                    Title: TitleArticle
+                },
+                success: function(result){
+                    $("#Slug").val(result);
+                }
+            });
+        });
+    });
+</script>

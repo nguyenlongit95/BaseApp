@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Thêm các đường dẫn tới cho class của các Repository ở đây
+        // Thêm các đường dẫn tới cho class của các Repository ở đây, ở đây là singleton để truy cập tại trang admin
         $this->app->singleton(
           \App\Repositories\CategoryProducts\CategoryProductReporitoryInterface::class,
           \App\Repositories\CategoryProducts\CateoryEloquentRepository::class
@@ -70,6 +70,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             \App\Repositories\Contact\ContactReporitoryInterface::class,
             \App\Repositories\Contact\ContactEloquentRepository::class
+        );
+        $this->app->singleton(
+                \App\Repositories\Articles\ArticleRepositoryInterface::class,
+                \App\Repositories\Articles\ArticlesEloquentRepository::class
         );
     }
 }

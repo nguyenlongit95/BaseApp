@@ -43,7 +43,7 @@ class OrderController extends Controller
     }
 
     public function getStore(){
-        $User = $this->UsersRepository->getAll();
+        $User = $this->UsersRepository->getAll(10000);
         return view('admin.Orders.create',['User'=>$User]);
     }
 
@@ -73,7 +73,7 @@ class OrderController extends Controller
      * */
     public function getUpdateOrder($id){
         $Order = $this->show($id);
-        $User = $this->UsersRepository->getAll();
+        $User = $this->UsersRepository->getAll(10000);
         $OrderDetails = $this->OrderDetailsRepository->getProduct($id);
         return view("admin.Orders.update",["Order"=>$Order,"User"=>$User,"OrderDetails"=>$OrderDetails]);
     }
