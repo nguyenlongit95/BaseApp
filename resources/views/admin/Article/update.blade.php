@@ -7,7 +7,7 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Article</h3>
+                <h3 class="box-title">Article update</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -18,7 +18,7 @@
             <div class="box-body">
                 @include('admin.layouts.alert')
                 <div class="row">
-                    <form action="admin/Article/addArticle" method="POST" enctype="multipart/form-data">
+                    <form action="admin/Article/updateArticle/{{ $Article->id }}" method="POST" enctype="multipart/form-data">
                         <div class="col-md-9">
                             <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
@@ -33,7 +33,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" id="TitleArticle" name="Title" class="form-control" placeholder="...">
+                                            <input type="text" id="TitleArticle" name="Title" class="form-control" value="{{ $Article->Title }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -47,7 +47,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea class="ckeditor" name="Info" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
+                                            <textarea class="ckeditor" name="Info" id="" cols="30" rows="10">{{ $Article->Info }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -61,7 +61,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea class="form-control ckeditor" name="Details" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
+                                            <textarea class="form-control ckeditor" name="Details" id="" cols="30" rows="10">{{ $Article->Details }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -85,7 +85,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-edit fa-pen-alt"></i>
                                         </div>
-                                        <input type="text" id="Slug" name="Slug" class="form-control" placeholder="...">
+                                        <input type="text" id="Slug" name="Slug" class="form-control" value="{{ $Article->Slug }}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -98,7 +98,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </div>
-                                        <input type="text" name="Author" class="form-control" placeholder="...">
+                                        <input type="text" name="Author" class="form-control" value="{{ $Article->Author }}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -112,7 +112,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-compress"></i>
                                         </div>
-                                        <input type="text" name="Linked" class="form-control" placeholder="...">
+                                        <input type="text" name="Linked" class="form-control" value="{{ $Article->Linked }}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -126,8 +126,8 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-lock"></i>
                                         </div>
-                                        Public: <input type="radio" name="Status" value="1">
-                                        Private: <input checked type="radio" name="Status" value="0">
+                                        Public: <input <?php if($Article->Status == 1){ echo "checked"; } ?> type="radio" name="Status" value="1">
+                                        Private: <input <?php if($Article->Status == 0){ echo "checked"; } ?> checked type="radio" name="Status" value="0">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -136,28 +136,19 @@
                                 <!-- phone mask -->
                                 <div class="form-group">
                                     <label>Representative of the article</label>
-
+                                    <img src="upload/Articles/{{ $Article->Images }}" height="250px" width="100%" alt="{{ $Article->Title }}">
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-image"></i>
                                         </div>
-                                        <input type="file" name="Images" class="form-control" value="default.jpg">
+                                        <input type="file" name="Images" class="form-control" value="{{ $Article->Images }}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
                                 <!-- /.form group -->
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo.
                                 </p>
-
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet maxime neque accusantium perferendis repudiandae magni sint amet tempora repellendus recusandae eligendi temporibus cupiditate atque, porro consectetur voluptas cum incidunt.
-                                </p>
-
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ipsa. accusantium perferendis repudiandae.
-                                </p>
-
                                 <div class="form-group">
                                     <label>Submit data:</label>
 

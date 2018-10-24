@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Repositories\Eloquent\RepositoryInterface;
 use Illuminate\Http\Request;
 use App\Repositories\Articles\ArticleRepositoryInterface;
@@ -79,12 +80,42 @@ class ArticleController extends Controller
     }
 
     public function update(Request $request, $id){
-        $data = $request->all();
-        $CategoryBlogs = $this->ArticleRepository->update($data,$id);
-        if($CategoryBlogs == true){
-            return redirect()->back()->with('thong_bao','Update an item success!');
-        }else{
-            return redirect()->back()->with('thong_bao','Update an item failed!');
+        $deleteImage = $this->ArticleRepository->deleteImage($id);
+        if($deleteImage == 1){
+            if($request->hasFile("Images")) {
+                $file = $request->file("Images");
+                $name = str_random(3) . "_" . $file->getClientOriginalName();
+                if ($file->move("upload/Articles/", $name)) {
+                    $data = array(
+                        "Title" => $request->Title,
+                        "Slug" => $request->Slug,
+                        "Info" => $request->Info,
+                        "Details" => $request->Details,
+                        "Images" => $request->$name,
+                        "Author" => $request->Author,
+                        "Linked" => $request->Linked,
+                        "Status" => $request->Status
+                    );
+                }else{
+                    return redirect()->back()->with("thong_bao","Upload file fail, please check system");
+                }
+            }else{
+                $data = array(
+                    "Title" => $request->Title,
+                    "Slug" => $request->Slug,
+                    "Info" => $request->Info,
+                    "Details" => $request->Details,
+                    "Author" => $request->Author,
+                    "Linked" => $request->Linked,
+                    "Status" => $request->Status
+                );
+            }
+            $CategoryBlogs = $this->ArticleRepository->update($data,$id);
+            if($CategoryBlogs == true){
+                return redirect()->back()->with('thong_bao','Update an item success!');
+            }else{
+                return redirect()->back()->with('thong_bao','Update an item failed!');
+            }
         }
     }
 
@@ -103,9 +134,8 @@ class ArticleController extends Controller
      * Phương thức getUpdate
      * */
     public function getUpdate($id){
-        $showCategoryBlogs = $this->show($id);
-        $Parent_id = $this->getParentID();
-        return view('admin.CategoryBlogs.update', ['CategoryBlogs'=>$showCategoryBlogs,'Parent_id'=>$Parent_id]);
+        $Article = Article::findOrFail($id);
+        return view('admin.Article.update',['Article'=>$Article]);
     }
 
     /*

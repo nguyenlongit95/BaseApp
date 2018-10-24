@@ -106,6 +106,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('addArticle','ArticleController@getStore');
         Route::post('addArticle','ArticleController@store');
 
+        Route::get('updateArticle/{id}','ArticleController@getUpdate');
+
         Route::get('deleteArticle/{id}','ArticleController@destroy');
         // Ajax Title
         Route::post('createSlug','ArticleController@postAjaxSlug');
