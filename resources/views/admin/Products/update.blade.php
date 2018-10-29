@@ -17,7 +17,7 @@
             <div class="box-body">
                 @include('admin.layouts.alert')
                 <div class="row">
-                    <div class="col-md-6 pull-left">
+                    <div class="col-md-8 pull-left">
                         <form action="admin/Product/updateProduct/{{ $Product->id }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
@@ -66,32 +66,6 @@
 
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Info of product</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-edit fa-pen-alt"></i>
-                                            </div>
-                                            <textarea class="form-control ckeditor" name="Info" id="info" cols="30" rows="5">{!! $Product->Info !!}</textarea>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- Date mm/dd/yyyy -->
-                                    <div class="form-group">
-                                        <label for="">Descriptions</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-edit fa-pen-alt"></i>
-                                            </div>
-                                            <textarea class="form-control ckeditor" name="Description" id="info" cols="30" rows="10">{!! $Product->Description !!}</textarea>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- Date mm/dd/yyyy -->
-                                    <div class="form-group">
                                         <label for="">Quantity</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -113,9 +87,35 @@
                                             </div>
                                             <SELECT class="form-control" name="idCategories">
                                                 @foreach($Category as $category)
-                                                <OPTION <?php if($category->id == $Product->idCategories){echo "selected";} else{} ?> value="{{ $category->id }}">{{ $category->NameCategory }}</OPTION>
+                                                    <OPTION <?php if($category->id == $Product->idCategories){echo "selected";} else{} ?> value="{{ $category->id }}">{{ $category->NameCategory }}</OPTION>
                                                 @endforeach
                                             </SELECT>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- Date mm/dd/yyyy -->
+                                    <div class="form-group">
+                                        <label for="">Info of product</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-edit fa-pen-alt"></i>
+                                            </div>
+                                            <textarea class="form-control ckeditor" name="Info" id="info" cols="30" rows="5">{!! $Product->Info !!}</textarea>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+                                    <!-- Date mm/dd/yyyy -->
+                                    <div class="form-group">
+                                        <label for="">Descriptions</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-edit fa-pen-alt"></i>
+                                            </div>
+                                            <textarea class="form-control ckeditor" name="Description" id="info" cols="30" rows="10">{!! $Product->Description !!}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -142,37 +142,38 @@
                         </form>
                     </div>
 
-                    <div class="col-md-6 pull-right">
-                        <div class="box-header">
-                            <h3 class="box-title">Update form data element</h3>
-                        </div>
-                        <h3 class="box-title">Update Image / </h3>
+                    <div class="col-md-4 pull-right">
+                        <div class="box box-danger">
+                            <div class="box-header">
+                                <h3 class="box-title">Image and rattings star</h3>
+                            </div>
+                        <h5 class="box-title">Update Image</h5>
                         <form action="admin/Product/addImage/{{$Product->id}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="file" name="ImageProduct" value="Add Image" class="form-control">
                             <input type="submit" value="Add Image" class="form-control btn btn-primary">
                         </form>
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="example2" style="margin-top:15px;" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Image</th>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Image</th>
                                 <th class="text-center">Delete</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($ImageProduct as $imageProduct)
                                 <tr>
-                                    <td>{{ $imageProduct->id }}</td>
-                                    <td>
+                                    <td class="text-center" style="padding-top:15%;">{{ $imageProduct->id }}</td>
+                                    <td class="text-center">
                                         <img width="100px" height="100px" class="reposive-image" src="upload/Product/{{$imageProduct->ImageProduct}}" alt="{{ $Product->NameProduct }}">
                                     </td>
-                                    <td class="text-center"><a href="admin/Product/deleteImage/{{$imageProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                                    <td style="padding-top:15%;" class="text-center"><a href="admin/Product/deleteImage/{{$imageProduct->id}}" class="btn-danger padding510510">Delete</a></td>
                                 </tr>
                             @endforeach
                             </tfoot>
                         </table>
-                        <h4>Mumber average this product: <span class="btn <?php if($StarProduct >= 3){ echo "btn-success";}else if($StarProduct<3){echo "btn-danger";} ?>"><?php $StarAVG = number_format($StarProduct); for($i=1; $i<=$StarAVG;$i++){ ?> <i class="fa fa-star"></i><?php } ?></span></h4>
+                        <h5>Mumber average this product: <span class="btn <?php if($StarProduct >= 3){ echo "btn-success";}else if($StarProduct<3){echo "btn-danger";} ?>"><?php $StarAVG = number_format($StarProduct); for($i=1; $i<=$StarAVG;$i++){ ?> <i class="fa fa-star"></i><?php } ?></span></h5>
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
@@ -216,9 +217,13 @@
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis! Unde ipsum architecto culpa corrupti vitae!
                         </p>
+
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis!
+                        </p>
+                    </div>
                     </div>
                         </div>
-
                     </div>
                 </div>
             </div>

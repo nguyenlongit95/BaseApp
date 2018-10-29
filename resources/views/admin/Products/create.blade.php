@@ -17,8 +17,9 @@
             <div class="box-body">
                 @include('admin.layouts.alert')
                 <div class="row">
-                    <div class="col-md-6 pull-left">
-                        <form action="admin/Product/addProduct" method="POST" enctype="multipart/form-data">
+                    <form action="admin/Product/addProduct" method="POST" enctype="multipart/form-data">
+                    <div class="col-md-9 pull-left">
+
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
@@ -33,32 +34,6 @@
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
                                             <input type="text" name="NameProduct" class="form-control" value="Name of product">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- Date mm/dd/yyyy -->
-                                    <div class="form-group">
-                                        <label for="">Price($)</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-edit fa-pen-alt"></i>
-                                            </div>
-                                            <input type="text" name="Price" class="form-control" placeholder="10$">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- Date mm/dd/yyyy -->
-                                    <div class="form-group">
-                                        <label for="">Sales(%)</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-edit fa-pen-alt"></i>
-                                            </div>
-                                            <input type="number" name="Sales" class="form-control" placeholder="10%">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -90,59 +65,91 @@
                                     </div>
                                     <!-- /.form group -->
 
-                                    <!-- Date mm/dd/yyyy -->
-                                    <div class="form-group">
-                                        <label for="">Quantity</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-edit fa-pen-alt"></i>
-                                            </div>
-                                            <input type="number" name="Quantity" class="form-control" placeholder="10">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
 
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Info of category:</label>
 
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-left"></i>
-                                            </div>
-                                            <SELECT class="form-control" name="idCategories">
-                                                @foreach($Categories as $category)
-                                                    <OPTION value="{{ $category->id }}">{{ $category->NameCategory }}</OPTION>
-                                                @endforeach
-                                            </SELECT>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- IP mask -->
-                                    <div class="form-group">
-                                        <label>Submit data:</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-paper-plane"></i>
-                                            </div>
-                                            <input type="submit" class="form-control" value="Submit">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
 
                                 </div>
                                 <!-- /.box-body -->
                             </div>
                             <!-- /.box -->
-                        </form>
                     </div>
 
-                    <div class="col-md-6 pull-right">
+                    <div class="col-md-3 pull-right">
+                        <div class="box box-danger">
+                            <div class="box-header">
+                                <h3 class="box-title">The basic properties</h3>
+                            </div>
+                        <!-- Date mm/dd/yyyy -->
+                        <div class="form-group">
+                            <label for="">Price($)</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-edit fa-pen-alt"></i>
+                                </div>
+                                <input type="text" name="Price" class="form-control" placeholder="10$">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- Date mm/dd/yyyy -->
+                        <div class="form-group">
+                            <label for="">Sales(%)</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-edit fa-pen-alt"></i>
+                                </div>
+                                <input type="number" name="Sales" class="form-control" placeholder="10%">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- Date mm/dd/yyyy -->
+                        <div class="form-group">
+                            <label for="">Quantity</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-edit fa-pen-alt"></i>
+                                </div>
+                                <input type="number" name="Quantity" class="form-control" placeholder="10">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- phone mask -->
+                        <div class="form-group">
+                            <label>Info of category:</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <SELECT class="form-control" name="idCategories">
+                                    @foreach($Categories as $category)
+                                        <OPTION value="{{ $category->id }}">{{ $category->NameCategory }}</OPTION>
+                                    @endforeach
+                                </SELECT>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- IP mask -->
+                        <div class="form-group">
+                            <label>Submit data:</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-paper-plane"></i>
+                                </div>
+                                <input type="submit" class="form-control" value="Submit">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
                         </p>
@@ -154,17 +161,11 @@
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ipsa repellat accusamus nemo fuga, neque asperiores consectetur tempora necessitatibus minima rem aspernatur. Beatae eius aliquam maxime distinctio id reprehenderit repudiandae.
                         </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nemo ea maiores saepe quo minima, culpa sint incidunt perspiciatis omnis dolore accusamus adipisci quam architecto pariatur natus! Necessitatibus, quibusdam exercitationem!
-                        </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis! Unde ipsum architecto culpa corrupti vitae!
-                        </p>
+                    </div>
                     </div>
                 </div>
 
+                </form>
             </div>
         </div>
         </div>

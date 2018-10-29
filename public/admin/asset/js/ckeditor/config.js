@@ -36,3 +36,12 @@ CKEDITOR.editorConfig = function( config ) {
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 };
+
+CKEDITOR.replace( 'editor1', {
+    filebrowserBrowseUrl: '{{ asset("admin/asset/ckfinder/ckfinder.html") }}',
+    filebrowserImageBrowseUrl: '{{ asset("admin/asset/ckfinder/ckfinder.html?type=Images") }}',
+    filebrowserFlashBrowseUrl: '{{ asset("admin/asset/ckfinder/ckfinder.html?type=Flash") }}',
+    filebrowserUploadUrl: '{{ asset("admin/asset/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files") }}',
+    filebrowserImageUploadUrl: '{{ asset("admin/asset/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images") }}',
+    filebrowserFlashUploadUrl: '{{ asset("admin/asset/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash") }}'
+} );

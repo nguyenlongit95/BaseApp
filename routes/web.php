@@ -5,6 +5,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*
+ * Route Login
+ * */
+Route::get('Login','LoginAndRegisterController@getLogin');
+Route::post('Login','LoginAndRegisterController@postLogin');
 /*
  * Route cho phia admin
  * */
@@ -144,6 +150,17 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('deleteContact','ContactController@destroy');
     });
 
+    Route::group(['prefix'=>'Slider'],function(){
+        Route::get('Sliders','SliderController@index');
+
+    });
+
+    Route::group(['prefix'=>'InfoAndLinked'],function(){
+        Route::get('index','InfoOfPageController@index');
+
+        Route::post('updateInfoOfPage/{id}','InfoOfPageController@updateInfo');
+        Route::post('updateLinked/{id}','InfoOfPageController@updateLinked');
+    });
     /*
      * Route cho Widgets
      * Menu header

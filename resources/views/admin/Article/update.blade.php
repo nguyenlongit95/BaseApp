@@ -61,7 +61,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea class="form-control ckeditor" name="Details" id="" cols="30" rows="10">{{ $Article->Details }}</textarea>
+                                            <textarea class="form-control ckeditor" name="Details" id="Details" cols="30" rows="10">{{ $Article->Details }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>

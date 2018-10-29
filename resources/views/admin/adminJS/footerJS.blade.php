@@ -16,8 +16,6 @@
 <script src="admin/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="admin/dist/js/demo.js"></script>
-<!-- JS Ckeditor -->
-<script src="admin/asset/js/ckeditor/ckeditor.js"></script>
 
 <script src="admin/dist/js/CustomJS.js"></script>
 
@@ -39,4 +37,32 @@
             });
         });
     });
+</script>
+
+<!-- Replace ckeditor -->
+<!-- JS Ckeditor -->
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<!-- JS Ckfinder -->
+{{--  <script src="ckfinder/ckfinder.js"></script>  --}}
+
+<script>
+    CKEDITOR.replace( 'Details', {
+        filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+        filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+        filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+        filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+        filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+        filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+    } );
+</script>
+
+<script>
+    CKEDITOR.replace( 'Descriptions', {
+        filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+        filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+        filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+        filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+        filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+        filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+    } );
 </script>

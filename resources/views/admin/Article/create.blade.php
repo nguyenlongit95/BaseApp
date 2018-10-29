@@ -20,56 +20,57 @@
                 <div class="row">
                     <form action="admin/Article/addArticle" method="POST" enctype="multipart/form-data">
                     <div class="col-md-9">
-                            <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-                            <div class="box box-danger">
-                                <div class="box-header">
-                                    <h3 class="box-title">Insert form data element</h3>
-                                </div>
-                                <div class="box-body">
-                                    <!-- Date mm/dd/yyyy -->
-                                    <div class="form-group">
-                                        <label for="">Title of article</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-edit fa-pen-alt"></i>
-                                            </div>
-                                            <input type="text" id="TitleArticle" name="Title" class="form-control" placeholder="...">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Information of article</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-left"></i>
-                                            </div>
-                                            <textarea class="ckeditor" name="Info" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Description of article</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-left"></i>
-                                            </div>
-                                            <textarea class="form-control ckeditor" name="Details" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-                                </div>
-                                <!-- /.box-body -->
+                        <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                        <div class="box box-danger">
+                            <div class="box-header">
+                                <h3 class="box-title">Insert form data element</h3>
                             </div>
-                            <!-- /.box -->
+                            <div class="box-body">
+                                <!-- Date mm/dd/yyyy -->
+                                <div class="form-group">
+                                    <label for="">Title of article</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-edit fa-pen-alt"></i>
+                                        </div>
+                                        <input type="text" id="TitleArticle" name="Title" class="form-control" placeholder="...">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+
+                                <!-- phone mask -->
+                                <div class="form-group">
+                                    <label>Information of article</label>
+
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-align-left"></i>
+                                        </div>
+                                        <textarea class="ckeditor" name="Info" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+
+                                <!-- phone mask -->
+                                <div class="form-group">
+                                    <label>Description of article</label>
+
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-align-left"></i>
+                                        </div>
+                                        <textarea class="form-control" name="Details" id="Details" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
+                                       ﻿
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
 
                     </div>
 

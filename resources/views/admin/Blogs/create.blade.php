@@ -61,7 +61,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea name="Description" class="form-control ckeditor" id="" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur corporis, dignissimos dolorum eaque enim expedita facere, hic magnam necessitatibus numquam odit quidem similique sint, tempore. Deleniti itaque perspiciatis vero.</textarea>
+                                            <textarea name="Description" class="form-control ckeditor" id="Descriptions" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur corporis, dignissimos dolorum eaque enim expedita facere, hic magnam necessitatibus numquam odit quidem similique sint, tempore. Deleniti itaque perspiciatis vero.</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -73,7 +73,10 @@
                     </div>
 
                     <div class="col-md-3">
-
+                        <div class="box box-danger">
+                            <div class="box-header">
+                                <h3 class="box-title">SEO elements spiner</h3>
+                            </div>
                         <!-- phone mask -->
                         <div class="form-group">
                             <label>Author</label>
@@ -145,10 +148,6 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ipsa repellat accusamus nemo fuga, neque asperiores consectetur tempora necessitatibus minima rem aspernatur. Beatae eius aliquam maxime distinctio id reprehenderit repudiandae.
                         </p>
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </p>
-
                         <!-- IP mask -->
                         <div class="form-group">
                             <label>Submit data:</label>
@@ -162,6 +161,7 @@
                             <!-- /.input group -->
                         </div>
                         <!-- /.form group -->
+                        </div>
                     </div>
                 </form>
                 </div>

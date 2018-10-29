@@ -75,5 +75,13 @@ class AppServiceProvider extends ServiceProvider
                 \App\Repositories\Articles\ArticleRepositoryInterface::class,
                 \App\Repositories\Articles\ArticlesEloquentRepository::class
         );
+        $this->app->singleton(
+            \App\Repositories\InfoOfPage\InfoOfPageReporitoryInterface::class,
+            \App\Repositories\InfoOfPage\InfoOfPageEloquentRepository::class
+        );
+        $this->app->singleton(
+          \App\Repositories\Linked\LinkedRepositoryInterface::class,
+          \App\Repositories\Linked\LinkedEloquentRepository::class
+        );
     }
 }

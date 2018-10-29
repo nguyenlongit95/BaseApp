@@ -6,7 +6,7 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Blog update</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -61,7 +61,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea name="Description" class="form-control ckeditor" id="" cols="30" rows="10">{{ $Blog->Description }}</textarea>
+                                            <textarea name="Description" class="form-control ckeditor" id="Descriptions" cols="30" rows="10">{{ $Blog->Description }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -73,7 +73,10 @@
                     </div>
 
                     <div class="col-md-3">
-
+                        <div class="box box-danger">
+                            <div class="box-header">
+                                <h3 class="box-title">SEO elements spiner</h3>
+                            </div>
                         <img src="upload/Blogs/{{ $Blog->Image }}" style="width: 100%; max-height: 300px; padding-bottom:20px;" alt="">
                         <form class="form-group" action="admin/Blog/changeImageBlogs/{{$Blog->id}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -128,7 +131,7 @@
                         <!-- /.form group -->
 
                         <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam. et enim fugit expedita ullam laudantium minus quam.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
                         </p>
 
                         <!-- IP mask -->
@@ -144,7 +147,7 @@
                             <!-- /.input group -->
                         </div>
                         <!-- /.form group -->
-
+                        </div>
                     </div>
                     </form>
                 </div>
