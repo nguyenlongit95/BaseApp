@@ -7,7 +7,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List categories / <a href="">Add new</a></h3>
+                    <h3 class="box-title">List Sliders / <a href="admin/Slider/addSlider">Add new</a></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -16,28 +16,27 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name Categories</th>
-                            <th>Info</th>
-                            <th class="text-center">Update</th>
+                            <th>Slogan</th>
+                            <th>Image in slider</th>
                             <th class="text-center">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+                        @foreach($Sliders as $slider)
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>{{ $slider->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                {{ $slider->Slogan }}
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                <img height="100px" width="150px" src="upload/Sliders/{{ $slider->Sliders }}" alt="{{ $slider->Slogan }}">
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td class="text-center"><a href="admin/Slider/deleteSlider/{{$slider->id}}" class="btn-danger padding510510">Delete</a></td>
                         </tr>
                         @endforeach
                         </tfoot>
                     </table>
+                    {!! $Sliders->render() !!}
                 </div>
                 <!-- /.box-body -->
             </div>

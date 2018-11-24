@@ -28,7 +28,7 @@ class RattingController extends Controller
      * */
     public function index(){
         $Rattings = $this->RattingRepositories->getAll(30);
-        return view("admin.Rattings.index",compact('Rattings'));
+        return view("admin.Sliders.index",compact('Rattings'));
     }
 
     public function show($id){
@@ -58,6 +58,6 @@ class RattingController extends Controller
     public function getUpdateRatting($id){
         $Ratting = $this->show($id);
         $Product = $this->ProductRepositories->getAll(10000);
-        return view("admin.Rattings.update",compact('Ratting','Product'));
+        return view("admin.Sliders.update",compact('Ratting','Product'));
     }
 }

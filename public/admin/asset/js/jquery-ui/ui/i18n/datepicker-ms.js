@@ -23,7 +23,7 @@ datepicker.regional['ms'] = {
 	'Jul','Ogo','Sep','Okt','Nov','Dis'],
 	dayNames: ['Ahad','Isnin','Selasa','Rabu','Khamis','Jumaat','Sabtu'],
 	dayNamesShort: ['Aha','Isn','Sel','Rab','kha','Jum','Sab'],
-	dayNamesMin: ['Ah','Is','Se','Ra','Kh','Ju','Sa'],
+	dayNamesMin: ['Ah','Is','Se','Rattings','Kh','Ju','Sa'],
 	weekHeader: 'Mg',
 	dateFormat: 'dd/mm/yy',
 	firstDay: 0,

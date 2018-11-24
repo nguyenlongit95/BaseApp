@@ -27,61 +27,65 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         // Thêm các đường dẫn tới cho class của các Repository ở đây, ở đây là singleton để truy cập tại trang admin
-        $this->app->singleton(
+        $this->app->bind(
           \App\Repositories\CategoryProducts\CategoryProductReporitoryInterface::class,
           \App\Repositories\CategoryProducts\CateoryEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\CategoryBlogs\CategoryBlogReporitoryInterface::class,
             \App\Repositories\CategoryBlogs\CateoryEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\Products\ProductReporitoryInterface::class,
             \App\Repositories\Products\ProductEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\ImageProduct\ImageProductReporitoryInterface::class,
             \App\Repositories\ImageProduct\ImageProductEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\Blogs\BlogReporitoryInterface::class,
             \App\Repositories\Blogs\BlogEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\Rattings\RattingsReporitoryInterface::class,
             \App\Repositories\Rattings\RattingsEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\Orders\OrdersReporitoryInterface::class,
             \App\Repositories\Orders\OrdersEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\Users\UsersReporitoryInterface::class,
             \App\Repositories\Users\UserEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\OrdersDetails\OrderDetilasReporitoryInterface::class,
             \App\Repositories\OrdersDetails\OrderDetailsEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
           \App\Repositories\Comments\CommentReporitoryInterface::class,
           \App\Repositories\Comments\CommentEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\Contact\ContactReporitoryInterface::class,
             \App\Repositories\Contact\ContactEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
                 \App\Repositories\Articles\ArticleRepositoryInterface::class,
                 \App\Repositories\Articles\ArticlesEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
             \App\Repositories\InfoOfPage\InfoOfPageReporitoryInterface::class,
             \App\Repositories\InfoOfPage\InfoOfPageEloquentRepository::class
         );
-        $this->app->singleton(
+        $this->app->bind(
           \App\Repositories\Linked\LinkedRepositoryInterface::class,
           \App\Repositories\Linked\LinkedEloquentRepository::class
+        );
+        $this->app->bind(
+          \App\Repositories\Sliders\SliderReporitoryInterface::class,
+          \App\Repositories\Sliders\SlidersEloquentRepository::class
         );
     }
 }

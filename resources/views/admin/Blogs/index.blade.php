@@ -22,7 +22,6 @@
                             <th>Author</th>
                             <th>Tags</th>
                             <th>Image Blogs</th>
-                            <th>Categories</th>
                             <th class="text-center">Update</th>
                             <th class="text-center">Delete</th>
                         </tr>
@@ -35,10 +34,10 @@
                                 {{ $blogs->Title }}
                             </td>
                             <td>
-                                {{ $blogs->Info }}
+                                {!! $blogs->Info !!}
                             </td>
                             <td>
-                                {{ $blogs->Description }}
+                                {!! $blogs->Description !!}
                             </td>
                             <td>
                                 {{ $blogs->Author }}
@@ -48,9 +47,6 @@
                             </td>
                             <td>
                                 <img src="upload/Blogs/{{$blogs->Image}}" height="100px" width="100px" alt="">
-                            </td>
-                            <td>
-                                {{ $blogs->idCategoryBlog }}
                             </td>
                             <td class="text-center"><a href="admin/Blog/updateBlog/{{$blogs->id}}" class="btn-warning padding510510">Update</a></td>
                             <td class="text-center"><a href="admin/Blog/deleteBlog/{{$blogs->id}}" class="btn-danger padding510510">Delete</a></td>

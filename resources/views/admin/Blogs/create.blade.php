@@ -61,7 +61,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea name="Description" class="form-control ckeditor" id="Descriptions" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur corporis, dignissimos dolorum eaque enim expedita facere, hic magnam necessitatibus numquam odit quidem similique sint, tempore. Deleniti itaque perspiciatis vero.</textarea>
+                                            <textarea name="Description" class="form-control ckeditor" id="Descriptions" cols="30" rows="30">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur corporis, dignissimos dolorum eaque enim expedita facere, hic magnam necessitatibus numquam odit quidem similique sint, tempore. Deleniti itaque perspiciatis vero.</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>

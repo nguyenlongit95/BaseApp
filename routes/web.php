@@ -61,7 +61,7 @@ Route::group(['prefix'=>'admin'],function(){
     });
 
     Route::group(['prefix'=>'Ratting'],function(){
-        Route::get('Rattings','RattingController@index');
+        Route::get('Sliders','RattingController@index');
         Route::get('updateRattings/{id}','RattingController@getUpdateRatting');
         Route::post('updateRattings/{id}','RattingController@update');
     });
@@ -153,6 +153,10 @@ Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'Slider'],function(){
         Route::get('Sliders','SliderController@index');
 
+        Route::get('addSlider','SliderController@getStore');
+        Route::post('addSlider','SliderController@store');
+
+        Route::get('deleteSlider/{id}','SliderController@destroy');
     });
 
     Route::group(['prefix'=>'InfoAndLinked'],function(){

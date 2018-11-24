@@ -115,7 +115,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <textarea class="form-control ckeditor" name="Description" id="info" cols="30" rows="10">{!! $Product->Description !!}</textarea>
+                                            <textarea class="form-control ckeditor" name="Description" id="DescriptionProduct" cols="30" rows="10">{!! $Product->Description !!}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -178,7 +178,7 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Number star</th>
+                                <th class="text-center">Number star</th>
                                 <th>Product evaluation</th>
                             </tr>
                             </thead>
@@ -186,7 +186,7 @@
                             @foreach($RattingProduct as $rattingProduct)
                                 <tr>
                                     <td>{{ $rattingProduct->id }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <?php
                                         for($i=1; $i<=$rattingProduct->Ratting; $i++){
                                             ?><i class="fa fa-star"></i><?php

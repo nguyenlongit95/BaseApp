@@ -4,10 +4,10 @@
  * Class này sẽ extends EloquentRepository và Implements xxxRepositoryInterface
  * */
 namespace App\Repositories\Rattings;
-use App\Rattings;
 use App\Repositories\Eloquent\EloquentRepository;
+use App\Rattings;
 
-class RattingsEloquentRepository extends EloquentRepository implements RattingsReporitoryInterface{
+class RattingsEloquentRepository extends EloquentRepository implements RattingsReporitoryInterface {
     /*
      * Tại đây ta sẽ khai báo chi tiết các phương thức đặc biệt
      * Ta khai báo chi tiết cho phương thức getModel
@@ -16,12 +16,12 @@ class RattingsEloquentRepository extends EloquentRepository implements RattingsR
     // Ở đây lấy số ratting của 1 sản phẩm
     public function getProductRatting($idProduct)
     {
-       // TODO: Implement getProductRatting() method.
-       /*
-        * Truy vấn số ratting của 1 sản phẩm
-        * Lấy tất cả ratting của 1 sản phẩm
-        * Tính trung bình của số rattings của sản phẩm
-        * */
+        // TODO: Implement getProductRatting() method.
+        /*
+         * Truy vấn số ratting của 1 sản phẩm
+         * Lấy tất cả ratting của 1 sản phẩm
+         * Tính trung bình của số rattings của sản phẩm
+         * */
         $RattingProduct = Rattings::WHERE(
             "idProduct",
             "=",

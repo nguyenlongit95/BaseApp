@@ -61,7 +61,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-align-left"></i>
                                         </div>
-                                        <textarea class="form-control" name="Details" id="Details" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
+                                        <textarea class="form-control" name="Details" id="Details" cols="30" rows="30">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci aliquam corporis dicta dolor, dolore dolorem eveniet ex facilis magnam molestiae officiis placeat quas quod sapiente sit temporibus velit voluptatibus.</textarea>
                                        ﻿
                                     </div>
                                     <!-- /.input group -->

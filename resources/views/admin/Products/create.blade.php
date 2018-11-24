@@ -20,58 +20,55 @@
                     <form action="admin/Product/addProduct" method="POST" enctype="multipart/form-data">
                     <div class="col-md-9 pull-left">
 
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <div class="box box-danger">
-                                <div class="box-header">
-                                    <h3 class="box-title">Update form data element</h3>
-                                </div>
-                                <div class="box-body">
-                                    <!-- Date mm/dd/yyyy -->
-                                    <div class="form-group">
-                                        <label for="">Name of Product</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-edit fa-pen-alt"></i>
-                                            </div>
-                                            <input type="text" name="NameProduct" class="form-control" value="Name of product">
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- Date mm/dd/yyyy -->
-                                    <div class="form-group">
-                                        <label for="">Info of product</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-edit fa-pen-alt"></i>
-                                            </div>
-                                            <textarea class="form-control ckeditor" name="Info" id="info" cols="30" rows="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis magnam, saepe! Consectetur consequatur, cumque deserunt ducimus ea earum eligendi eveniet excepturi fugit illum molestiae nam, porro quis sint voluptatem voluptates?</textarea>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-                                    <!-- Date mm/dd/yyyy -->
-                                    <div class="form-group">
-                                        <label for="">Descriptions</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-edit fa-pen-alt"></i>
-                                            </div>
-                                            <textarea class="form-control ckeditor" name="Description" id="info" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut itaque quaerat qui repudiandae? Commodi debitis delectus eum illum, ipsam, laborum magnam minima non porro provident quod reprehenderit tempore vero voluptatibus!</textarea>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-
-
-
-                                </div>
-                                <!-- /.box-body -->
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="box box-danger">
+                            <div class="box-header">
+                                <h3 class="box-title">Update form data element</h3>
                             </div>
-                            <!-- /.box -->
+                            <div class="box-body">
+                                <!-- Date mm/dd/yyyy -->
+                                <div class="form-group">
+                                    <label for="">Name of Product</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-edit fa-pen-alt"></i>
+                                        </div>
+                                        <input type="text" name="NameProduct" class="form-control" value="Name of product">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+
+                                <!-- Date mm/dd/yyyy -->
+                                <div class="form-group">
+                                    <label for="">Info of product</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-edit fa-pen-alt"></i>
+                                        </div>
+                                        <textarea class="form-control ckeditor" name="Info" id="info" cols="30" rows="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis magnam, saepe! Consectetur consequatur, cumque deserunt ducimus ea earum eligendi eveniet excepturi fugit illum molestiae nam, porro quis sint voluptatem voluptates?</textarea>
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+
+                                <!-- Date mm/dd/yyyy -->
+                                <div class="form-group">
+                                    <label for="">Descriptions</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-edit fa-pen-alt"></i>
+                                        </div>
+                                        <textarea class="form-control ckeditor" name="Description" id="DescriptionProduct" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut itaque quaerat qui repudiandae? Commodi debitis delectus eum illum, ipsam, laborum magnam minima non porro provident quod reprehenderit tempore vero voluptatibus!</textarea>
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
                     </div>
 
                     <div class="col-md-3 pull-right">

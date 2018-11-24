@@ -148,6 +148,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
+                            @include("admin.layouts.alert")
                             <form id="login-form" action="Login" method="post" role="form" style="display: block;">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
