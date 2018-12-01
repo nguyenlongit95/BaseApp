@@ -38,3 +38,18 @@ Về phía quản trị
 - Ngoài ra các thành phần khác như Info, TokenAPI, Slider, Users là 1 hệ thống riêng.
 - Các hệ thống chính sẽ nằm trong phần System Elements của sidebar
 - Các hệ thống phụ sẽ nằm ở phần Orther Elelemts
+
+Các chức năng nâng cao
+- Chức năng ratting: đánh giá sản phẩm dựa vào số sao của người dùng.
+- Chức năng chèn hình ảnh vào bài viết: sử dụng ckeditor và ckfinder để chèn thêm hình ảnh vào ô textarea.
+- Chức năng comment.
+
+Quản lý và sử dụng các API của bên thứ 3
+
+Chức năng thống kê:
+- Thống kê tổng số(sản phẩm, đơn hàng, liên hệ, người dùng)
+- Vẽ biểu đồ thống kê(Biểu đồ đường, biểu đồ tròn, biểu đồ ngang)
+- 8 người dùng mới nhất
+- Phản hồi mới nhất
+- 7 Đơn hàng mới nhất
+- Thống kê lưu lượng(Tỷ lệ đơn hàng chuyển thành công, tỷ lệ bình luận có phản hồi, tỷ lệ check phản hồi, tỷ lệ đơn hàng bị hủy) 
