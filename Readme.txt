@@ -3,7 +3,8 @@ Cách cài đặt App
 - Chạy lệnh: php artisan migrate
 - Chạy lệnh: php artisan db:seed
 - Nếu trên nền Linux hoặc MACOS thì chạy lệnh sau: chmod -R 777 storage đẻ cấp quyền truy cập cho thư mục storage
-
+- Cài đặt composer
+- Chạy lệnh: composer install để tải các file thuộc thư mục vendor khi gặp lỗi thiếu vendor
 Cấu trúc CSDL cơ bản của hệ thống:
 - CategoriesBlog
 - CategoriesProduct
