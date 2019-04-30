@@ -30,13 +30,13 @@
                             <tr>
                                 <td>{{ $infoOfPage->id }}</td>
                                 <td>
-                                    <input class="form-control" type="text" name="PageName" value="{{ $infoOfPage->PageName }}">
+                                    <input class="form-control" type="text" name="pagename" value="{{ $infoOfPage->pagename }}">
                                 </td>
                                 <td>
-                                    <input class="form-control" type="text" name="Info" value="{{ $infoOfPage->Info }}">
+                                    <textarea class="form-control" type="text" name="info" cols="10" rows="3">{{ $infoOfPage->info }}</textarea>
                                 </td>
                                 <td>
-                                    <textarea class="form-control" name="Value" id="Value" cols="30" rows="10">{{ $infoOfPage->Value }}</textarea>
+                                    <textarea class="form-control" name="value" id="value" cols="30" rows="10">{{ $infoOfPage->value }}</textarea>
                                 </td>
                                 <td>
                                     <input type="submit" class="form-control" value="Update">
@@ -77,10 +77,10 @@
                                 <tr>
                                     <td>{{ $linked->id }}</td>
                                     <td>
-                                        <input class="form-control" type="text" name="Linked" value="{{ $linked->Linked }}">
+                                        <input class="form-control" type="text" name="linked" value="{{ $linked->linked }}">
                                     </td>
                                     <td>
-                                        <textarea class="form-control" name="Value" id="Value" cols="30" rows="10">{{ $linked->Value }}</textarea>
+                                        <textarea class="form-control" name="value" id="Value" cols="30" rows="10">{{ $linked->value }}</textarea>
                                     </td>
                                     <td>
                                         <input type="submit" class="form-control" value="Update">

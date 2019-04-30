@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Rattings\RattingsReporitoryInterface;
-use App\Repositories\Products\ProductReporitoryInterface;
-use App\Repositories\Rattings\RattingsEloquentRepository;
+use App\Repositories\Rattings\SeoRepositoryInterface;
+use App\Repositories\Products\ProductRepositoryInterface;
+use App\Repositories\Rattings\SeoEloquentRepository;
 
 class RattingController extends Controller
 {
@@ -13,7 +13,7 @@ class RattingController extends Controller
     protected $RattingRepositories;
     protected $ProductRepositories;
 
-    public function __construct(RattingsReporitoryInterface $rattingsReporitory, ProductReporitoryInterface $productReporitory)
+    public function __construct(SeoRepositoryInterface $rattingsReporitory, ProductRepositoryInterface $productReporitory)
     {
         $this->RattingRepositories = $rattingsReporitory;
         $this->ProductRepositories = $productReporitory;

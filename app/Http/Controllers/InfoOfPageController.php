@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\InfoOfPages;
 use App\Repositories\Eloquent\RepositoryInterface;
 use Illuminate\Http\Request;
-use App\Repositories\InfoOfPage\InfoOfPageReporitoryInterface;
+use App\Repositories\InfoOfPage\InfoOfPageRepositoryInterface;
 use App\Repositories\Linked\LinkedRepositoryInterface;
 class InfoOfPageController extends Controller
 {
@@ -13,7 +13,7 @@ class InfoOfPageController extends Controller
     protected $InfoOfPageRepository;
     protected $LinkedRepository;
     //
-    public function __construct(InfoOfPageReporitoryInterface $infoOfPageReporitory,LinkedRepositoryInterface $linkedRepository){
+    public function __construct(InfoOfPageRepositoryInterface $infoOfPageReporitory, LinkedRepositoryInterface $linkedRepository){
         $this->InfoOfPageRepository = $infoOfPageReporitory;
         $this->LinkedRepository = $linkedRepository;
     }

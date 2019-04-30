@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Comments\CommentReporitoryInterface;
-use App\Repositories\Users\UsersReporitoryInterface;
-use App\Repositories\Blogs\BlogReporitoryInterface;
+use App\Repositories\Comments\CommentRepositoryInterface;
+use App\Repositories\Users\UsersRepositoryInterface;
+use App\Repositories\Blogs\BlogRepositoryInterface;
 class CommentController extends Controller
 {
     protected $CommentRepository;
@@ -13,9 +13,9 @@ class CommentController extends Controller
     protected $BlogRepository;
 
     public function __construct(
-        CommentReporitoryInterface $commentReporitory,
-        UsersReporitoryInterface $userRepository,
-        BlogReporitoryInterface $blogReporitory
+        CommentRepositoryInterface $commentReporitory,
+        UsersRepositoryInterface $userRepository,
+        BlogRepositoryInterface $blogReporitory
     )
     {
         $this->CommentRepository = $commentReporitory;
@@ -33,14 +33,16 @@ class CommentController extends Controller
         return $Comments;
     }
 
-    public function getStore(){
-        $Parent_id = $this->getParentID();
-        return view('admin.Comments.create',['Parent_id'=>$Parent_id]);
+    public function getStore($id){
+        $Parent_id = $this->getParentID($id);
+        $Comment = $this->CommentRepository->find($id);
+        return view('admin.Comments.create',['Parent_id'=>$Parent_id,"Comment"=>$Comment,"id"=>$id]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request,$id){
         $data = $request->all();
         $Comments = $this->CommentRepository->create($data);
+
         if($Comments == true){
             return redirect('admin/Categories/CategoriesBlog')->with('thong_bao','Add new item success');
         }else{
@@ -66,8 +68,8 @@ class CommentController extends Controller
             return redirect('admin/Categories/CategoriesBlog')->with('thong_bao','Delete an item failed');
         }
     }
-    public function getParentID(){
-        $Parent_id = $this->CommentRepository->getParent_id();
+    public function getParentID($id){
+        $Parent_id = $this->CommentRepository->getParent_id($id);
         return $Parent_id;
     }
     public function getDetails($id){
@@ -91,5 +93,9 @@ class CommentController extends Controller
     public function getUpdate($id){
         $Comments = $this->show($id);
         return view("admin.Comments.update",['Comments'=>$Comments]);
+    }
+
+    public function adminReply(Request $request,$id){
+        echo $id;
     }
 }

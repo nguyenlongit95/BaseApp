@@ -28,7 +28,7 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Name Category <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
@@ -41,7 +41,7 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Info of category <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">

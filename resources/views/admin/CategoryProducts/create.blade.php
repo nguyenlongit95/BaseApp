@@ -28,12 +28,12 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Name Category <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" placeholder="...">
+                                            <input type="text" name="nameCategory" class="form-control" placeholder="...">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -41,13 +41,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Info of category <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" placeholder="...">
+                                            <textarea name="info" id="info" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam commodi consequatur culpa dolorem eligendi, excepturi fugiat illum itaque minima minus nemo quas qui repellat reprehenderit sint suscipit ut vel!</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -55,15 +55,15 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Parent category:</label>
+                                        <label>Parent category <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-compress"></i>
                                             </div>
-                                            <SELECT class="form-control" name="Parent_id">
+                                            <SELECT class="form-control" name="parent_id">
                                                 @foreach($Parent_id as $parent_id)
-                                                <OPTION value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
+                                                <OPTION value="{{ $parent_id->id }}">{{ $parent_id->nameCategory }}</OPTION>
                                                 @endforeach
                                             </SELECT>
                                         </div>

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Sliders\SliderReporitoryInterface;
+use App\Repositories\Sliders\SliderRepositoryInterface;
 use Illuminate\Support\Facades\File;
 class SliderController extends Controller
 {
     //
     protected $SliderRepository;
 
-    public function __construct(SliderReporitoryInterface $sliderReporitory)
+    public function __construct(SliderRepositoryInterface $sliderReporitory)
     {
         $this->SliderRepository = $sliderReporitory;
     }
@@ -30,15 +30,15 @@ class SliderController extends Controller
     }
 
     public function store(Request $request){
-        if($request->hasFile("Sliders")){
-            $file = $request->file("Sliders");
+        if($request->hasFile("sliders")){
+            $file = $request->file("sliders");
             $extFile = $file->getClientOriginalExtension();
             if($extFile == "jpg" || $extFile == "JPG" || $extFile = "jpeg"){
                 $fileName = str_random(3) ."_". $file->getClientOriginalName();
                 $file->move("upload/Sliders/",$fileName);
                 $data = array(
-                    "Slogan" => $request->Slogan,
-                    "Sliders" => $fileName
+                    "slogan" => $request->slogan,
+                    "sliders" => $fileName
                 );
                 $Sliders = $this->SliderRepository->create($data);
                 if($Sliders == true){
@@ -47,6 +47,8 @@ class SliderController extends Controller
                     return redirect()->back()->with('thong_bao','Add new item failed');
                 }
             }
+        }else{
+            return response()->json(["Errors","Cannot's fill Images"]);
         }
     }
 

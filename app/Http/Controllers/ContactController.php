@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Contact\ContactReporitoryInterface;
+use App\Repositories\Contact\ContactRepositoryInterface;
 
 class ContactController extends Controller
 {
     //
     protected $ContactRepository;
-    public function __construct(ContactReporitoryInterface $contactRepository)
+    public function __construct(ContactRepositoryInterface $contactRepository)
     {
         $this->ContactRepository = $contactRepository;
     }

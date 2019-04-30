@@ -9,7 +9,7 @@ use App\Repositories\Eloquent;
 use App\Repositories\Eloquent\EloquentRepository;
 use App\Contacts;
 
-class InfoOfPageEloquentRepository extends EloquentRepository implements InfoOfPageReporitoryInterface {
+class InfoOfPageEloquentRepository extends EloquentRepository implements InfoOfPageRepositoryInterface {
 
     public function getModel()
     {

@@ -10,10 +10,10 @@ class Contacts extends Model
     protected $table="contacts";
 
     protected $fillable=[
-        "Name",
-        "Email",
-        "Address",
-        "Message",
-        "State"
+        "name",
+        "email",
+        "address",
+        "message",
+        "state"
     ];
 }

@@ -10,8 +10,8 @@ class CategoriesProducts extends Model
     protected $table="categories_products";
 
     protected $fillable=[
-        "NameCategory",
-        "Info",
-        "Parent_id"
+        "nameCategory",
+        "info",
+        "parent_id"
     ];
 }

@@ -46,21 +46,21 @@ class ArticleController extends Controller
     }
 
     public function store(Request $request){
-        if($request->hasFile("Images")){
-            $file = $request->file("Images");
+        if($request->hasFile("images")){
+            $file = $request->file("images");
             $extFile = $file->getClientOriginalExtension();
             if($extFile == "jpg" || $extFile == "png" || $extFile == "jpeg"){
                 $name = str_random(5) . $file->getClientOriginalName();
                 if($file->move("upload/Articles/",$name)){
                     $data = array(
-                        "Title"=>$request->Title,
-                        "Slug"=>$request->Slug,
-                        "Info"=>$request->Info,
-                        "Images"=>$name,
-                        "Details"=>$request->Details,
-                        "Author"=>$request->Author,
-                        "Linked"=>$request->Linked,
-                        "Status"=>0
+                        "title"=>$request->title,
+                        "slug"=>$request->slug,
+                        "info"=>$request->info,
+                        "images"=>$name,
+                        "details"=>$request->details,
+                        "author"=>$request->author,
+                        "linked"=>$request->linked,
+                        "status"=>$request->status
                     );
                 }else{
                     return redirect()->back()->with('thong_bao','Upload image fail, please check folder system');
@@ -81,42 +81,41 @@ class ArticleController extends Controller
 
     public function update(Request $request, $id){
         $deleteImage = $this->ArticleRepository->deleteImage($id);
-        if($deleteImage == 1){
-            if($request->hasFile("Images")) {
-                $file = $request->file("Images");
-                $name = str_random(3) . "_" . $file->getClientOriginalName();
-                if ($file->move("upload/Articles/", $name)) {
-                    $data = array(
-                        "Title" => $request->Title,
-                        "Slug" => $request->Slug,
-                        "Info" => $request->Info,
-                        "Details" => $request->Details,
-                        "Images" => $request->$name,
-                        "Author" => $request->Author,
-                        "Linked" => $request->Linked,
-                        "Status" => $request->Status
-                    );
-                }else{
-                    return redirect()->back()->with("thong_bao","Upload file fail, please check system");
-                }
-            }else{
+        if($request->hasFile("images")) {
+            $file = $request->file("images");
+            $name = str_random(3) . "_" . $file->getClientOriginalName();
+            if ($file->move("upload/Articles/", $name)) {
                 $data = array(
-                    "Title" => $request->Title,
-                    "Slug" => $request->Slug,
-                    "Info" => $request->Info,
-                    "Details" => $request->Details,
-                    "Author" => $request->Author,
-                    "Linked" => $request->Linked,
-                    "Status" => $request->Status
+                    "title" => $request->title,
+                    "slug" => $request->slug,
+                    "info" => $request->info,
+                    "details" => $request->details,
+                    "images" => $name,
+                    "author" => $request->author,
+                    "linked" => $request->linked,
+                    "status" => $request->status
                 );
-            }
-            $CategoryBlogs = $this->ArticleRepository->update($data,$id);
-            if($CategoryBlogs == true){
-                return redirect()->back()->with('thong_bao','Update an item success!');
             }else{
-                return redirect()->back()->with('thong_bao','Update an item failed!');
+                return redirect()->back()->with("thong_bao","Upload file fail, please check system");
             }
+        }else{
+            $data = array(
+                "title" => $request->title,
+                "slug" => $request->slug,
+                "info" => $request->info,
+                "details" => $request->details,
+                "author" => $request->author,
+                "linked" => $request->linked,
+                "status" => $request->status
+            );
         }
+        $CategoryBlogs = $this->ArticleRepository->update($data,$id);
+        if($CategoryBlogs == true){
+            return redirect()->back()->with('thong_bao','Update an item success!');
+        }else{
+            return redirect()->back()->with('thong_bao','Update an item failed!');
+        }
+
     }
 
     public function destroy($id){

@@ -11,6 +11,6 @@ class StateOrders extends Model
 
     protected $fillable=[
         "idOrder",
-        "State"
+        "state"
     ];
 }

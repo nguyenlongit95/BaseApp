@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Eloquent\RepositoryInterface;
 use Illuminate\Http\Request;
-use App\Repositories\CategoryBlogs\CategoryBlogReporitoryInterface;
+use App\Repositories\CategoryBlogs\CategoryBlogRepositoryInterface;
 
 class CategoryBlogController extends Controller
 {
@@ -17,7 +17,7 @@ class CategoryBlogController extends Controller
     // Đây là biến trung gian để gọi đến Interface
     protected $CategoryRepository;
     // Phương thức khởi tạo để gọi đến interface, Tham số đầu vào chính là interface
-    public function __construct(CategoryBlogReporitoryInterface $repository)
+    public function __construct(CategoryBlogRepositoryInterface $repository)
     {
         $this->CategoryRepository = $repository;
     }

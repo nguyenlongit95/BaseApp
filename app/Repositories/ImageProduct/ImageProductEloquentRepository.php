@@ -10,13 +10,13 @@ use App\ImageProducts;
 use App\Repositories\Eloquent;
 use App\Repositories\Eloquent\EloquentRepository;
 
-class ImageProductEloquentRepository extends EloquentRepository implements ImageProductReporitoryInterface{
+class ImageProductEloquentRepository extends EloquentRepository implements ImageProductRepositoryInterface{
     /*
      * Lấy hình ảnh của 1 sản phẩm
      * Thay đổi hình ảnh của sản phẩm đó
      * */
-    public function getImages($idProduct){
-        $ImageProduct = ImageProducts::WHERE('idProduct','=',$idProduct)->SELECT('id','ImageProduct','idProduct')->get();
+    public function getImages($idProduct,$numberPaginate){
+        $ImageProduct = ImageProducts::WHERE('idProduct','=',$idProduct)->SELECT('id','imageproduct','idProduct')->paginate($numberPaginate);
         return $ImageProduct;
     }
     /*
@@ -33,7 +33,7 @@ class ImageProductEloquentRepository extends EloquentRepository implements Image
     }
     public function addImage($image, $id){
         $ImageProduct = new ImageProducts();
-        $ImageProduct->ImageProduct = $image;
+        $ImageProduct->imageProduct = $image;
         $ImageProduct->idProduct = $id;
         if($ImageProduct->save()){
             return true;

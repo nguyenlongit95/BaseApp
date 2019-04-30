@@ -12,9 +12,9 @@ class OrderDetails extends Model
     protected $fillable=[
         "idProduct",
         "idOrder",
-        "NameProduct",
-        "Quantity",
-        "Price",
-        "CodeOrder"
+        "product_name",
+        "quantity",
+        "price",
+        "code_order"
     ];
 }

@@ -31,22 +31,22 @@
                         <tr>
                             <td>{{ $blogs->id }}</td>
                             <td>
-                                {{ $blogs->Title }}
+                                {{ $blogs->title }}
                             </td>
                             <td>
-                                {!! $blogs->Info !!}
+                              {!! trimText($blogs->info, 100) !!}
                             </td>
                             <td>
-                                {!! $blogs->Description !!}
+                                {!!  trimText($blogs->description, 255) !!}
                             </td>
                             <td>
-                                {{ $blogs->Author }}
+                                {{ $blogs->author }}
                             </td>
                             <td>
-                                {{ $blogs->Tags }}
+                                {{ $blogs->tags }}
                             </td>
                             <td>
-                                <img src="upload/Blogs/{{$blogs->Image}}" height="100px" width="100px" alt="">
+                                <img src="upload/Blogs/{{$blogs->image}}" height="100px" width="100px" alt="">
                             </td>
                             <td class="text-center"><a href="admin/Blog/updateBlog/{{$blogs->id}}" class="btn-warning padding510510">Update</a></td>
                             <td class="text-center"><a href="admin/Blog/deleteBlog/{{$blogs->id}}" class="btn-danger padding510510">Delete</a></td>

@@ -7,7 +7,7 @@ namespace App\Repositories\Rattings;
 use App\Repositories\Eloquent\EloquentRepository;
 use App\Rattings;
 
-class RattingsEloquentRepository extends EloquentRepository implements RattingsReporitoryInterface {
+class RattingsEloquentRepository extends EloquentRepository implements RattingsRepositoryInterface {
     /*
      * Tại đây ta sẽ khai báo chi tiết các phương thức đặc biệt
      * Ta khai báo chi tiết cho phương thức getModel
@@ -28,9 +28,9 @@ class RattingsEloquentRepository extends EloquentRepository implements RattingsR
             $idProduct
         )->SELECT(
             "id",
-            "Ratting",
-            "Info"
-        )->get();
+            "ratting",
+            "info"
+        )->paginate(5);
         return $RattingProduct;
     }
     public function getStarAVG($idProduct){
@@ -42,7 +42,7 @@ class RattingsEloquentRepository extends EloquentRepository implements RattingsR
             "idProduct",
             "=",
             $idProduct
-        )->SELECT("Ratting")->avg("Ratting");
+        )->SELECT("ratting")->avg("ratting");
         return $StarProduct;
     }
 

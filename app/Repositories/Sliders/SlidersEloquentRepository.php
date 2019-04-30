@@ -7,7 +7,7 @@ namespace App\Repositories\Sliders;
 use App\Rattings;
 use App\Repositories\Eloquent\EloquentRepository;
 
-class SlidersEloquentRepository extends EloquentRepository implements SliderReporitoryInterface {
+class SlidersEloquentRepository extends EloquentRepository implements SliderRepositoryInterface {
     /*
      * Tại đây ta sẽ khai báo chi tiết các phương thức đặc biệt
      * Ta khai báo chi tiết cho phương thức getModel

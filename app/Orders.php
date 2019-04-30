@@ -11,10 +11,10 @@ class Orders extends Model
 
     protected $fillable=[
         "idUser",
-        "Name",
-        "Address",
-        "Phone",
-        "Total",
-        "CodeOrder"
+        "name",
+        "address",
+        "phone",
+        "total",
+        "Code_order"
     ];
 }

@@ -7,7 +7,7 @@ namespace App\Repositories\Orders;
 use App\Orders;
 use App\Repositories\Eloquent\EloquentRepository;
 
-class OrdersEloquentRepository extends EloquentRepository implements OrdersReporitoryInterface{
+class OrdersEloquentRepository extends EloquentRepository implements OrdersRepositoryInterface{
     /*
      * Tại đây ta sẽ khai báo chi tiết các phương thức đặc biệt
      * Ta khai báo chi tiết cho phương thức getModel

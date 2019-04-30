@@ -27,10 +27,10 @@
                         <tr>
                             <td>{{ $categoryProduct->id }}</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                {{ $categoryProduct->nameCategory }}
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                {{ $categoryProduct->info }}
                             </td>
                             <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
                             <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>

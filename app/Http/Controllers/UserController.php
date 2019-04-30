@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Users\UsersReporitoryInterface;
+use App\Repositories\Users\UsersRepositoryInterface;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use DB;
 
 class UserController extends Controller
 {
     //
     protected $UserRepository;
 
-    public function __construct(UsersReporitoryInterface $usersReporitory)
+    public function __construct(UsersRepositoryInterface $usersReporitory)
     {
         $this->UserRepository = $usersReporitory;
     }
@@ -31,6 +34,7 @@ class UserController extends Controller
     public function store(Request $request){
         $data = $request->all();
         $User = $this->UserRepository->create($data);
+        $User->assignRole("USER");
         if($User == true){
             $this->index();
         }else{
@@ -103,6 +107,19 @@ class UserController extends Controller
      * */
     public function getUpdate($id){
         $User = $this->show($id);
-        return view('admin.Users.update',['User'=>$User]);
+        $roles = Role::all();
+        /*
+         * Tại đây sử dụng QueryBuilder
+         * Lấy ra các bản ghi đc nối với bảng Users và Roles
+         * Trả về danh sách các bản ghi đó
+         * Tiến hành so sánh với $roles của bảng roles
+         * Nếu trùng thì hiển thị active và ngược lại.
+         * */
+        $userRole = $User->roles->all();
+        return view('admin.Users.update',[
+            'User'=>$User,
+            'roles'=>$roles,
+            'userRole'=>$userRole
+        ]);
     }
 }

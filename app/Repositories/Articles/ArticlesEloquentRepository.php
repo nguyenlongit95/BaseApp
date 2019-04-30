@@ -14,8 +14,8 @@ class ArticlesEloquentRepository extends EloquentRepository implements ArticleRe
     {
         // TODO: Implement deleteImage() method.
         $Article = Article::findOrFail($id);
-        if(file_exists("upload/Articles/".$Article->Images)){
-            if(File::delete("upload/Articles/".$Article->Images)){
+        if(file_exists("upload/Articles/".$Article->images)){
+            if(File::delete("upload/Articles/".$Article->images)){
                 return 1;
             }else{
                 return 0;

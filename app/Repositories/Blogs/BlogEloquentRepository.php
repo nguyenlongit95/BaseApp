@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\File;
 use App\Blogs;
 use App\Repositories\Eloquent\EloquentRepository;
 
-class BlogEloquentRepository extends EloquentRepository implements BlogReporitoryInterface{
+
+class BlogEloquentRepository extends EloquentRepository implements BlogRepositoryInterface{
     /*
      * Tại đây ta sẽ khai báo chi tiết các phương thức đặc biệt
      * Ta khai báo chi tiết cho phương thức getModel
@@ -29,10 +30,10 @@ class BlogEloquentRepository extends EloquentRepository implements BlogReporitor
     {
         // TODO: Implement deleteImageBlog() method.
         $ImageBlog = Blogs::find($id);
-        if(file_exists("upload/Blogs/".$ImageBlog->Image)){
-            if(FIle::delete("upload/Blogs/".$ImageBlog->Image)){
+        if(file_exists("upload/Blogs/".$ImageBlog->image)){
+            if(FIle::delete("upload/Blogs/".$ImageBlog->image)){
                 $ImageBlog = Blogs::find($id);
-                $ImageBlog->Image = "";
+                $ImageBlog->image = "";
                 $ImageBlog->update();
                 return 1;
             }else{
@@ -46,12 +47,17 @@ class BlogEloquentRepository extends EloquentRepository implements BlogReporitor
     {
         // TODO: Implement insertImage() method.
         $ImageBlog = Blogs::find($id);
-        $ImageBlog->Image = $Image;
+        $ImageBlog->image = $Image;
         if($ImageBlog->update()){
             return 1;
         }else{
             return 0;
         }
+    }
+
+    public function createSlug($title){
+        $slug = changeTitle($title);
+        return $slug;
     }
 
     public function getModel()

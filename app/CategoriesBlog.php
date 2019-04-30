@@ -10,8 +10,8 @@ class CategoriesBlog extends Model
     protected $table="categories_blogs";
 
     protected $fillable=[
-        "NameCategory",
-        "Info",
-        "Parent_id",
+        "nameCategory",
+        "info",
+        "parent_id",
     ];
 }

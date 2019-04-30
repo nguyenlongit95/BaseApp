@@ -27,10 +27,10 @@
                         <tr>
                             <td>{{ $categoryBlog->id }}</td>
                             <td>
-                                {{ $categoryBlog->NameCategory }}
+                                {{ $categoryBlog->nameCategory }}
                             </td>
                             <td>
-                                {{ $categoryBlog->Info }}
+                                {{ $categoryBlog->info }}
                             </td>
                             <td class="text-center"><a href="admin/Categories/updateCategoriesBlog/{{$categoryBlog->id}}" class="btn-warning padding510510">Update</a></td>
                             <td class="text-center"><a href="admin/Categories/deleteCategoriesBlog/{{$categoryBlog->id}}" class="btn-danger padding510510">Delete</a></td>

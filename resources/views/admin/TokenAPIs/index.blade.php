@@ -7,7 +7,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">List categories / <a href="">Add new</a></h3>
+                    <h3 class="box-title">List categories / <a href="#">Add new</a></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -16,26 +16,26 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name Categories</th>
-                            <th>Info</th>
+                            <th>Name API</th>
+                            <th>Token API</th>
                             <th class="text-center">Update</th>
                             <th class="text-center">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($CategoryProducts as $categoryProduct)
+
                         <tr>
-                            <td>{{ $categoryProduct->id }}</td>
+                            <td>1</td>
                             <td>
-                                {{ $categoryProduct->NameCategory }}
+                                FacebookAPI
                             </td>
                             <td>
-                                {{ $categoryProduct->Info }}
+                                Token API
                             </td>
-                            <td class="text-center"><a href="admin/Categories/updateCategoriesProduct/{{$categoryProduct->id}}" class="btn-warning padding510510">Update</a></td>
-                            <td class="text-center"><a href="admin/Categories/deleteCategoriesProduct/{{$categoryProduct->id}}" class="btn-danger padding510510">Delete</a></td>
+                            <td class="text-center"><a href="admin/APIs/updateAPIs/" class="btn-warning padding510510">Update</a></td>
+                            <td class="text-center"><a href="admin/APIs/deleteAPIs/" class="btn-danger padding510510">Delete</a></td>
                         </tr>
-                        @endforeach
+
                         </tfoot>
                     </table>
                 </div>

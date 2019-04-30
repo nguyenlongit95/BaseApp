@@ -30,19 +30,19 @@
                         <tr>
                             <td>{{ $products->id }}</td>
                             <td>
-                                {{ $products->NameProduct }}
+                                {{ $products->product_name }}
                             </td>
                             <td>
-                                {{ $products->Price }}
+                                {{ $products->price }}
                             </td>
                             <td>
-                                {{ $products->Sales }}
+                                {{ $products->sales }}
                             </td>
                             <td>
-                                {!! $products->Info !!}
+                                {!! trimText($products->info,255) !!}
                             </td>
                             <td>
-                                {{ $products->Quantity }}
+                                {{ $products->quantity }}
                             </td>
                             <td class="text-center"><a href="admin/Product/updateProduct/{{$products->id}}" class="btn-warning padding510510">Update</a></td>
                             <td class="text-center"><a href="admin/Product/deleteProduct/{{$products->id}}" class="btn-danger padding510510">Delete</a></td>
@@ -50,7 +50,7 @@
                         @endforeach
                         </tfoot>
                     </table>
-                    {!! $Products->render() !!}
+                    {{ $Products->render() }}
                 </div>
                 <!-- /.box-body -->
             </div>

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Users\UsersReporitoryInterface;
+use App\Repositories\Users\UsersRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 
 class LoginAndRegisterController extends Controller
 {
     //
     protected $UserRepository;
-    public function __construct(UsersReporitoryInterface $usersReporitory)
+    public function __construct(UsersRepositoryInterface $usersReporitory)
     {
         $this->UserRepository = $usersReporitory;
     }

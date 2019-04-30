@@ -34,17 +34,17 @@
                                 {{ $order->idUser }}
                             </td>
                             <td>
-                                {{ $order->Name }}
+                                {{ $order->name }}
                             </td>
-                            <td>{!! $order->Address !!}</td>
+                            <td>{!! $order->address !!}</td>
                             <td>
-                                {{ $order->Phone }}
-                            </td>
-                            <td>
-                                {{ $order->Total }}
+                                {{ $order->phone }}
                             </td>
                             <td>
-                                {{ $order->CodeOrder }}
+                                {{ $order->total }}
+                            </td>
+                            <td>
+                                {{ $order->code_order }}
                             </td>
                             <td class="text-center"><a href="admin/Order/updateOrder/{{$order->id}}" class="btn-warning padding510510">Update</a></td>
                             <td class="text-center"><a href="admin/Order/deleteOrder/{{$order->id}}" class="btn-danger padding510510">Delete</a></td>

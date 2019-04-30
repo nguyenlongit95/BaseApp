@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Repositories\Rattings\RattingsReporitoryInterface;
+use App\Repositories\Rattings\SeoRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -28,47 +28,47 @@ class AppServiceProvider extends ServiceProvider
     {
         // Thêm các đường dẫn tới cho class của các Repository ở đây, ở đây là singleton để truy cập tại trang admin
         $this->app->bind(
-          \App\Repositories\CategoryProducts\CategoryProductReporitoryInterface::class,
+          \App\Repositories\CategoryProducts\CategoryProductRepositoryInterface::class,
           \App\Repositories\CategoryProducts\CateoryEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\CategoryBlogs\CategoryBlogReporitoryInterface::class,
+            \App\Repositories\CategoryBlogs\CategoryBlogRepositoryInterface::class,
             \App\Repositories\CategoryBlogs\CateoryEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\Products\ProductReporitoryInterface::class,
+            \App\Repositories\Products\ProductRepositoryInterface::class,
             \App\Repositories\Products\ProductEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\ImageProduct\ImageProductReporitoryInterface::class,
+            \App\Repositories\ImageProduct\ImageProductRepositoryInterface::class,
             \App\Repositories\ImageProduct\ImageProductEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\Blogs\BlogReporitoryInterface::class,
+            \App\Repositories\Blogs\BlogRepositoryInterface::class,
             \App\Repositories\Blogs\BlogEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\Rattings\RattingsReporitoryInterface::class,
-            \App\Repositories\Rattings\RattingsEloquentRepository::class
+            \App\Repositories\Rattings\SeoRepositoryInterface::class,
+            \App\Repositories\Rattings\SeoEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\Orders\OrdersReporitoryInterface::class,
+            \App\Repositories\Orders\OrdersRepositoryInterface::class,
             \App\Repositories\Orders\OrdersEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\Users\UsersReporitoryInterface::class,
+            \App\Repositories\Users\UsersRepositoryInterface::class,
             \App\Repositories\Users\UserEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\OrdersDetails\OrderDetilasReporitoryInterface::class,
+            \App\Repositories\OrdersDetails\OrderDetilasRepositoryInterface::class,
             \App\Repositories\OrdersDetails\OrderDetailsEloquentRepository::class
         );
         $this->app->bind(
-          \App\Repositories\Comments\CommentReporitoryInterface::class,
+          \App\Repositories\Comments\CommentRepositoryInterface::class,
           \App\Repositories\Comments\CommentEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\Contact\ContactReporitoryInterface::class,
+            \App\Repositories\Contact\ContactRepositoryInterface::class,
             \App\Repositories\Contact\ContactEloquentRepository::class
         );
         $this->app->bind(
@@ -76,7 +76,7 @@ class AppServiceProvider extends ServiceProvider
                 \App\Repositories\Articles\ArticlesEloquentRepository::class
         );
         $this->app->bind(
-            \App\Repositories\InfoOfPage\InfoOfPageReporitoryInterface::class,
+            \App\Repositories\InfoOfPage\InfoOfPageRepositoryInterface::class,
             \App\Repositories\InfoOfPage\InfoOfPageEloquentRepository::class
         );
         $this->app->bind(
@@ -84,8 +84,24 @@ class AppServiceProvider extends ServiceProvider
           \App\Repositories\Linked\LinkedEloquentRepository::class
         );
         $this->app->bind(
-          \App\Repositories\Sliders\SliderReporitoryInterface::class,
+          \App\Repositories\Sliders\SliderRepositoryInterface::class,
           \App\Repositories\Sliders\SlidersEloquentRepository::class
+        );
+        $this->app->bind(
+            \App\Repositories\Widgets\WidgetsRepositoryInterface::class,
+            \App\Repositories\Widgets\WidgetsEloquentRepository::class
+        );
+        $this->app->bind(
+            \App\Repositories\Products\CustomPropertiesRepositoryInterface::class,
+            \App\Repositories\Products\CustomPropertiesEloquentRepository::class
+        );
+        $this->app->bind(
+            \App\Repositories\Menus\MenuRepositoryInterface::class,
+            \App\Repositories\Menus\MenuEloquentRepository::class
+        );
+        $this->app->bind(
+            \App\Repositories\Seo\SeoRepositoryInterface::class,
+            \App\Repositories\Seo\SeoEloquentRepository::class
         );
     }
 }

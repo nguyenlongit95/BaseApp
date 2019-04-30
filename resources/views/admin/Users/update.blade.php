@@ -27,7 +27,7 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Your name</label>
+                                        <label for="">Your name <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
@@ -40,7 +40,7 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Your Email</label>
+                                        <label>Your Email <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -54,7 +54,7 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Your password</label>
+                                        <label>Your password <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -68,13 +68,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Your avatar</label>
-                                        <img src="upload/Avatar/{{ $User->Avatar }}" height="100px" width="100px" alt="{{ $User->name }}">
+                                        <label>Your avatar <span style="color:red;">*</span></label>
+                                        <img src="upload/Avatar/{{ $User->avatar }}" height="100px" width="100px" alt="{{ $User->name }}">
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="file" name="Avatar" class="form-control" value="{{ $User->Avatar }}">
+                                            <input type="file" name="avatar" class="form-control" value="{{ $User->avatar }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -82,15 +82,15 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Authentication this user:</label>
+                                        <label>Authentication this user <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-compress"></i>
                                             </div>
                                             <SELECT class="form-control" name="Level">
-                                                <option <?php if($User->Level == 0 ){echo "selected";} ?> value="0">Customer</option>
-                                                <option <?php if($User->Level == 1 ){echo "selected";} ?> value="1">Adminstator</option>
+                                                <option <?php if($User->level == 0 ){echo "selected";} ?> value="0">Customer</option>
+                                                <option <?php if($User->level == 1 ){echo "selected";} ?> value="1">Adminstator</option>
                                             </SELECT>
                                         </div>
                                         <!-- /.input group -->
@@ -121,24 +121,38 @@
 
                     <div class="col-md-6">
                         <!-- Upload avatar tại đây -->
+                        <?php //var_dump($roles); ?>
+                        <?php //var_dump($userRole); ?>
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Roles</th>
+                                <th>Authentication</th>
+                                <th class="text-center">Give</th>
+                                <th class="text-center">Revoke</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($roles as $roles)
+                                <form action="admin/RoleAndPermission/GiveRoleUser/{{ $User->id }}" method="POST">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <tr>
+                                        <td>{{ $roles->name }}</td>
+                                        <td>{{ $roles->guard_name }}</td>
+                                        <!-- Tiếp tục code ở đây -->
+
+                                        <?php foreach($userRole as $u){?>
+                                        <td><input type="radio" onclick="GiveUser({{$User->id}},{{$roles->id}},1)" <?php if($u->id == $roles->id){echo "checked";}else{} ?> name="Give" value="1">Give</td>
+                                        <td><input type="radio" onclick="GiveUser(0)" <?php if($u->id != $roles->id){echo "checked";}else{} ?> name="Give" value="0">Revoke</td>
+                                        <?php } ?>
+                                    </tr>
+                                </form>
+                                @endforeach
+                            </tbody>
+                        </table>
+
                         <p>
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
-                        </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet maxime neque accusantium perferendis repudiandae magni sint amet tempora repellendus recusandae eligendi temporibus cupiditate atque, porro consectetur voluptas cum incidunt.
-                        </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ipsa repellat accusamus nemo fuga, neque asperiores consectetur tempora necessitatibus minima rem aspernatur. Beatae eius aliquam maxime distinctio id reprehenderit repudiandae.
-                        </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nemo ea maiores saepe quo minima, culpa sint incidunt perspiciatis omnis dolore accusamus adipisci quam architecto pariatur natus! Necessitatibus, quibusdam exercitationem!
-                        </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis! Unde ipsum architecto culpa corrupti vitae!
                         </p>
                     </div>
                 </div>
@@ -148,5 +162,28 @@
         <!-- /.row -->
         <!-- /.content -->
         </div>
+
+        <script>
+            /*
+            * Function này sẽ nhận vào 3 tham số
+            * Giá trị của radio để xác định xem phân chức danh hay thu hồi chức danh của người dùng này
+            * id của user
+            * id của chức danh
+            * sử dụng ajax để gửi dữ liệu và thay đổi chức danh của tài khoản.
+            * */
+            function GiveUser(id_user,idRole,value){
+                $(document).ready(function(){
+                   var check = confirm("Would you like to change this user's permissions?");
+                   if(check == true){
+                       // sử dụng ajax ở đây
+                       alert(value);
+                       alert(idRole);
+                       alert(id_user);
+                   }else{
+
+                   }
+                });
+            }
+        </script>
     </section>
 @endsection

@@ -6,7 +6,7 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Update comments</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -27,12 +27,12 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Author</label>
+                                        <label for="">Author <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="Author" class="form-control" value="{{ $Comments->Author }}">
+                                            <input type="text" name="author" class="form-control" value="{{ $Comments->author }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -40,13 +40,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Comment:</label>
+                                        <label>Comment <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea name="Comment" class="form-control ckeditor" id="" cols="30" rows="10">{!! $Comments->Comment !!}</textarea>
+                                            <textarea name="comment" class="form-control ckeditor" id="" cols="30" rows="10">{!! $Comments->comment !!}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -54,13 +54,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Status <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-compress"></i>
                                             </div>
-                                            <SELECT class="form-control" name="State">
+                                            <SELECT class="form-control" name="state">
                                                 <option <?php if($Comments->State == 1){echo "selected";}else{} ?> value="1">Approved</option>
                                                 <option <?php if($Comments->State == 1){echo "selected";}else{} ?> value="0">Pending</option>
                                             </SELECT>

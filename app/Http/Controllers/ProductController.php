@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
-use App\Repositories\Products\ProductReporitoryInterface;
-use App\Repositories\ImageProduct\ImageProductReporitoryInterface;
-use App\Repositories\Rattings\RattingsReporitoryInterface;
+use App\Repositories\Products\ProductRepositoryInterface;
+use App\Repositories\ImageProduct\ImageProductRepositoryInterface;
+use App\Repositories\Rattings\SeoRepositoryInterface;
+use App\Repositories\Products\CustomPropertiesRepositoryInterface;
+
 class ProductController extends Controller
 {
     //
@@ -19,16 +21,19 @@ class ProductController extends Controller
     protected $ProductRepository;
     protected $ImageProductRepository;
     protected $RattingRepository;
+    protected $CustomProperties;
     // Phương thức khởi tạo để gọi đến interface, Tham số đầu vào chính là interface
     public function __construct(
-        ProductReporitoryInterface $repositoryProduct,
-        ImageProductReporitoryInterface $imageProductReporitory,
-        RattingsReporitoryInterface $rattingsReporitory
+        ProductRepositoryInterface $repositoryProduct,
+        ImageProductRepositoryInterface $imageProductReporitory,
+        SeoRepositoryInterface $rattingsReporitory,
+        CustomPropertiesRepositoryInterface $customPropertiesRepository
     )
     {
         $this->ProductRepository = $repositoryProduct;
         $this->ImageProductRepository = $imageProductReporitory;
         $this->RattingRepository = $rattingsReporitory;
+        $this->CustomProperties = $customPropertiesRepository;
     }
 
     /*
@@ -65,7 +70,9 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id){
+
         $data = $request->all();
+
         $Product = $this->ProductRepository->update($data,$id);
         if($Product == true){
             return redirect()->back()->with('thong_bao','Update an item success!');
@@ -121,7 +128,7 @@ class ProductController extends Controller
         return $Categories;
     }
     public function getImageProduct($id){
-        $ImageProduct = $this->ImageProductRepository->getImages($id);
+        $ImageProduct = $this->ImageProductRepository->getImages($id,2);
         return $ImageProduct;
     }
     /*
@@ -132,6 +139,9 @@ class ProductController extends Controller
         $showProcuct = $this->show($id);
         $getCategory = $this->getCategories();
         $ImageProduct = $this->getImageProduct($id);
+        $CustomProperties = $this->CustomProperties->getCustomPropertiesOfProduct($id,2);
+        $getAttribute = $this->CustomProperties->getAttribute();
+        $getAttributeValue = $this->CustomProperties->getCustomPropertiesValue();
         /*
          * Tại đây sẽ lấy ra Ratting của sản phẩm
          * Tại đây sẽ lấy ra số lượng trung bình của sản phẩm
@@ -143,7 +153,10 @@ class ProductController extends Controller
             'Category'=>$getCategory,
             'ImageProduct'=>$ImageProduct,
             'RattingProduct'=>$RattingProduct,
-            'StarProduct'=>$StarProduct
+            'StarProduct'=>$StarProduct,
+            'CustomProperties'=>$CustomProperties,
+            "getAttribute"=>$getAttribute,
+            'CustomPropertiesValue'=>$getAttributeValue
         ]);
     }
 
@@ -210,8 +223,8 @@ class ProductController extends Controller
     public function deleteImage($id){
         // TODO: Implement deleteImage() method.
         $ImageProduct = $this->ImageProductRepository->find($id);
-        if(file_exists("upload/Product/".$ImageProduct->ImageProduct)){
-            if(File::delete("upload/Product/".$ImageProduct->ImageProduct)) {
+        if(file_exists("upload/Product/".$ImageProduct->imageproduct)){
+            if(File::delete("upload/Product/".$ImageProduct->imageproduct)) {
                 $deleteImage = $this->ImageProductRepository->delete($id);
                 if ($deleteImage) {
                     return 1;
@@ -224,5 +237,80 @@ class ProductController extends Controller
         }else{
             return 3;
         }
+    }
+
+    /*
+     * Route quản lý thuộc tính mở rộng của sản phẩm
+     * Thêm sửa xóa
+     * id của sản phẩm được truyền lên theo sản phẩm
+     * */
+    public function updateCustomProperties($id, Request $request){
+        $data = array(
+            "Value"=>$request->Value
+        );
+        $CustomProperties = $this->CustomProperties->updateCustomProperties($data,$id);
+        return redirect()->back()->with("thong_bao",$CustomProperties);
+    }
+    /*
+    * Khi thêm mới thì phải thêm vào 2 bảng(Attribute_value và Customproperties)
+    */
+    public function addCustomProperties($id, Request $request){
+        $data = array(
+            "idProduct"=>$id,
+            "idAttribute"=>$request->idAttribute,
+            "idAttributeValue"=>$request->idAttributeValue,
+            "Value"=>$request->Value
+        );
+        $addCustomProperties = $this->CustomProperties->addCustomProperties($data, $id);
+        return redirect()->back()->with("thong_bao",$addCustomProperties);
+    }
+
+    /*
+    * khi thêm mới 1 thuộc tính cho toàn hệ thống
+    * Thì thêm mới thuộc tính đó cho sản phẩm hiện tại luôn
+    */
+    public function addAttribute($id, Request $request){
+        $data = array(
+           "idProduct"=>$id,
+           "parent_id"=>$request->parent_id,
+           "attribute" => $request->attribute,
+           "value" => $request->value,
+        );
+        $AddAttribute = $this->CustomProperties->addAttribute($data);
+        if($AddAttribute == null){
+            return redirect()->back()->with("thong_bao","Please enter attribute");
+        }else if($AddAttribute == "false"){
+            return redirect()->back()->with("thong_bao","Add attribute false, please check again!");
+        }else{
+            /*
+            * Sau khi thêm thuộc tính cho cả hệ thống thành công thì thêm luôn thuộc tính đó cho sản phẩm hiện tại
+            */
+            $AddAttributeProduct = $this->CustomProperties->addAttributeProduct($data, $AddAttribute);
+            if($AddAttributeProduct === "success"){
+                return redirect()->back()->with("thong_bao","Add new attribute success");
+            }else{
+                return redirect()->back()->with("thong_bao","Add attribute false, please check again");
+            }
+        }
+    }
+
+    public function deleteCustomProperties($id){
+        $CustomProperties = $this->CustomProperties->delete($id);
+        return redirect()->back();
+    }
+
+    /*
+    * More function ajax
+    */
+    public function getAttributeValue(Request $request){
+        $AttributeValue = $this->CustomProperties->getAttributeValue($request->idAttribute);
+        ?>
+
+            <option value="">----------</option>
+            <?php foreach($AttributeValue as $value){ ?>
+            <option value="<?php echo $value->id; ?>"><?php echo $value->value; ?></option>
+            <?php } ?>
+
+        <?php
     }
 }

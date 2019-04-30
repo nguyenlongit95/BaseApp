@@ -27,12 +27,12 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name of Product</label>
+                                        <label for="">Name of Product <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameProduct" class="form-control" value="{{ $Product->NameProduct }}">
+                                            <input type="text" name="product_name" class="form-control" value="{{ $Product->product_name }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -40,12 +40,12 @@
 
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Price</label>
+                                        <label for="">Price <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="Price" class="form-control" value="{{ $Product->Price }}">
+                                            <input type="text" name="price" class="form-control" value="{{ $Product->price }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -53,12 +53,12 @@
 
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Sales(%)</label>
+                                        <label for="">Sales(%) <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="number" name="Sales" class="form-control" value="{{ $Product->Sales }}">
+                                            <input type="number" name="sales" class="form-control" value="{{ $Product->sales }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -66,12 +66,12 @@
 
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Quantity</label>
+                                        <label for="">Quantity <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="number" name="Quantity" class="form-control" value="{{ $Product->Quantity }}">
+                                            <input type="number" name="quantity" class="form-control" value="{{ $Product->quantity }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -79,7 +79,7 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Info of category <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -87,7 +87,7 @@
                                             </div>
                                             <SELECT class="form-control" name="idCategories">
                                                 @foreach($Category as $category)
-                                                    <OPTION <?php if($category->id == $Product->idCategories){echo "selected";} else{} ?> value="{{ $category->id }}">{{ $category->NameCategory }}</OPTION>
+                                                    <OPTION <?php if($category->id == $Product->idCategories){echo "selected";} else{} ?> value="{{ $category->id }}">{{ $category->nameCategory }}</OPTION>
                                                 @endforeach
                                             </SELECT>
                                         </div>
@@ -97,12 +97,12 @@
 
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Info of product</label>
+                                        <label for="">Info of product <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <textarea class="form-control ckeditor" name="Info" id="info" cols="30" rows="5">{!! $Product->Info !!}</textarea>
+                                            <textarea class="form-control ckeditor" name="info" id="info" cols="30" rows="5">{!! $Product->info !!}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -110,12 +110,12 @@
 
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Descriptions</label>
+                                        <label for="">Descriptions <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <textarea class="form-control ckeditor" name="Description" id="DescriptionProduct" cols="30" rows="10">{!! $Product->Description !!}</textarea>
+                                            <textarea class="form-control ckeditor" name="description" id="DescriptionProduct" cols="30" rows="30">{!! $Product->description !!}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -129,7 +129,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-paper-plane"></i>
                                             </div>
-                                            <input type="submit" class="form-control" value="Submit">
+                                            <input type="submit" class="form-control btn btn-primary" value="Submit">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -145,9 +145,11 @@
                     <div class="col-md-4 pull-right">
                         <div class="box box-danger">
                             <div class="box-header">
-                                <h3 class="box-title">Image and rattings star</h3>
+                                <h3 class="box-title">Extension components</h3>
                             </div>
-                        <h5 class="box-title">Update Image</h5>
+                            <p>
+                                Images of product <span style="color:red;">*</span>
+                            </p>
                         <form action="admin/Product/addImage/{{$Product->id}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="file" name="ImageProduct" value="Add Image" class="form-control">
@@ -166,13 +168,14 @@
                                 <tr>
                                     <td class="text-center" style="padding-top:15%;">{{ $imageProduct->id }}</td>
                                     <td class="text-center">
-                                        <img width="100px" height="100px" class="reposive-image" src="upload/Product/{{$imageProduct->ImageProduct}}" alt="{{ $Product->NameProduct }}">
+                                        <img width="100px" height="100px" class="reposive-image" src="upload/Product/{{$imageProduct->imageproduct}}" alt="{{ $Product->product_name }}">
                                     </td>
                                     <td style="padding-top:15%;" class="text-center"><a href="admin/Product/deleteImage/{{$imageProduct->id}}" class="btn-danger padding510510">Delete</a></td>
                                 </tr>
                             @endforeach
                             </tfoot>
                         </table>
+                            {!! $ImageProduct->appends(Request::all())->links() !!}
                         <h5>Mumber average this product: <span class="btn <?php if($StarProduct >= 3){ echo "btn-success";}else if($StarProduct<3){echo "btn-danger";} ?>"><?php $StarAVG = number_format($StarProduct); for($i=1; $i<=$StarAVG;$i++){ ?> <i class="fa fa-star"></i><?php } ?></span></h5>
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
@@ -188,39 +191,135 @@
                                     <td>{{ $rattingProduct->id }}</td>
                                     <td class="text-center">
                                         <?php
-                                        for($i=1; $i<=$rattingProduct->Ratting; $i++){
+                                        for($i=1; $i<=$rattingProduct->ratting; $i++){
                                             ?><i class="fa fa-star"></i><?php
                                         }
                                         ?>
                                     </td>
-                                    <td>{!! $rattingProduct->Info !!}</td>
+                                    <td>{!! $rattingProduct->info !!}</td>
                                 </tr>
                             @endforeach
                             </tfoot>
                         </table>
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam odit culpa aspernatur ex voluptas soluta doloremque exercitationem deserunt dicta vel nemo, et enim fugit expedita ullam laudantium minus quam.
-                        </p>
+                            {!! $RattingProduct->appends(Request::all())->links() !!}
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam eveniet maxime neque accusantium perferendis repudiandae magni sint amet tempora repellendus recusandae eligendi temporibus cupiditate atque, porro consectetur voluptas cum incidunt.
-                        </p>
+                            <!-- Form update custom properties -->
+                        <div class="box-header">
+                            <h3 class="box-title">Custom properties of product <span style="color:red;">*</span></h3>
+                        </div>
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ipsa repellat accusamus nemo fuga, neque asperiores consectetur tempora necessitatibus minima rem aspernatur. Beatae eius aliquam maxime distinctio id reprehenderit repudiandae.
-                        </p>
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Properties</th>
+                                    <th>Values</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($CustomProperties as $customProperty)
+                                    @foreach($CustomPropertiesValue as $customPropertyValue)
+                                    @if($customProperty->attribute_value_id == $customPropertyValue->id)
+                                        @foreach ($getAttribute as $attribute)
+                                        @if($attribute->id == $customPropertyValue->idAttribute)
+                                    <form action="admin/Product/updateCustomproperties/{{ $customPropertyValue->id }}" method="POST">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <tr>
+                                        <td class="text-center">
+                                            <span>{{ $attribute->attribute }}</span>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="Value" value="{{ $customPropertyValue->value }}">
+                                        </td>
+                                        <td>
+                                            <input type="submit" class="btn btn-warning form-control" value="Update">
+                                        </td>
+                                        <td>
+                                            <a href="admin/Product/deleteCustomProperties/{{ $customProperty->id }}" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                    </form>
+                                        @endif
+                                    @endforeach
+                                    @endif
+                                    @endforeach
+                                @endforeach
+                                </tfoot>
+                            </table>
+                            {{ $CustomProperties->appends(Request::all())->links() }}
+                            <p>Add a new existing attribute for this product <span style="color:red;">*</span></p>
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Properties</th>
+                                    <th>Value</th>
+                                    <th>Values</th>
+                                    <th>Method</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <form action="admin/Product/addCustomProperties/{{ $Product->id }}" method="POST">
+                                    <input type="hidden" id="_token"  name="_token" value="{{ csrf_token() }}">
+                                    <tr>
+                                        <td>
+                                            <select name="idAttribute" class="form-control" id="idAttribute">
+                                                <option selected value="">----------</option>
+                                                @foreach($getAttribute as $attrubute)
+                                                <option value="{{ $attrubute->id }}">{{ $attrubute->attribute }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="idAttributeValue" class="form-control" id="tdAttributeValue">
 
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nemo ea maiores saepe quo minima, culpa sint incidunt perspiciatis omnis dolore accusamus adipisci quam architecto pariatur natus! Necessitatibus, quibusdam exercitationem!
-                        </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis! Unde ipsum architecto culpa corrupti vitae!
-                        </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis!
-                        </p>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="value" placeholder="Values">
+                                        </td>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary" value="Add">
+                                        </td>
+                                    </tr>
+                                </form>
+                                </tfoot>
+                            </table>
+                            <p>Add a new attribute to both the system and this product <span style="color:red;">*</span></p>
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>The child of</th>
+                                    <th class="text-center">Attribute</th>
+                                    <th>Values</th>
+                                    <th>Method</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <form action="admin/Product/addAttribute/{{ $Product->id }}" method="POST">
+                                    <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                                    <tr>
+                                        <td>
+                                            <select name="parent_id" class="form-control" id="">
+                                                <option value="0">---------</option>
+                                                @foreach($getAttribute as $attrubute)
+                                                <option value="{{ $attrubute->id }}">{{ $attrubute->attribute }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="attribute" placeholder="Attribute">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="value" placeholder="values">
+                                        </td>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary" value="Add">
+                                        </td>
+                                    </tr>
+                                </form>
+                                </tfoot>
+                            </table>
                     </div>
                     </div>
                         </div>

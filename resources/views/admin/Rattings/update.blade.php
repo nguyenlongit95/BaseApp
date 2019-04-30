@@ -27,7 +27,7 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Star</label>
+                                        <label for="">Star <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
@@ -44,7 +44,7 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of ratting:</label>
+                                        <label>Info of ratting <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
@@ -58,7 +58,7 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Chose a product:</label>
+                                        <label>Chose a product <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">

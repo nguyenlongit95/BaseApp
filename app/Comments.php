@@ -12,9 +12,9 @@ class Comments extends Model
     protected $fillable=[
         "idBlog",
         "idUser",
-        "Comment",
-        "Author",
-        "State",
-        "Parent_id"
+        "comment",
+        "author",
+        "state",
+        "parent_id"
     ];
 }

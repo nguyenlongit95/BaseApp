@@ -10,8 +10,8 @@ class tokenAPI extends Model
     protected $table="tokenAPIs";
 
     protected $fillable=[
-        "Partner",
-        "Token",
-        "Config"
+        "partner",
+        "token",
+        "config"
     ];
 }

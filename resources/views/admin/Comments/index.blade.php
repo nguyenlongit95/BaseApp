@@ -25,17 +25,17 @@
                         </thead>
                         <tbody>
                         @foreach($Comment as $comment)
-                            <?php if($comment->Parent_id == 0){ ?>
+                            <?php if($comment->parent_id == 0){ ?>
                         <tr>
                             <td>{{ $comment->id }}</td>
                             <td>
-                                {{ $comment->Author }}
+                                {{ $comment->author }}
                             </td>
                             <td>
-                                {{ $comment->Comment }}
+                                {{ $comment->comment }}
                             </td>
                             <td>
-                                <?php if($comment->State == 1){
+                                <?php if($comment->state == 1){
                                     echo "Approved";
                                 }else{
                                     echo "Un Approved";

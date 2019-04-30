@@ -12,7 +12,7 @@ use App\Rattings;
 use App\Repositories\Eloquent;
 use App\Repositories\Eloquent\EloquentRepository;
 
-class ProductEloquentRepository extends EloquentRepository implements ProductReporitoryInterface{
+class ProductEloquentRepository extends EloquentRepository implements ProductRepositoryInterface{
     /*
      * Tại đây ta sẽ khai báo chi tiết các phương thức đặc biệt
      * Ta khai báo chi tiết cho phương thức getModel
@@ -42,12 +42,18 @@ class ProductEloquentRepository extends EloquentRepository implements ProductRep
     }
 
     public function getInfo($id){
-        $ProductInfo = Products::SELECT('Info')->WHERE('id','=',$id)->get();
-        return $ProductInfo;
+        $ProductInfo = Products::SELECT('info')
+            ->WHERE('id','=',$id)
+            ->get();
+        if($ProductInfo){
+            return $ProductInfo;
+        }else{
+            return null;
+        }
     }
 
     public function getImages($idProduct){
-        $ImageProduct = ImageProducts::WHERE('idProduct','=',$idProduct)->SELECT('id','ImageProduct','idProduct')->get();
+        $ImageProduct = ImageProducts::WHERE('idProduct','=',$idProduct)->SELECT('id','imageproduct','idProduct')->get();
         return $ImageProduct;
     }
 

@@ -1,5 +1,14 @@
 @extends('admin.master')
 @section('content')
+
+    <a href="createCart">Create cart demo</a>
+    <p><a href="http://localhost/uploadfile/public/File/de8fc22eb95123b472342e4efc222248">Click to me!</a></p>
+    <a href="http://localhost/uploadfileV3/public/verification/42/5c74b495b322a">Authentication as a partner</a>
+    <form action="uploadVerificationFile" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="file" name="verification">
+        <input type="submit" value="Verification">
+    </form>
 <section class="content">
     <div class="row">
         <div class="col-lg-3 col-xs-6">
@@ -699,4 +708,6 @@
     </div>
     <!-- /.row -->
 </section>
+
+
 @endsection

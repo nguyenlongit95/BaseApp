@@ -10,8 +10,8 @@ class InfoOfPages extends Model
     protected $table="info_of_pages";
 
     protected $fillable=[
-        "PageName",
-        "Info",
-        "Value"
+        "pagename",
+        "info",
+        "value"
     ];
 }

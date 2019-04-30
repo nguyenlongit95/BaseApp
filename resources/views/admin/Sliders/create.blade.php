@@ -33,7 +33,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="Slogan" class="form-control" placeholder="...">
+                                            <input type="text" name="slogan" class="form-control" placeholder="...">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -47,7 +47,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-image"></i>
                                             </div>
-                                            <input type="file" name="Sliders" class="form-control" value="default.jpg">
+                                            <input type="file" name="sliders" class="form-control" value="default.jpg">
                                         </div>
                                         <!-- /.input group -->
                                     </div>

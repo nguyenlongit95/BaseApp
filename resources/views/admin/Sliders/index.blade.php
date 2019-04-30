@@ -26,10 +26,10 @@
                         <tr>
                             <td>{{ $slider->id }}</td>
                             <td>
-                                {{ $slider->Slogan }}
+                                {{ $slider->slogan }}
                             </td>
                             <td>
-                                <img height="100px" width="150px" src="upload/Sliders/{{ $slider->Sliders }}" alt="{{ $slider->Slogan }}">
+                                <img height="100px" width="150px" src="upload/Sliders/{{ $slider->sliders }}" alt="{{ $slider->slogan }}">
                             </td>
                             <td class="text-center"><a href="admin/Slider/deleteSlider/{{$slider->id}}" class="btn-danger padding510510">Delete</a></td>
                         </tr>

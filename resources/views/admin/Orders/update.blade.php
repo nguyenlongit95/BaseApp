@@ -27,7 +27,7 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Clients own</label>
+                                        <label for="">Clients own <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
@@ -44,13 +44,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Your Name</label>
+                                        <label>Your Name <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Name" class="form-control" value="{{ $Order->Name }}">
+                                            <input type="text" name="name" class="form-control" value="{{ $Order->name }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -59,29 +59,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Address ship area</label>
+                                        <label>Address ship area <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea name="Address" class="form-control ckeditor" id="" cols="30" rows="10">{{ $Order->Address }}</textarea>
-                                        </div>
-                                        <!-- /.input group -->
-                                    </div>
-                                    <!-- /.form group -->
-
-
-
-                                    <!-- phone mask -->
-                                    <div class="form-group">
-                                        <label>Phone</label>
-
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-align-left"></i>
-                                            </div>
-                                            <input type="text" name="Phone" class="form-control" value="{{ $Order->Phone }}">
+                                            <textarea name="address" class="form-control ckeditor" id="" cols="30" rows="10">{{ $Order->address }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -91,13 +75,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Total price</label>
+                                        <label>Phone <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Total" class="form-control" value="{{ $Order->Total }}">
+                                            <input type="text" name="phone" class="form-control" value="{{ $Order->phone }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -107,13 +91,29 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Check Code Order:</label>
+                                        <label>Total price <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="CodeOrder" class="form-control" value="{{ $Order->CodeOrder }}">
+                                            <input type="text" name="total" class="form-control" value="{{ $Order->total }}">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+
+
+
+                                    <!-- phone mask -->
+                                    <div class="form-group">
+                                        <label>Check Code Order <span style="color:red;">*</span></label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-align-left"></i>
+                                            </div>
+                                            <input type="text" name="code_order" class="form-control" value="{{ $Order->code_order }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -168,16 +168,16 @@
                                         {{ $orderDetail->idProduct }}
                                     </td>
                                     <td>
-                                        {{ $orderDetail->NameProduct }}
+                                        {{ $orderDetail->product_name }}
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control" onclick="changeQTY({{ $orderDetail->id }})" name="Quantity" id="qty" value="{{ $orderDetail->Quantity }}">
+                                        <input type="number" class="form-control" onclick="changeQTY({{ $orderDetail->id }})" name="Quantity" id="qty" value="{{ $orderDetail->quantity }}">
                                     </td>
                                     <td>
-                                        {{ $orderDetail->Price }} $
+                                        {{ $orderDetail->price }} $
                                     </td>
                                     <td>
-                                        {{ $orderDetail->CodeOrder }}
+                                        {{ $orderDetail->code_order }}
                                     </td>
                                     <td class="text-center"><a href="admin/Order/updateOrderDetails/{{$orderDetail->id}}" class="btn-warning padding510510">Update</a></td>
                                     <td class="text-center"><a href="admin/Order/deleteOrderDetails/{{$orderDetail->id}}" class="btn-danger padding510510">Delete</a></td>

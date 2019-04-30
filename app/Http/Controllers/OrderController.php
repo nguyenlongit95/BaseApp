@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Orders\OrdersReporitoryInterface;
-use App\Repositories\Products\ProductReporitoryInterface;
-use App\Repositories\Users\UsersReporitoryInterface;
-use App\Repositories\OrdersDetails\OrderDetilasReporitoryInterface;
+use App\Repositories\Orders\OrdersRepositoryInterface;
+use App\Repositories\Products\ProductRepositoryInterface;
+use App\Repositories\Users\UsersRepositoryInterface;
+use App\Repositories\OrdersDetails\OrderDetilasRepositoryInterface;
 class OrderController extends Controller
 {
     /*
@@ -19,10 +19,10 @@ class OrderController extends Controller
     protected $OrderDetailsRepository;
 
     public function __construct(
-        OrdersReporitoryInterface $ordersReporitory,
-        ProductReporitoryInterface $productReporitory,
-        UsersReporitoryInterface $usersReporitory,
-        OrderDetilasReporitoryInterface $orderDetilasReporitory
+        OrdersRepositoryInterface $ordersReporitory,
+        ProductRepositoryInterface $productReporitory,
+        UsersRepositoryInterface $usersReporitory,
+        OrderDetilasRepositoryInterface $orderDetilasReporitory
     )
     {
         $this->OrderRepository = $ordersReporitory;

@@ -23,17 +23,17 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="box box-danger">
                             <div class="box-header">
-                                <h3 class="box-title">Update form data element</h3>
+                                <h3 class="box-title">Create a new product</h3>
                             </div>
                             <div class="box-body">
                                 <!-- Date mm/dd/yyyy -->
                                 <div class="form-group">
-                                    <label for="">Name of Product</label>
+                                    <label for="">Name of Product <span style="color:red;">*</span></label>
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-edit fa-pen-alt"></i>
                                         </div>
-                                        <input type="text" name="NameProduct" class="form-control" value="Name of product">
+                                        <input type="text" name="product_name" class="form-control" value="Name of product">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -41,12 +41,12 @@
 
                                 <!-- Date mm/dd/yyyy -->
                                 <div class="form-group">
-                                    <label for="">Info of product</label>
+                                    <label for="">Info of product <span style="color:red;">*</span></label>
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-edit fa-pen-alt"></i>
                                         </div>
-                                        <textarea class="form-control ckeditor" name="Info" id="info" cols="30" rows="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis magnam, saepe! Consectetur consequatur, cumque deserunt ducimus ea earum eligendi eveniet excepturi fugit illum molestiae nam, porro quis sint voluptatem voluptates?</textarea>
+                                        <textarea class="form-control ckeditor" name="info" id="info" cols="30" rows="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis magnam, saepe! Consectetur consequatur, cumque deserunt ducimus ea earum eligendi eveniet excepturi fugit illum molestiae nam, porro quis sint voluptatem voluptates?</textarea>
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -54,12 +54,12 @@
 
                                 <!-- Date mm/dd/yyyy -->
                                 <div class="form-group">
-                                    <label for="">Descriptions</label>
+                                    <label for="">Descriptions <span style="color:red;">*</span></label>
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-edit fa-pen-alt"></i>
                                         </div>
-                                        <textarea class="form-control ckeditor" name="Description" id="DescriptionProduct" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut itaque quaerat qui repudiandae? Commodi debitis delectus eum illum, ipsam, laborum magnam minima non porro provident quod reprehenderit tempore vero voluptatibus!</textarea>
+                                        <textarea class="form-control ckeditor" name="description" id="DescriptionProduct" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut itaque quaerat qui repudiandae? Commodi debitis delectus eum illum, ipsam, laborum magnam minima non porro provident quod reprehenderit tempore vero voluptatibus!</textarea>
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -78,12 +78,12 @@
                             </div>
                         <!-- Date mm/dd/yyyy -->
                         <div class="form-group">
-                            <label for="">Price($)</label>
+                            <label for="">Price($) <span style="color:red;">*</span></label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-edit fa-pen-alt"></i>
                                 </div>
-                                <input type="text" name="Price" class="form-control" placeholder="10$">
+                                <input type="text" name="price" class="form-control" placeholder="10$">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -91,12 +91,12 @@
 
                         <!-- Date mm/dd/yyyy -->
                         <div class="form-group">
-                            <label for="">Sales(%)</label>
+                            <label for="">Sales(%) <span style="color:red;">*</span></label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-edit fa-pen-alt"></i>
                                 </div>
-                                <input type="number" name="Sales" class="form-control" placeholder="10%">
+                                <input type="number" name="sales" class="form-control" placeholder="10%">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -104,12 +104,12 @@
 
                         <!-- Date mm/dd/yyyy -->
                         <div class="form-group">
-                            <label for="">Quantity</label>
+                            <label for="">Quantity <span style="color:red;">*</span></label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-edit fa-pen-alt"></i>
                                 </div>
-                                <input type="number" name="Quantity" class="form-control" placeholder="10">
+                                <input type="number" name="quantity" class="form-control" placeholder="10">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -117,7 +117,7 @@
 
                         <!-- phone mask -->
                         <div class="form-group">
-                            <label>Info of category:</label>
+                            <label>Info of category <span style="color:red;">*</span></label>
 
                             <div class="input-group">
                                 <div class="input-group-addon">
@@ -125,7 +125,7 @@
                                 </div>
                                 <SELECT class="form-control" name="idCategories">
                                     @foreach($Categories as $category)
-                                        <OPTION value="{{ $category->id }}">{{ $category->NameCategory }}</OPTION>
+                                        <OPTION value="{{ $category->id }}">{{ $category->nameCategory }}</OPTION>
                                     @endforeach
                                 </SELECT>
                             </div>

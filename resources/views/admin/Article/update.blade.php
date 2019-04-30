@@ -28,12 +28,12 @@
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Title of article</label>
+                                        <label for="">Title of article <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" id="TitleArticle" name="Title" class="form-control" value="{{ $Article->Title }}">
+                                            <input type="text" id="TitleArticle" name="title" class="form-control" value="{{ $Article->title }}">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -41,13 +41,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Information of article</label>
+                                        <label>Information of article <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea class="ckeditor" name="Info" id="" cols="30" rows="10">{{ $Article->Info }}</textarea>
+                                            <textarea class="ckeditor" name="info" id="" cols="30" rows="10">{{ $Article->info }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -55,13 +55,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Description of article</label>
+                                        <label>Description of article <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <textarea class="form-control ckeditor" name="Details" id="Details" cols="30" rows="30">{{ $Article->Details }}</textarea>
+                                            <textarea class="form-control ckeditor" name="details" id="Details" cols="30" rows="30">{{ $Article->details }}</textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -80,25 +80,25 @@
                                 </div>
                                 <!-- Date mm/dd/yyyy -->
                                 <div class="form-group">
-                                    <label for="">Slug in article</label>
+                                    <label for="">Slug in article <span style="color:red;">*</span></label>
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-edit fa-pen-alt"></i>
                                         </div>
-                                        <input type="text" id="Slug" name="Slug" class="form-control" value="{{ $Article->Slug }}">
+                                        <input type="text" id="Slug" name="slug" class="form-control" value="{{ $Article->slug }}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
                                 <!-- /.form group -->
                                 <!-- phone mask -->
                                 <div class="form-group">
-                                    <label>Author of article</label>
+                                    <label>Author of article <span style="color:red;">*</span></label>
 
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </div>
-                                        <input type="text" name="Author" class="form-control" value="{{ $Article->Author }}">
+                                        <input type="text" name="author" class="form-control" value="{{ $Article->author }}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -106,13 +106,13 @@
 
                                 <!-- phone mask -->
                                 <div class="form-group">
-                                    <label>Linked this article</label>
+                                    <label>Linked this article <span style="color:red;">*</span></label>
 
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-compress"></i>
                                         </div>
-                                        <input type="text" name="Linked" class="form-control" value="{{ $Article->Linked }}">
+                                        <input type="text" name="linked" class="form-control" value="{{ $Article->linked }}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -120,14 +120,14 @@
 
                                 <!-- phone mask -->
                                 <div class="form-group">
-                                    <label>Status of article</label>
+                                    <label>Status of article <span style="color:red;">*</span></label>
 
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-lock"></i>
                                         </div>
-                                        Public: <input <?php if($Article->Status == 1){ echo "checked"; } ?> type="radio" name="Status" value="1">
-                                        Private: <input <?php if($Article->Status == 0){ echo "checked"; } ?> checked type="radio" name="Status" value="0">
+                                        Public: <input <?php if($Article->status == 1){ echo "checked"; } ?> type="radio" name="status" value="1">
+                                        Private: <input <?php if($Article->status == 0){ echo "checked"; } ?> type="radio" name="status" value="0">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -135,13 +135,13 @@
 
                                 <!-- phone mask -->
                                 <div class="form-group">
-                                    <label>Representative of the article</label>
-                                    <img src="upload/Articles/{{ $Article->Images }}" height="250px" width="100%" alt="{{ $Article->Title }}">
+                                    <label>Representative of the article <span style="color:red;">*</span></label>
+                                    <img src="upload/Articles/{{ $Article->images }}" height="250px" width="100%" alt="{{ $Article->Title }}">
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-image"></i>
                                         </div>
-                                        <input type="file" name="Images" class="form-control" value="{{ $Article->Images }}">
+                                        <input type="file" name="images" class="form-control" value="{{ $Article->images }}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>

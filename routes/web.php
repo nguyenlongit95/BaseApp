@@ -7,14 +7,25 @@ Route::get('/', function () {
 });
 
 /*
+ * khởi tạo ban đầu cho tài khoản
+ * Khi hoàn thành sẽ xóa phần Route này đi
+ * */
+Auth::routes();
+
+Route::get('role', 'HomeController@createNewRole');
+Route::get('permission','HomeController@createNewPermission');
+Route::get('InitFirstRole','HomeController@InitFirstRole');
+Route::get('InitFirstUser','HomeController@InitFirstUser');
+Route::get('AssignPermissionFirstUser','HomeController@AssignPermissionFirstUser');
+/*
  * Route Login
  * */
-Route::get('Login','LoginAndRegisterController@getLogin');
+Route::get('AdminLogin','HomeController@index');
 Route::post('Login','LoginAndRegisterController@postLogin');
 /*
  * Route cho phia admin
  * */
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix'=>'admin','middleware' => ['auth','role:BACKEND']],function(){
     // Trang DashBoard sẽ là nơi thống kê sản phẩm và các thông tin liên quan
     Route::get('DashBoard','adminController@DashBoard');
 
@@ -58,6 +69,16 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('addImage/{id}','ProductController@postAddImage');
         Route::get('deleteImage/{id}','ProductController@getDeleteImage');
 
+        Route::post('updateCustomproperties/{id}','ProductController@updateCustomProperties');
+        Route::get('deleteCustomProperties/{id}','ProductController@deleteCustomProperties');
+        Route::post('addCustomProperties/{id}','ProductController@addCustomProperties');
+
+        Route::post('addAttribute/{id}','ProductController@addAttribute');
+
+        /*
+        * More ajax Product
+        */
+        Route::post('getAttributeValue','ProductController@getAttributeValue');
     });
 
     Route::group(['prefix'=>'Ratting'],function(){
@@ -76,8 +97,13 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('updateBlogs/{id}','BlogController@update');
 
         Route::post('changeImageBlogs/{id}','BlogController@changeImage');
+//        Route::post('changeImageBlogs/{id}',function(){
+//            dd("abcabc");
+//        });
 
         Route::get('deleteBlog/{id}','BlogController@destroy');
+
+        Route::post('ajaxSlug','BlogController@ajaxSlug');
     });
 
     Route::group(['prefix'=>'Order'],function(){
@@ -105,6 +131,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('updateUser/{ud}','UserController@update');
 
         Route::get('deleteUser/{id}','UserController@destroy');
+
+        Route::post('GiveRoleUser/{id}','UserController@GiveRoleUser');
     });
 
     Route::group(['prefix'=>'Article'],function(){
@@ -113,6 +141,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('addArticle','ArticleController@store');
 
         Route::get('updateArticle/{id}','ArticleController@getUpdate');
+        Route::post('updateArticle/{id}','ArticleController@update');
 
         Route::get('deleteArticle/{id}','ArticleController@destroy');
         // Ajax Title
@@ -139,7 +168,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('deleteComment/{id}','CommentController@destroy');
 
         Route::get('addComment/{id}','CommentController@getStore');
-        Route::post('addComment','CommentController@store');
+        Route::post('addReplyComment/{id}','CommentController@adminReply');
     });
 
     Route::group(['prefix'=>'Contact'],function(){
@@ -165,6 +194,25 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('updateInfoOfPage/{id}','InfoOfPageController@updateInfo');
         Route::post('updateLinked/{id}','InfoOfPageController@updateLinked');
     });
+
+    Route::group(['prefix'=>'API'],function (){
+        Route::get("APIs",'tokenAPIController@index');
+
+        Route::get("updateAPIs",'tokenAPIController@update');
+    });
+
+    Route::group(['prefix'=>'Seo'],function(){
+        Route::get('index','SeoController@index');
+
+        Route::post('updateSeo/{id}','SeoController@update');
+        Route::get('updateSeo/{id}','SeoController@show');
+
+        Route::get('addSeo','SeoController@getStore');
+        Route::post('addSeo','SeoController@store');
+
+        Route::get('deleteSeo/{id}','SeoController@destroy');
+    });
+
     /*
      * Route cho Widgets
      * Menu header
@@ -172,7 +220,9 @@ Route::group(['prefix'=>'admin'],function(){
      * Sidebar
      * theme
      * */
-
+    Route::group(["prefix"=>"Widgets"],function(){
+        Route::get("Widgets","WidgetsController@index");
+    });
     /*
      * Route cho Mailbox
      * Mail sends
@@ -181,10 +231,39 @@ Route::group(['prefix'=>'admin'],function(){
      * */
 
     /*
+     * Quản lý Role và permission
+     * Thêm sửa xóa Role và permission
+     * Role và permission sẽ liên kết nhiều nhiều với nhau
+     * */
+    Route::group(["prefix"=>"RoleAndPermission",'middleware' => ['auth','role:BACKEND']],function(){
+        Route::get('RoleAndPermission','HomeController@ListRoleAndPermission');
+
+        Route::get("addRole","HomeController@addRole");
+        Route::get("addPermission","HomeController@addPermission");
+        Route::post("addRole","HomeController@postAddRole");
+        Route::post("addPermission","HomeController@postAddPermission");
+
+        Route::get("updateRole/{id}","HomeController@updateRole");
+        Route::get("updatePermission/{id}","HomeController@updatePermission");
+        Route::post("updateRole/{id}","HomeController@postUpdateRole");
+        Route::post("updatePermission/{id}","HomeController@postUpdatePermission");
+
+        Route::get("deleteRole/{id}",'HomeController@deleteRole');
+        Route::get("deletePermission/{id}",'HomeController@deletePermission');
+    });
+    /*
      * Route cho documentation
      * */
+    Route::get('Documentation',function(){
+        return view("Documentation");
+    });
 });
 
 /*
  * Route cho phia client
  * */
+
+Route::get('createCart','adminController@createCart');
+
+Route::post('uploadVerificationFile','adminController@uploadVerificationFile');
+Route::get('verification/{filename}','adminController@verification');

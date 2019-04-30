@@ -30,17 +30,17 @@
                                 <tr>
                                     <td>{{ $Comment->id }}</td>
                                     <td>
-                                        {{ $Comment->Author }}
+                                        {{ $Comment->author }}
                                     </td>
                                     <td>
-                                        <?php echo trimText($Comment->Comment,30); ?>
+                                        <?php echo trimText($Comment->comment,30); ?>
                                     </td>
                                     <td>
-                                        {{ $Blog->Title }}
+                                        {{ $Blog->title }}
                                     </td>
 
                                     <td>
-                                       <?php if($Comment->State == 1){ echo "Approved";}else if($Comment->State == 0){echo "Pending";} ?>
+                                       <?php if($Comment->state == 1){ echo "Approved";}else if($Comment->state == 0){echo "Pending";} ?>
                                     </td>
 
                                     <td class="text-center">
@@ -61,7 +61,7 @@
             <div class="col-md-6">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Reply comment of: {{ $Comment->Author }}</h3>
+                        <h3 class="box-title">Reply comment of: {{ $Comment->author }}</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -87,13 +87,13 @@
                                     {{ $User->name }}
                                 </td>
                                 <td>
-                                    {{ $reply->Author }}
+                                    {{ $reply->author }}
                                 </td>
                                 <td>
-                                    <?php echo trimText($Comment->Comment,30); ?>
+                                    <?php echo trimText($Comment->comment,30); ?>
                                 </td>
                                 <td>
-                                    <?php if($reply->State == 1){ echo "Approved";}else if($reply->State == 0){echo "Pending";} ?>
+                                    <?php if($reply->state == 1){ echo "Approved";}else if($reply->state == 0){echo "Pending";} ?>
                                 </td>
 
                                 <td class="text-center">

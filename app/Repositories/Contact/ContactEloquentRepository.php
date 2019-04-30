@@ -9,18 +9,18 @@ use App\Repositories\Eloquent;
 use App\Repositories\Eloquent\EloquentRepository;
 use App\Contacts;
 
-class ContactEloquentRepository extends EloquentRepository implements ContactReporitoryInterface{
+class ContactEloquentRepository extends EloquentRepository implements ContactRepositoryInterface{
 
     public function changeState($id,$State)
     {
         // TODO: Implement changeState() method.
         $Contact = Contacts::findOrFail($id);
-        if($Contact->State == 0){
-            $Contact->State = 1;
+        if($Contact->state == 0){
+            $Contact->state = 1;
             $Contact->save();
             return 1;
-        }else if($Contact->State == 1){
-            $Contact->State = 0;
+        }else if($Contact->state == 1){
+            $Contact->state = 0;
             $Contact->save();
             return 1;
         }

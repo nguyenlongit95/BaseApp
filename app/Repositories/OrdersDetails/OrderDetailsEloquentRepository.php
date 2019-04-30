@@ -7,7 +7,7 @@ namespace App\Repositories\OrdersDetails;
 use App\Repositories\Eloquent\EloquentRepository;
 use App\OrderDetails;
 use DB;
-class OrderDetailsEloquentRepository extends EloquentRepository implements OrderDetilasReporitoryInterface{
+class OrderDetailsEloquentRepository extends EloquentRepository implements OrderDetilasRepositoryInterface{
     /*
      * Tại đây ta sẽ khai báo chi tiết các phương thức đặc biệt
      * Ta khai báo chi tiết cho phương thức getModel
@@ -16,20 +16,24 @@ class OrderDetailsEloquentRepository extends EloquentRepository implements Order
     public function getAllPrice($idOrder)
     {
         // TODO: Implement getAllPrice() method.
-        $AllPrice = OrderDetails::WHERE("idOrder","=",$idOrder)->sum("Price")->get();
+        $AllPrice = OrderDetails::WHERE("idOrder","=",$idOrder)
+            ->sum("price")
+            ->get();
         return $AllPrice;
     }
     public function getProduct($idOrder)
     {
         // TODO: Implement getProduct() method.
-        $Product = DB::table("order_details")->WHERE("idOrder","=", $idOrder)->get();
+        $Product = DB::table("order_details")
+            ->WHERE("idOrder","=", $idOrder)
+            ->get();
         return $Product;
     }
     public function updateQuantity($id, $Quantity)
     {
         // TODO: Implement updateQuantity() method.
         $OrderDetails = OrderDetails::find($id);
-        $OrderDetails->Quantity = $Quantity;
+        $OrderDetails->quantity = $Quantity;
         if($OrderDetails->update()){
             return 1;
         }else{

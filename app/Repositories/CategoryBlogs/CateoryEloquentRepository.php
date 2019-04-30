@@ -8,9 +8,9 @@ namespace App\Repositories\CategoryBlogs;
 use App\CategoriesBlog;
 use App\Repositories\Eloquent;
 use App\Repositories\Eloquent\EloquentRepository;
-use App\Repositories\CategoryBlogs\CategoryBlogReporitoryInterface;
+use App\Repositories\CategoryBlogs\CategoryBlogRepositoryInterface;
 
-class CateoryEloquentRepository extends EloquentRepository implements CategoryBlogReporitoryInterface{
+class CateoryEloquentRepository extends EloquentRepository implements CategoryBlogRepositoryInterface{
     /*
      * Tại đây ta sẽ khai báo chi tiết các phương thức đặc biệt
      * Ta khai báo chi tiết cho phương thức getModel
@@ -21,8 +21,8 @@ class CateoryEloquentRepository extends EloquentRepository implements CategoryBl
         // TODO: Implement getParent_id() method.
         $getParentID = CategoriesBlog::SELECT(
             'id',
-            'Parent_id',
-            'NameCategory'
+            'parent_id',
+            'nameCategory'
         )->get();
         return $getParentID;
     }
@@ -31,7 +31,7 @@ class CateoryEloquentRepository extends EloquentRepository implements CategoryBl
     {
         // TODO: Implement getInfo() method.
         $getInfo = CategoriesBlog::SELECT(
-            'Info'
+            'info'
         )->get();
         return $getInfo;
     }

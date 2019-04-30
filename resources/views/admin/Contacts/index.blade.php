@@ -29,21 +29,21 @@
                         <tr>
                             <td>{{ $contact->id }}</td>
                             <td>
-                                {{ $contact->Name }}
+                                {{ $contact->name }}
                             </td>
                             <td>
-                                {{ $contact->Email }}
+                                {{ $contact->email }}
                             </td>
                             <td>
-                                {{ $contact->Address }}
+                                {{ $contact->address }}
                             </td>
                             <td>
-                                {!! $contact->Message !!}
+                                {!! $contact->message !!}
                             </td>
                             <td>
                                 <select onchange="changeState({{ $contact->id }})" name="State" class="form-control" id="StateContact">
-                                    <option <?php if($contact->State == 1){echo "selected";} ?> value="1">Approvide</option>
-                                    <option <?php if($contact->State == 0){echo "selected";} ?> value="0">Un Approvide</option>
+                                    <option <?php if($contact->state == 1){echo "selected";} ?> value="1">Approvide</option>
+                                    <option <?php if($contact->state == 0){echo "selected";} ?> value="0">Un Approvide</option>
                                 </select>
                             </td>
                             <td>

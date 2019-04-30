@@ -19,21 +19,21 @@
                 @include('admin.layouts.alert')
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="admin/Categories/addCategoriesProduct" method="POST" enctype="multipart/form-data">
+                        <form action="admin/Comment/addReplyComment/{{ $id }}" method="POST">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="box box-danger">
                                 <div class="box-header">
-                                    <h3 class="box-title">Update form data element</h3>
+                                    <h3 class="box-title">Add reply comment!</h3>
                                 </div>
                                 <div class="box-body">
                                     <!-- Date mm/dd/yyyy -->
                                     <div class="form-group">
-                                        <label for="">Name Category</label>
+                                        <label for="">Comments <span style="color:red;">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-edit fa-pen-alt"></i>
                                             </div>
-                                            <input type="text" name="NameCategory" class="form-control" placeholder="...">
+                                            <input type="text" name="comment" class="form-control" placeholder="...">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -41,13 +41,13 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Info of category:</label>
+                                        <label>Author <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-align-left"></i>
                                             </div>
-                                            <input type="text" name="Info" class="form-control" placeholder="...">
+                                            <input type="text" name="author" class="form-control" placeholder="...">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -55,32 +55,27 @@
 
                                     <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Parent category:</label>
+                                        <label>Reply to comment <span style="color:red;">*</span></label>
 
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-compress"></i>
                                             </div>
-                                            <SELECT class="form-control" name="Parent_id">
-                                                @foreach($Parent_id as $parent_id)
-                                                <OPTION value="{{ $parent_id->id }}">{{ $parent_id->NameCategory }}</OPTION>
-                                                @endforeach
+                                            <SELECT class="form-control" name="id">
+                                                <OPTION value="{{ $id }}">{{ $Comment->comment }}</OPTION>
                                             </SELECT>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
                                     <!-- /.form group -->
 
-
-                                    <!-- IP mask -->
+                                    <!-- phone mask -->
                                     <div class="form-group">
-                                        <label>Submit data:</label>
-
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-paper-plane"></i>
+                                                <i class="fa fa-compress"></i>
                                             </div>
-                                            <input type="submit" class="form-control" value="Submit">
+                                            <input type="submit" name="_token" value="Submit" class="form-control">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -108,10 +103,6 @@
 
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus nemo ea maiores saepe quo minima, culpa sint incidunt perspiciatis omnis dolore accusamus adipisci quam architecto pariatur natus! Necessitatibus, quibusdam exercitationem!
-                        </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta adipisci provident suscipit veritatis distinctio, aliquam qui, quod minima eveniet voluptates vero esse. Nam, officiis! Unde ipsum architecto culpa corrupti vitae!
                         </p>
                     </div>
                 </div>

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Blogs\BlogReporitoryInterface;
+use App\Repositories\Blogs\BlogRepositoryInterface;
 
-use App\Repositories\CategoryBlogs\CategoryBlogReporitoryInterface;
+use App\Repositories\CategoryBlogs\CategoryBlogRepositoryInterface;
 
 class BlogController extends Controller
 {
-    /*
+    /**
      *
      * Tại đây ta gọi và sử dungj các Repository một cách đơn giản
      * Mỗi một phương thức gọi ta dùng 1 phương thức.
@@ -20,13 +20,13 @@ class BlogController extends Controller
     protected $CategoryBlogs;
 
     // Phương thức khởi tạo để gọi đến interface, Tham số đầu vào chính là interface
-    public function __construct(BlogReporitoryInterface $reporitoryBlog, CategoryBlogReporitoryInterface $repositoryCategoryBlog)
+    public function __construct(BlogRepositoryInterface $reporitoryBlog, CategoryBlogRepositoryInterface $repositoryCategoryBlog)
     {
         $this->BlogRepositories = $reporitoryBlog;
         $this->CategoryBlogs = $repositoryCategoryBlog;
     }
 
-    /*
+    /**
      * Tại đây ta xây dựng CURD một cách ngắn gọn như sau
      * index
      * show
@@ -51,6 +51,20 @@ class BlogController extends Controller
 
     public function store(Request $request){
         $data = $request->all();
+        $file = $request->file("image");
+        $fileExtendstion = $file->getClientOriginalExtension();
+        if($fileExtendstion == "jpg" || $fileExtendstion == "JPG" || $fileExtendstion == "jpeg" || $fileExtendstion == "JPEG" || $fileExtendstion == "png"){
+            $fileName = $file->getClientOriginalName();
+            $Name = str_random(5) . $fileName;
+            if($file->move("upload/Blogs/",$Name)){
+                // Sau khi kiểm tra tất cả xong thì thêm hình ảnh tại đây
+                $data['image'] = $Name;
+            }else{
+                return redirect('admin/Blog/Blogs')->with('thong_bao','Add new item false, move image false!');
+            }
+        }else{
+            return redirect('admin/Blog/Blogs')->with('thong_bao','Add new item false, check image again!');
+        };
         $Blogs = $this->BlogRepositories->create($data);
         if($Blogs == true){
             return redirect('admin/Blog/Blogs')->with('thong_bao','Add new item success');
@@ -69,7 +83,7 @@ class BlogController extends Controller
         }
     }
 
-    /*
+    /**
      * Phương thức thay đổi hình ảnh của bài viết
      * Trước khi thay đổi hình ảnh thì phải xóa hình ảnh cũ đi
      * Tham số đầu vào là id của bài viết
@@ -78,15 +92,15 @@ class BlogController extends Controller
     public function changeImage(Request $request,$id){
         $ImageBlog = $this->BlogRepositories->deleteImageBlog($id);
         $this->validate($request,[
-           'Image'=>'required'
+           'image'=>'required'
         ],[
-            'Image.required'=>'Please chose a image'
+            'image.required'=>'Please chose a image'
         ]);
         if($ImageBlog == 1){
             // Tiến hành thêm mới hình ảnh tại đây
-            $file = $request->file("Image");
+            $file = $request->file("image");
             $fileExtendstion = $file->getClientOriginalExtension();
-            if($fileExtendstion == "jpg" || $fileExtendstion == "JPG" || $fileExtendstion == "jpeg" || $fileExtendstion == "JPEG"){
+            if($fileExtendstion == "jpg" || $fileExtendstion == "JPG" || $fileExtendstion == "jpeg" || $fileExtendstion == "JPEG" || $fileExtendstion == "png"){
                  $fileName = $file->getClientOriginalName();
                  $Name = str_random(5) . $fileName;
                  if($file->move("upload/Blogs/",$Name)){
@@ -104,9 +118,9 @@ class BlogController extends Controller
                 return redirect("admin/Blog/updateBlog/" . $id)->with('thong_bao','Wrong image format');
             }
         }else if($ImageBlog == 2){
-            $file = $request->file("Image");
+            $file = $request->file("image");
             $fileExtendstion = $file->getClientOriginalExtension();
-            if($fileExtendstion == "jpg" || $fileExtendstion == "JPG" || $fileExtendstion == "jpeg" || $fileExtendstion == "JPEG"){
+            if($fileExtendstion == "jpg" || $fileExtendstion == "JPG" || $fileExtendstion == "jpeg" || $fileExtendstion == "JPEG" || $fileExtendstion == "png"){
                 $fileName = $file->getClientOriginalName();
                 $Name = str_random(5) . $fileName;
                 if($file->move("upload/Blogs/",$Name)){
@@ -128,7 +142,7 @@ class BlogController extends Controller
         }
     }
 
-    /*
+    /**
      * Khi xóa Blog thì phải xóa hình ảnh của Blog trước
      * Sau khi xóa thành công thì mới xáo Blog
      * Gọi đến phương thức xóa hình ảnh tại Eloquent
@@ -162,5 +176,13 @@ class BlogController extends Controller
         $Blog = $this->BlogRepositories->find($id);
         $CategoryBlog = $this->CategoryBlogs->getAll(10000);
         return view('admin.Blogs.update',['Blog'=>$Blog,'CategoryBlog'=>$CategoryBlog]);
+    }
+
+    /**
+     * Ajax slug
+     * */
+    public function ajaxSlug(Request $request){
+        $slug = $this->BlogRepositories->createSlug($request->title);
+        return $slug;
     }
 }

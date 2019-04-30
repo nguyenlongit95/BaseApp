@@ -10,7 +10,7 @@ class Linkeds extends Model
     protected $table="linkeds";
 
     protected $fillable=[
-        "Linked",
-        "Value",
+        "linked",
+        "value",
     ];
 }

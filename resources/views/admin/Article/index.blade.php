@@ -30,19 +30,19 @@
                         <tr>
                             <td>{{ $article->id }}</td>
                             <td>
-                                {{ $article->Title }}
+                                {{ $article->title }}
                             </td>
                             <td>
-                                {{ $article->Slug }}
+                                {{ $article->slug }}
                             </td>
                             <td>
-                                {!! $article->Info !!}
+                                {!! $article->info !!}
                             </td>
                             <td>
-                                {{ $article->Author }}
+                                {{ $article->author }}
                             </td>
                             <td>
-                                <img height="100px" width="100px" src="upload/Articles/{{ $article->Images }}" alt="{{ $article->Title }}">
+                                <img height="100px" width="100px" src="upload/Articles/{{ $article->images }}" alt="{{ $article->title }}">
                             </td>
                             <td class="text-center"><a href="admin/Article/updateArticle/{{$article->id}}" class="btn-warning padding510510">Update</a></td>
                             <td class="text-center"><a href="admin/Article/deleteArticle/{{$article->id}}" class="btn-danger padding510510">Delete</a></td>
